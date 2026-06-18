@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a14">
+<title>DS Lite 狩り・Jogáveis em Inglês</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;700;800&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0f10;
+  --bg-card: #121a18;
+  --border: #233330;
+  --text: #ebf5f0;
+  --text-dim: #98b3a5;
+  --text-faint: #5a7068;
+  --accent: #00cc7a;
+  --accent-bright: #00ff9c;
+  --tier-sp: #00ff9c;
+  --tier-s: #00cc7a;
+  --multi: #00d4ff;
+  --lang-ok: #ffd400;
+  --lang-jp: #ff6b00;
+  --lang-collector: #b366ff;
+  --ds-color: #00d4ff;
+  --gba-color: #ff9500;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: 'DM Sans', sans-serif; line-height: 1.5; min-height: 100vh;
+  background-image: radial-gradient(ellipse at top right, rgba(0,255,156,0.08), transparent 50%), radial-gradient(ellipse at bottom left, rgba(0,212,255,0.06), transparent 50%);
+  background-attachment: fixed; overflow-x: hidden;
+}
+.container { max-width: 1000px; margin: 0 auto; padding: 0 16px 80px; }
+header { padding: 32px 0 24px; }
+.header-mark { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-faint); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; }
+.title-jp { font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: clamp(32px, 8vw, 56px); line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 4px; }
+.title-jp .accent { color: var(--accent-bright); }
+.title-en { font-weight: 500; font-size: clamp(14px, 3.5vw, 18px); color: var(--text-dim); }
+.header-divider { margin: 24px 0; height: 1px; background: linear-gradient(90deg, var(--accent-bright), transparent); }
+.legend { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 24px; font-size: 13px; }
+.legend-title { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-faint); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; }
+.legend-items { display: flex; flex-wrap: wrap; gap: 10px 16px; color: var(--text-dim); }
+.legend-item { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; }
+.filters { position: sticky; top: 0; background: rgba(10,15,16,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 100; padding: 12px 0; margin: 0 -16px 24px; padding-left: 16px; padding-right: 16px; border-bottom: 1px solid var(--border); }
+.filter-row { display: flex; gap: 8px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
+.filter-row::-webkit-scrollbar { display: none; }
+.filter-btn { flex-shrink: 0; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-dim); padding: 8px 14px; border-radius: 999px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; white-space: nowrap; }
+.filter-btn:active { transform: scale(0.96); }
+.filter-btn.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.filter-btn.tier-sp.active { background: var(--tier-sp); color: var(--bg); border-color: var(--tier-sp); }
+.filter-btn.essential.active { background: linear-gradient(135deg, var(--accent-bright), var(--multi)); color: var(--bg); border-color: var(--accent-bright); box-shadow: 0 0 16px rgba(0,255,156,0.3); }
+.filter-btn.multi-lang.active { background: var(--multi); color: var(--bg); border-color: var(--multi); }
+.filter-btn.ds-only.active { background: var(--ds-color); color: var(--bg); border-color: var(--ds-color); }
+.filter-btn.gba-only.active { background: var(--gba-color); color: var(--bg); border-color: var(--gba-color); }
+.nav-index { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 24px; }
+.nav-index-title { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-faint); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; }
+.nav-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.nav-link { font-size: 12px; color: var(--text-dim); text-decoration: none; padding: 4px 10px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; transition: all 0.2s ease; }
+.nav-link:active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.genre-section { margin-bottom: 40px; scroll-margin-top: 80px; }
+.genre-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.genre-title-jp { font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: 24px; }
+.genre-title-en { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; }
+.genre-count { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-faint); }
+.game-list { display: flex; flex-direction: column; gap: 12px; }
+.game-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; position: relative; overflow: hidden; }
+.game-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--accent); opacity: 0; }
+.game-card.tier-sp::before { opacity: 1; background: var(--tier-sp); }
+.game-card[data-console="ds"]::after { content: ''; position: absolute; top: 0; right: 0; width: 3px; height: 100%; background: var(--ds-color); opacity: 0.4; }
+.game-card[data-console="gba"]::after { content: ''; position: absolute; top: 0; right: 0; width: 3px; height: 100%; background: var(--gba-color); opacity: 0.4; }
+.game-card-top { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+.priority-num { flex-shrink: 0; width: 28px; height: 28px; background: var(--border); color: var(--text-dim); border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 4px; }
+.game-card.tier-sp .priority-num { background: var(--tier-sp); color: var(--bg); }
+.game-titles { flex: 1; min-width: 0; }
+.game-name-jp { font-family: 'Shippori Mincho B1', serif; font-weight: 700; font-size: clamp(20px, 5vw, 24px); line-height: 1.2; margin-bottom: 4px; word-break: break-word; }
+.game-name-en { font-size: 13px; color: var(--text-dim); line-height: 1.3; }
+.game-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.badge { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; padding: 4px 8px; border-radius: 4px; text-transform: uppercase; }
+.badge-tier-sp { background: var(--tier-sp); color: var(--bg); }
+.badge-tier-s { background: rgba(0,204,122,0.15); color: var(--tier-s); border: 1px solid rgba(0,204,122,0.3); }
+.badge-baixa-dep { background: rgba(255,212,0,0.15); color: var(--lang-ok); border: 1px solid rgba(255,212,0,0.3); }
+.badge-multi { background: rgba(0,212,255,0.18); color: var(--multi); border: 1px solid rgba(0,212,255,0.4); }
+.badge-jp-exc { background: rgba(255,107,0,0.18); color: var(--lang-jp); border: 1px solid rgba(255,107,0,0.4); }
+.badge-collector { background: rgba(179,102,255,0.15); color: var(--lang-collector); border: 1px solid rgba(179,102,255,0.3); }
+.badge-console-ds { background: rgba(0,212,255,0.18); color: var(--ds-color); border: 1px solid rgba(0,212,255,0.4); }
+.badge-console-gba { background: rgba(255,149,0,0.18); color: var(--gba-color); border: 1px solid rgba(255,149,0,0.4); }
+.game-why { font-size: 13.5px; color: var(--text-dim); line-height: 1.5; margin-bottom: 10px; }
+.series-arc { font-size: 11.5px; color: var(--accent); background: rgba(0,204,122,0.06); border-left: 2px solid var(--accent); padding: 6px 10px; margin-bottom: 12px; border-radius: 2px; font-family: 'JetBrains Mono', monospace; line-height: 1.5; }
+.game-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.action-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; background: transparent; border: 1px solid var(--border); color: var(--text-dim); border-radius: 8px; font-size: 12px; font-weight: 500; text-decoration: none; cursor: pointer; transition: all 0.2s ease; }
+.action-btn:active { transform: scale(0.97); }
+.action-btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.tips-section { margin-top: 56px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+.tips-title { font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: 24px; margin-bottom: 4px; }
+.tips-subtitle { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 20px; }
+.tip { margin-bottom: 16px; padding-left: 16px; border-left: 2px solid var(--border); }
+.tip-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent-bright); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+.tip-text { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+.tip-text strong { color: var(--text); font-weight: 700; }
+.game-card.hidden, .genre-section.hidden { display: none; }
+#essential-view { display: none; }
+#essential-view.active { display: block; }
+.essential-header { text-align: center; padding: 24px 16px; margin-bottom: 24px; background: linear-gradient(135deg, rgba(0,255,156,0.12), rgba(0,212,255,0.08)); border: 1px solid var(--border); border-radius: 16px; }
+.essential-title-jp { font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: clamp(28px, 7vw, 44px); line-height: 1; margin-bottom: 8px; background: linear-gradient(135deg, var(--accent-bright), var(--multi)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.essential-subtitle { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); letter-spacing: 0.2em; text-transform: uppercase; }
+.essential-list { display: flex; flex-direction: column; gap: 12px; }
+.essential-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; display: flex; gap: 16px; align-items: flex-start; position: relative; overflow: hidden; }
+.essential-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--accent); }
+.essential-card.top3::before { background: linear-gradient(180deg, var(--accent-bright), var(--multi)); width: 4px; }
+.essential-rank { flex-shrink: 0; width: 56px; height: 56px; background: var(--border); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: 28px; line-height: 1; }
+.essential-card.top3 .essential-rank { background: linear-gradient(135deg, var(--accent-bright), var(--multi)); color: var(--bg); box-shadow: 0 4px 12px rgba(0,255,156,0.3); }
+.essential-card.rank-1 .essential-rank { background: linear-gradient(135deg, #aaffd4, var(--accent-bright)); color: var(--bg); }
+.essential-body { flex: 1; min-width: 0; }
+.essential-name-jp { font-family: 'Shippori Mincho B1', serif; font-weight: 700; font-size: clamp(18px, 4.5vw, 22px); line-height: 1.2; margin-bottom: 4px; word-break: break-word; }
+.essential-name-en { font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+.essential-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.essential-why { font-size: 13px; color: var(--text-dim); line-height: 1.5; margin-bottom: 10px; }
+.essential-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+footer { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--border); text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-faint); letter-spacing: 0.1em; }
+@media (min-width: 768px) {
+  .container { padding: 0 32px 80px; }
+  .game-name-jp { font-size: 26px; }
+  .game-why { font-size: 14.5px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="header-mark">DS Lite Playable · DS + GBA · Inglês no Slot-1+2</div>
+  <h1 class="title-jp">DS Lite狩り<span class="accent">.</span></h1>
+  <div class="title-en">Cart físico jogável em inglês · multi-language ou gameplay-driven</div>
+  <div class="header-divider"></div>
+</header>
+
+<div class="legend">
+  <div class="legend-title">Legenda</div>
+  <div class="legend-items">
+    <div class="legend-item"><span class="badge badge-tier-sp">S+</span> joia absoluta</div>
+    <div class="legend-item"><span class="badge badge-tier-s">S</span> tier S sólido</div>
+    <div class="legend-item"><span class="badge badge-multi">🌐 multi</span> multi-language confirmado</div>
+    <div class="legend-item"><span class="badge badge-baixa-dep">🆗 dep</span> baixa dependência</div>
+    <div class="legend-item"><span class="badge badge-jp-exc">🇯🇵 JP</span> JP exclusive</div>
+    <div class="legend-item"><span class="badge badge-collector">💎</span> collector</div>
+    <div class="legend-item"><span class="badge badge-console-ds">📀 DS</span></div>
+    <div class="legend-item"><span class="badge badge-console-gba">🎮 GBA</span></div>
+  </div>
+</div>
+
+<div class="filters">
+  <div class="filter-row">
+    <button class="filter-btn active" data-filter="all">Todos</button>
+    <button class="filter-btn essential" data-filter="essential">🏆 Top 15</button>
+    <button class="filter-btn tier-sp" data-filter="tier-sp">⭐ S+ Apenas</button>
+    <button class="filter-btn multi-lang" data-filter="multi-lang">🌐 Multi-language</button>
+    <button class="filter-btn ds-only" data-filter="ds-only">📀 Só DS</button>
+    <button class="filter-btn gba-only" data-filter="gba-only">🎮 Só GBA</button>
+  </div>
+</div>
+
+<nav class="nav-index">
+  <div class="nav-index-title">Atalhos por gênero</div>
+  <div class="nav-links">
+    <a href="#g-jrpg" class="nav-link">JRPG Multi-lang</a>
+    <a href="#g-platform" class="nav-link">Plataforma 2D</a>
+    <a href="#g-action" class="nav-link">Ação/Metroidvania</a>
+    <a href="#g-racing" class="nav-link">Corrida</a>
+    <a href="#g-fighting" class="nav-link">Luta</a>
+    <a href="#g-rhythm" class="nav-link">Ritmo</a>
+    <a href="#g-puzzle" class="nav-link">Puzzle</a>
+    <a href="#g-party" class="nav-link">Party/Wario</a>
+    <a href="#g-music" class="nav-link">Music Maker</a>
+    <a href="#g-dsiware" class="nav-link">DSiWare</a>
+  </div>
+</nav>
+
+<section id="essential-view">
+  <div class="essential-header">
+    <h2 class="essential-title-jp">TOP 15 必須</h2>
+    <div class="essential-subtitle">Os 15 cart físicos mais essenciais · jogáveis no DS Lite</div>
+  </div>
+  <div class="essential-list" id="essential-list"></div>
+</section>
+
+<main id="games-container"></main>
+
+<section class="tips-section">
+  <h2 class="tips-title">現場メモ</h2>
+  <div class="tips-subtitle">Notas de campo</div>
+
+  <div class="tip">
+    <div class="tip-label">O que é "DS Lite Playable"</div>
+    <div class="tip-text">Lista cruzada de <strong>DS + GBA carts físicos jogáveis em inglês no seu DS Lite</strong> (configurado em English nas System Settings). Inclui dois critérios: <strong>🌐 multi-language</strong> (cart JP toca em inglês se sistema for EN) ou <strong>🆗 baixa dependência</strong> (gameplay carrega, idioma é periférico). Aqui é onde você foca a caça física.</div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-label">⚠️ Multi-language: confirme antes de comprar caro</div>
+    <div class="tip-text">Marquei <strong>🌐 só onde tenho confiança alta</strong>. Padrão observável: <strong>Square Enix DS = multi-language</strong> quase sempre (CT DS, TWEWY, FF III/IV DS, KH 358/2 Days, FF: 4 Heroes of Light). <strong>Nintendo / Atlus / Konami / Level-5 / Capcom DS = JP cart JP only</strong> quase sempre. Antes de pagar caro num cart, confirme em listas comunitárias: <strong>NDS-Bootstrap Region Free List</strong> (GitHub) ou GameFAQs.</div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-label">Setup hardware DS Lite</div>
+    <div class="tip-text">Configure System Settings → Language → English. Slot-1: DS carts. Slot-2: GBA carts (originais ou EZ-Flash Omega DE com ROMs). Tela em resolução nativa 256×192 (sem scaling/blur do 3DS).</div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-label">Console badge: 📀 DS / 🎮 GBA</div>
+    <div class="tip-text">Cada card mostra a plataforma. <strong>📀 DS</strong> entra no Slot-1. <strong>🎮 GBA</strong> entra no Slot-2 (junto pode estar Pokémon do Slot-1 pra detecção dual-slot — D/P liberam Pokémon raros se R/S/E/FRLG estiver no Slot-2).</div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-label">Tudo o que NÃO está aqui</div>
+    <div class="tip-text">JRPGs/VNs text-heavy não-Square-Enix do DS (Pokémon, DQ trilogy, SMT, KH 358/2 Days mais antigos, FE, Layton, Phoenix Wright, etc.) e quase tudo do GBA com texto pesado vai pro <strong>DSPico (DS) ou EZ-Flash Omega DE (GBA)</strong> com ROMs US. Consulta o catálogo completo nos guias DS e GBA separados. Aqui é só compra física que faz sentido.</div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-label">Onde garimpar</div>
+    <div class="tip-text"><strong>Hard Off junk</strong> (¥100–1.000): gameplay-driven barato. <strong>Bookoff</strong> (¥500–3.000): completinhos. <strong>Surugaya / Lashinbang</strong>: JP exclusives. <strong>Mandarake</strong>: collector. <strong>Mercari online</strong>: melhor preço, precisa proxy.</div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-label">Orçamento estimado</div>
+    <div class="tip-text">Top 15 físico: <strong>¥20.000–40.000</strong> (R$700-1.400). Carts Square Enix multi-language têm preço médio (CT DS, TWEWY) em Bookoff: ¥2.000–4.000. Plataforma gameplay-driven barato em Hard Off: ¥300–800 cada. EZ-Flash Omega DE (~R$200) cobre o resto.</div>
+  </div>
+</section>
+
+<footer>オリバーとジョナサンへ · DS LITE + SLOT-1 + SLOT-2 · CLAUDE EDITION · 2026</footer>
+
+</div>
+
+<script>
+const games = [
+  // ========== JRPG MULTI-LANGUAGE (DS) ==========
+  { id: 'ct-ds', console: 'ds', genre: 'jrpg', priority: 1, tier: 'sp', baixaDep: false, multiLang: true, jpExc: false, collector: false,
+    jp: 'クロノ・トリガー', en: 'Chrono Trigger (DS)',
+    why: '<strong>Multi-language confirmado.</strong> Versão definitiva — nova dungeon Dimensional Vortex, boss extra, nova ending, cutscenes animadas, tradução refeita. O JRPG por excelência.',
+    series: 'SNES (1995) → PS1 (FF Chronicles) → DS (definitiva) → Mobile/Steam.',
+    search: 'Chrono Trigger DS japan cover' },
+  { id: 'twewy', console: 'ds', genre: 'jrpg', priority: 2, tier: 'sp', baixaDep: false, multiLang: true, jpExc: false, collector: false,
+    jp: 'すばらしきこのせかい', en: 'The World Ends With You',
+    why: '<strong>Multi-language confirmado.</strong> Square Enix em Shibuya moderna. Combate dual-screen único, OST lendária de Takeharu Ishimoto, estilo visual icônico. Cult absoluto.',
+    series: 'DS (2007) → Neo: The World Ends With You (PS4/Switch, 2021).',
+    search: 'Subarashiki Kono Sekai TWEWY japan cover' },
+  { id: 'ff4-ds', console: 'ds', genre: 'jrpg', priority: 3, tier: 'sp', baixaDep: false, multiLang: true, jpExc: false, collector: false,
+    jp: 'ファイナルファンタジーIV', en: 'Final Fantasy IV (DS)',
+    why: '<strong>Multi-language confirmado.</strong> Remake 3D completo do que muitos consideram o melhor FF clássico. Cutscenes voiced, novo conteúdo. Uma das melhores remakes de FF.',
+    series: 'SNES (1991) → PS1 → GBA → DS (definitivo) → PSP → Pixel Remaster.',
+    search: 'Final Fantasy IV DS japan cover' },
+  { id: 'ff3-ds', console: 'ds', genre: 'jrpg', priority: 4, tier: 's', baixaDep: false, multiLang: true, jpExc: false, collector: false,
+    jp: 'ファイナルファンタジーIII', en: 'Final Fantasy III (DS)',
+    why: '<strong>Multi-language confirmado.</strong> Primeira tradução oficial em inglês. Remake 3D bonito do FF clássico que nunca saíra fora do Japão.',
+    series: 'Famicom (1990, JP only) → DS (2006, primeira tradução EN) → PSP → Pixel Remaster.',
+    search: 'Final Fantasy III DS japan cover' },
+  { id: 'kh-358', console: 'ds', genre: 'jrpg', priority: 5, tier: 'sp', baixaDep: false, multiLang: true, jpExc: false, collector: false,
+    jp: 'キングダム ハーツ 358/2 Days', en: 'Kingdom Hearts: 358/2 Days',
+    why: '<strong>Multi-language (alta confiança).</strong> Story canon importantíssimo — preenche o gap entre KH1 e KH2 pela perspectiva do Roxas. Combate ação, customização.',
+    series: 'KH mainline: PS2 (1, 2) → PSP (BBS) → DS (358/2 Days, Re:coded) → 3DS (DDD) → PS4 (3).',
+    search: 'Kingdom Hearts 358/2 Days japan cover' },
+  { id: 'ff-4hol', console: 'ds', genre: 'jrpg', priority: 6, tier: 's', baixaDep: false, multiLang: true, jpExc: false, collector: false,
+    jp: '光の4戦士 -ファイナルファンタジー外伝-', en: 'Final Fantasy: The 4 Heroes of Light',
+    why: '<strong>Multi-language (alta confiança).</strong> Square Enix homenagem ao FF clássico — visual storybook, job system retrô. Antecessor espiritual de Bravely Default (3DS).',
+    series: 'DS (este) → 3DS (Bravely Default — sucessor espiritual) → Switch (Bravely Default II).',
+    search: 'Hikari no 4 Senshi Final Fantasy Gaiden japan cover' },
+
+  // ========== PLATAFORMA 2D (DS + GBA) ==========
+  { id: 'nsmb', console: 'ds', genre: 'platform', priority: 1, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'New スーパーマリオブラザーズ', en: 'New Super Mario Bros.',
+    why: 'Renascimento do Mario 2D. Multiplayer local 2P. Físico em Japão é barato e abundante.',
+    series: 'NSMB: DS → Wii → 3DS (NSMB 2) → Wii U.',
+    search: 'New Super Mario Bros DS japan cover' },
+  { id: 'sma4-smb3', console: 'gba', genre: 'platform', priority: 2, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'スーパーマリオアドバンス4', en: 'Super Mario Advance 4: Super Mario Bros. 3',
+    why: 'SMB3 portátil + e-Reader cards que destravam 38 levels novos. Versão final inclui todos os levels via Wii U VC.',
+    series: 'Super Mario Advance: SMA1 (SMB2) → SMA2 (SMW) → SMA3 (Yoshi\'s Island) → SMA4 (SMB3).',
+    search: 'Super Mario Advance 4 SMB3 japan cover' },
+  { id: 'sm64-ds', console: 'ds', genre: 'platform', priority: 3, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'スーパーマリオ64DS', en: 'Super Mario 64 DS',
+    why: 'Remake/expansão do N64. 4 personagens jogáveis (Yoshi, Mario, Luigi, Wario), 30 estrelas extras, mini-games.',
+    series: 'Reimaginação portátil do SM64 (N64, 1996).',
+    search: 'Super Mario 64 DS japan cover' },
+  { id: 'wl4', console: 'gba', genre: 'platform', priority: 4, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'ワリオランドアドバンス 妖機のお宝', en: 'Wario Land 4 (= Wario Land Advance JP)',
+    why: 'Auge da série Wario Land 2D. Surreal, brilhante, mecânica "reverse rush". Considerado por muitos o melhor plataforma do GBA.',
+    series: 'Wario Land: GB (1, 2) → GBC (3) → GBA (4). Linha 2D terminou aqui.',
+    search: 'Wario Land Advance Youki no Otakara japan cover' },
+  { id: 'kirby-cc', console: 'ds', genre: 'platform', priority: 5, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'タッチ! カービィ', en: 'Kirby: Canvas Curse',
+    why: 'Touch puro genial — você desenha caminhos pro Kirby rolar. Reinvenção criativa da fórmula.',
+    series: 'Original DS. Sequência: Wii U (Rainbow Curse).',
+    search: 'Touch Kirby Canvas Curse japan cover' },
+  { id: 'kirby-nidl', console: 'gba', genre: 'platform', priority: 6, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: '星のカービィ 夢の泉デラックス', en: "Kirby: Nightmare in Dream Land",
+    why: 'Remake do Kirby\'s Adventure (NES). Visual refeito, multiplayer 4P local, modo Meta Knight.',
+    series: 'Reimaginação portátil do NES (1993).',
+    search: 'Hoshi no Kirby Yume no Izumi Deluxe japan cover' },
+  { id: 'sma2-smw', console: 'gba', genre: 'platform', priority: 7, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'スーパーマリオアドバンス2', en: 'Super Mario Advance 2: SMW',
+    why: 'Port do SNES Super Mario World. SMW completo + Mario Bros arcade (multiplayer cart único).',
+    series: 'Super Mario Advance line.',
+    search: 'Super Mario Advance 2 japan cover' },
+  { id: 'sma3-yi', console: 'gba', genre: 'platform', priority: 8, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'スーパーマリオアドバンス3 ヨッシーアイランド', en: "Super Mario Advance 3: Yoshi's Island",
+    why: 'Port do SNES Yoshi\'s Island. 6 stages secretos novos.',
+    series: 'Yoshi Island: SNES (original) → GBA (este port) → DS (Yoshi\'s Island DS).',
+    search: 'Super Mario Advance 3 Yoshi Island japan cover' },
+  { id: 'wwinc', console: 'gba', genre: 'platform', priority: 9, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'メイドインワリオ', en: 'WarioWare, Inc.: Mega Microgames!',
+    why: 'ONDE A FRANQUIA NASCEU. Histórico. Microgames de 5 segundos pioneiros — toda a série WarioWare começa aqui.',
+    series: 'WW: GBA (Inc.) → DS (Touched!, D.I.Y.) → Wii (Smooth Moves) → 3DS (Gold) → Switch.',
+    search: 'Made in Wario GBA japan cover' },
+  { id: 'kirby-ssu', console: 'ds', genre: 'platform', priority: 10, tier: 's', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: '星のカービィ ウルトラスーパーデラックス', en: 'Kirby Super Star Ultra',
+    why: 'Remake/expansão do SNES Kirby Super Star. Multiplayer co-op, novos sub-games.',
+    series: 'Reimaginação portátil do SNES (1996).',
+    search: 'Hoshi no Kirby Ultra Super Deluxe japan cover' },
+  { id: 'yoshi-island-ds', console: 'ds', genre: 'platform', priority: 11, tier: 's', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'ヨッシーアイランドDS', en: "Yoshi's Island DS",
+    why: 'Sequência direta do SNES. Vários bebês jogáveis (Mario, Peach, DK, Wario).',
+    series: 'Yoshi Island series.',
+    search: "Yoshi's Island DS japan cover" },
+  { id: 'sonic-rush', console: 'ds', genre: 'platform', priority: 12, tier: 's', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'ソニックラッシュ', en: 'Sonic Rush',
+    why: 'Sonic 2D no auge moderno. Dimps no controle, dual-screen único, OST Hideki Naganuma.',
+    series: 'Sonic 2D portátil: GBA (Advance 1-3) → DS (Rush, Rush Adventure, Colors).',
+    search: 'Sonic Rush DS japan cover' },
+  { id: 'kirby-am', console: 'gba', genre: 'platform', priority: 13, tier: 's', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: '星のカービィ 鏡の大迷宮', en: 'Kirby & The Amazing Mirror',
+    why: 'Plataforma exploratória/metroidvania-lite. Multiplayer 4P co-op. Subestimado.',
+    series: 'Único Kirby exploratório até Rainbow Curse.',
+    search: 'Hoshi no Kirby Kagami no Daimeikyuu japan cover' },
+  { id: 'sonic-adv2', console: 'gba', genre: 'platform', priority: 14, tier: 's', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'ソニックアドバンス2', en: 'Sonic Advance 2',
+    why: 'Considerado o melhor da trilogia Advance. Velocidade pura, level design polido.',
+    search: 'Sonic Advance 2 japan cover' },
+  { id: 'mkscircuit', console: 'gba', genre: 'platform', priority: 15, tier: 's', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'マリオカートアドバンス', en: 'Mario Kart: Super Circuit',
+    why: 'MK portátil original. 20 retro tracks SNES + 20 originais.',
+    series: 'Mario Kart mainline (já listado).',
+    search: 'Mario Kart Advance japan cover' },
+  { id: 'kirby-ma', console: 'ds', genre: 'platform', priority: 16, tier: 's', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'あつめて! カービィ', en: 'Kirby Mass Attack',
+    why: 'Touch ação criativa — comanda 10 Kirbys ao mesmo tempo. Último Kirby do DS.',
+    series: 'Trilogia touch Kirby: Canvas Curse → Squeak Squad → Mass Attack.',
+    search: 'Atsumete Kirby Mass Attack japan cover' },
+  { id: 'sonic-rush-adv', console: 'ds', genre: 'platform', priority: 17, tier: 's', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'ソニックラッシュアドベンチャー', en: 'Sonic Rush Adventure',
+    why: 'Sequência com piratas/oceanos. Veículos entre stages.',
+    search: 'Sonic Rush Adventure DS japan cover' },
+  { id: 'dkc-gba', console: 'gba', genre: 'platform', priority: 18, tier: 's', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'スーパードンキーコング', en: 'Donkey Kong Country (GBA)',
+    why: 'Port do SNES DKC. OST refeita, mini-games novos.',
+    series: 'Trilogia SNES toda portada pro GBA.',
+    search: 'Super Donkey Kong GBA japan cover' },
+  { id: 'sonic-adv', console: 'gba', genre: 'platform', priority: 19, tier: 's', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'ソニックアドバンス', en: 'Sonic Advance',
+    why: 'Primeiro Sonic 2D pós-Genesis. Dimps no controle. Fórmula clássica preservada.',
+    search: 'Sonic Advance japan cover' },
+  { id: 'klonoa-eod', console: 'gba', genre: 'platform', priority: 20, tier: 's', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'クロノア 夢見る帝国', en: 'Klonoa: Empire of Dreams',
+    why: 'Namco cult. Plataforma 2D cinematográfica. Klonoa joga inimigos pra resolver puzzles.',
+    series: 'Klonoa: PS1 → GBA (este) → PS2 → Wii (remake).',
+    search: 'Klonoa Yumemiru Teikoku japan cover' },
+  { id: 'drill-dozer', console: 'gba', genre: 'platform', priority: 21, tier: 's', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'ドリルドーザー', en: 'Drill Dozer',
+    why: 'Game Freak entre Pokémons. Plataforma com broca, rumble integrado no cart. Cult criativo.',
+    search: 'Drill Dozer japan cover' },
+  { id: 'mvdk-mlm', console: 'ds', genre: 'platform', priority: 22, tier: 's', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'マリオvs.ドンキーコング ミニランド・カーニバル', en: 'Mario vs. Donkey Kong: Mini-Land Mayhem!',
+    why: 'Considerado o melhor da sub-série. Puzzle "drive your minis" refinado.',
+    series: 'Mario vs DK: GBA → DS (vários) → 3DS.',
+    search: 'Mario vs Donkey Kong Mini-Land Mayhem japan cover' },
+
+  // ========== AÇÃO / METROIDVANIA ==========
+  { id: 'mmzc', console: 'ds', genre: 'action', priority: 1, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'ロックマン ゼロ コレクション', en: 'Mega Man Zero Collection',
+    why: 'OS 4 Mega Man Zero do GBA num só cartucho DS. Easy Scenario Mode, OST completa, art gallery. Forma definitiva.',
+    series: 'GBA (Zero 1-4, 2002-2005) → DS (Collection, 2010).',
+    search: 'Rockman Zero Collection japan cover' },
+  { id: 'metroid-fusion', console: 'gba', genre: 'action', priority: 2, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'メトロイドフュージョン', en: 'Metroid Fusion',
+    why: 'Mainline 2D Metroid pós-Super Metroid. SA-X horror element. Atmosfera tensa.',
+    series: 'Metroid 2D: NES → GB → SNES → GBA (Fusion, Zero Mission) → 3DS (Samus Returns).',
+    search: 'Metroid Fusion japan cover' },
+  { id: 'mph', console: 'ds', genre: 'action', priority: 3, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'メトロイドプライム ハンターズ', en: 'Metroid Prime: Hunters',
+    why: 'FPS portátil pioneiro (2006). Multiplayer 4P local lendário, touch surpreendente.',
+    series: 'Metroid Prime saga: GameCube → Wii → DS (Hunters) → Switch (4).',
+    search: 'Metroid Prime Hunters japan cover' },
+  { id: 'metroid-zm', console: 'gba', genre: 'action', priority: 4, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'メトロイド ゼロミッション', en: 'Metroid: Zero Mission',
+    why: 'Remake definitivo do Metroid 1 (NES). Visual refeito, controles modernos, pós-game Zero Suit Samus.',
+    search: 'Metroid Zero Mission japan cover' },
+  { id: 'nin-ds', console: 'ds', genre: 'action', priority: 5, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'ニンジャガイデン 龍剣伝', en: 'Ninja Gaiden: Dragon Sword',
+    why: 'Team Ninja. Console virado 90° verticalmente + stylus controla espada. Brilhante, único na biblioteca DS.',
+    search: 'Ninja Gaiden Dragon Sword DS japan cover' },
+  { id: 'bos', console: 'ds', genre: 'action', priority: 6, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'バンガイオー 魂', en: 'Bangai-O Spirits',
+    why: 'Treasure shmup/puzzle insano. Comunidade ainda compartilha mapas custom via wifi local.',
+    series: 'Sequência espiritual de Bangai-O (Dreamcast/N64).',
+    search: 'Bangai-O Spirits DS japan cover' },
+  { id: 'astroboy', console: 'gba', genre: 'action', priority: 7, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: '鉄腕アトム アトムハートの秘密', en: 'Astro Boy: Omega Factor',
+    why: 'Treasure clássico cult. Beat\'em up + plataforma + voo, baseado em Tezuka. Subestimadíssimo.',
+    series: 'Spinoff Treasure. Único Astro Boy 2D moderno em portátil.',
+    search: 'Tetsuwan Atom Omega Factor japan cover' },
+  { id: 'contra4', console: 'ds', genre: 'action', priority: 8, tier: 's', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'コントラ4', en: 'Contra 4',
+    why: 'WayForward. Dificuldade Contra autêntica. Dual-screen para verticality.',
+    series: 'Contra mainline: NES → arcades → modern Konami.',
+    search: 'Contra 4 DS japan cover' },
+
+  // ========== CORRIDA ==========
+  { id: 'mkds', console: 'ds', genre: 'racing', priority: 1, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'マリオカートDS', en: 'Mario Kart DS',
+    why: 'Killer app do DS. 32 pistas (16 originais + 16 retrô), multiplayer local lendário.',
+    series: 'Mario Kart mainline. DS é considerado um dos melhores.',
+    search: 'Mario Kart DS japan cover' },
+
+  // ========== LUTA ==========
+  { id: 'jus', console: 'ds', genre: 'fighting', priority: 1, tier: 'sp', baixaDep: true, multiLang: false, jpExc: true, collector: false,
+    jp: 'ジャンプアルティメットスターズ', en: 'Jump Ultimate Stars',
+    why: 'Smash com personagens Jump — Naruto, Goku, Luffy, Ichigo, Yusuke, Kenshin, Toriko, Hokuto no Ken. JP exclusive obrigatório.',
+    series: 'JP exclusive: GBA → DS (Jump Super Stars, Jump Ultimate Stars).',
+    search: 'Jump Ultimate Stars japan cover' },
+  { id: 'jss', console: 'ds', genre: 'fighting', priority: 2, tier: 's', baixaDep: true, multiLang: false, jpExc: true, collector: false,
+    jp: 'ジャンプ スーパースターズ', en: 'Jump Super Stars',
+    why: 'Predecessor direto. Menos personagens mas mesma fórmula brilhante.',
+    search: 'Jump Super Stars japan cover' },
+
+  // ========== RITMO ==========
+  { id: 'rt-gold', console: 'ds', genre: 'rhythm', priority: 1, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'リズム天国ゴールド', en: 'Rhythm Heaven / Rhythm Tengoku Gold',
+    why: 'Versão DS da série. Microgames de ritmo com humor japonês único.',
+    series: 'Rhythm Tengoku: GBA (JP only) → DS (Gold, primeira release ocidental) → Wii (Fever) → 3DS (Best+).',
+    search: 'Rhythm Tengoku Gold DS japan cover' },
+  { id: 'eba', console: 'ds', genre: 'rhythm', priority: 2, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'メイドインワリオに代わる Elite Beat Agents', en: 'Elite Beat Agents',
+    why: 'Versão ocidental de Ouendan — músicas em inglês (Madonna, ABBA, Queen).',
+    series: 'Adaptação ocidental de Osu! Tatakae! Ouendan (JP).',
+    search: 'Elite Beat Agents DS japan cover' },
+  { id: 'ouendan', console: 'ds', genre: 'rhythm', priority: 3, tier: 'sp', baixaDep: true, multiLang: false, jpExc: true, collector: false,
+    jp: '押忍! 闘え! 応援団', en: 'Osu! Tatakae! Ouendan',
+    why: 'JP exclusive obrigatório. J-rock anthems, cheerleaders salvando o dia.',
+    series: 'JP: Ouendan 1 → Ouendan 2. Influenciou Elite Beat Agents.',
+    search: 'Osu Tatakae Ouendan japan cover' },
+  { id: 'ouendan2', console: 'ds', genre: 'rhythm', priority: 4, tier: 'sp', baixaDep: true, multiLang: false, jpExc: true, collector: false,
+    jp: '燃えろ! 熱血リズム魂', en: 'Moero! Nekketsu Rhythm Damashii: Ouendan 2',
+    why: 'Sequência direta com mais músicas e dificuldade refinada.',
+    search: 'Moero Nekketsu Rhythm Damashii japan cover' },
+  { id: 'rt-gba', console: 'gba', genre: 'rhythm', priority: 5, tier: 'sp', baixaDep: true, multiLang: false, jpExc: true, collector: false,
+    jp: 'リズム天国', en: 'Rhythm Tengoku',
+    why: 'Onde a série Rhythm Heaven nasceu. Só Japão na GBA. Tsunku original puro.',
+    series: 'Rhythm Tengoku: GBA (este, JP only) → DS (Gold) → Wii → 3DS.',
+    search: 'Rhythm Tengoku GBA japan cover' },
+
+  // ========== PUZZLE ==========
+  { id: 'tetris-ds', console: 'ds', genre: 'puzzle', priority: 1, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'テトリスDS', en: 'Tetris DS',
+    why: 'Tier S+ definitivo de Tetris portátil. 6 modos, tema visual NES, multiplayer 4P.',
+    series: 'Tetris portátil: GB → GBA → DS → 3DS.',
+    search: 'Tetris DS japan cover' },
+  { id: 'picross-ds', console: 'ds', genre: 'puzzle', priority: 2, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'ピクロスDS', en: 'Picross DS',
+    why: 'Picross essencial — puzzles nonogram com controle stylus perfeito.',
+    series: 'Picross: SNES → DS → 3DS → Switch.',
+    search: 'Picross DS japan cover' },
+  { id: 'picross-3d', console: 'ds', genre: 'puzzle', priority: 3, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'ピクロス3D', en: 'Picross 3D',
+    why: 'Picross em 3D — você esculpe blocos. Reinvenção brilhante.',
+    series: 'Picross 3D → Picross 3D Round 2 (3DS).',
+    search: 'Picross 3D japan cover' },
+  { id: 'soul-bubbles', console: 'ds', genre: 'puzzle', priority: 4, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: true,
+    jp: 'ソウルバブルス', en: 'Soul Bubbles',
+    why: 'Cult absoluto. Puzzle ambient — guia almas em bolhas. Visual lindo, OST etérea. Super raro, valoriza muito.',
+    series: 'Mekensleep (Ubisoft). Sem sequência.',
+    search: 'Soul Bubbles DS japan cover' },
+  { id: 'kururin', console: 'gba', genre: 'puzzle', priority: 5, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: true,
+    jp: 'くるりんパラダイス', en: 'Kuru Kuru Kururin',
+    why: 'EUA nunca recebeu (só JP/EU). Helicóptero girando atravessando labirintos sem bater. Brilhante.',
+    series: 'GBA (Kururin, Paradise) → GCN (Squash!).',
+    search: 'Kuru Kuru Kururin GBA japan cover' },
+  { id: 'meteos', console: 'ds', genre: 'puzzle', priority: 6, tier: 's', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'メテオス', en: 'Meteos',
+    why: 'Q Entertainment (Mizuguchi). Match-3 com física dinâmica.',
+    search: 'Meteos DS japan cover' },
+  { id: 'lumines', console: 'ds', genre: 'puzzle', priority: 7, tier: 's', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'ルミネス タッチ・フュージョン', en: 'Lumines Touch Fusion',
+    why: 'Mizuguchi puzzle de ritmo. Música + visuais sincronizados.',
+    search: 'Lumines Touch Fusion DS japan cover' },
+  { id: 'chuchu', console: 'gba', genre: 'puzzle', priority: 8, tier: 's', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'チューチューロケット!', en: 'ChuChu Rocket!',
+    why: 'Sega puzzle multiplayer. Guia ratos a foguetes evitando gatos. Cult Dreamcast portátil.',
+    search: 'ChuChu Rocket GBA japan cover' },
+  { id: 'polarium', console: 'ds', genre: 'puzzle', priority: 9, tier: 's', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'ポラリウム', en: 'Polarium',
+    why: 'Mitchell puzzle minimalista — vire blocos em uma linha contínua.',
+    search: 'Polarium DS japan cover' },
+
+  // ========== PARTY / WARIO ==========
+  { id: 'ww-touched', console: 'ds', genre: 'party', priority: 1, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'さわる メイドインワリオ', en: 'WarioWare: Touched!',
+    why: 'Stylus puro. Microgames de 5 segundos com touch/mic/soprar.',
+    series: 'WW: GBA (Inc.) → DS (Touched!, D.I.Y.) → Wii → 3DS → Switch.',
+    search: 'Sawaru Made in Wario japan cover' },
+  { id: 'mp-ds', console: 'ds', genre: 'party', priority: 2, tier: 's', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'マリオパーティDS', en: 'Mario Party DS',
+    why: 'Único Mario Party portátil até Star Rush. Multiplayer local 4P com 1 cartucho via DS Download Play.',
+    series: 'MP: N64 → GCN → Wii → DS → 3DS → Switch.',
+    search: 'Mario Party DS japan cover' },
+  { id: 'mh33', console: 'ds', genre: 'party', priority: 3, tier: 's', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'マリオバスケ 3on3', en: 'Mario Hoops 3-on-3',
+    why: 'Basketball Mario. Mecânica de dribble com stylus. Subestimado.',
+    search: 'Mario Basket 3 on 3 japan cover' },
+
+  // ========== MUSIC MAKER ==========
+  { id: 'korg-ds10', console: 'ds', genre: 'music', priority: 1, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'KORG DS-10', en: 'Korg DS-10',
+    why: 'Sintetizador analógico modelado completíssimo no DS. Cult absoluto entre músicos eletrônicos — usado em álbuns profissionais.',
+    series: 'Trilogia: DS-10 → DS-10 Plus → M01 (JP).',
+    search: 'Korg DS-10 japan cover' },
+  { id: 'korg-ds10p', console: 'ds', genre: 'music', priority: 2, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'KORG DS-10 PLUS', en: 'Korg DS-10 Plus',
+    why: 'Upgrade do DS-10. Dual MS-10 (4 vozes), wifi multiplayer pra jam sessions.',
+    search: 'Korg DS-10 Plus japan cover' },
+
+  // ========== DSiWARE ==========
+  { id: 'shantae-rr', console: 'ds', genre: 'dsiware', priority: 1, tier: 'sp', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'シャンティ リスキィ・リベンジ', en: "Shantae: Risky's Revenge",
+    why: 'WayForward. Plataforma com transformações em dança. Início da renascença Shantae.',
+    series: 'Shantae: GBC → DSiWare → 3DS/Wii U → modern.',
+    search: 'Shantae Risky\'s Revenge DSiWare cover' },
+  { id: 'mighty-mw', console: 'ds', genre: 'dsiware', priority: 2, tier: 's', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'マイティ・ミルキーウェイ', en: 'Mighty Milky Way',
+    why: 'WayForward puzzle ação. Garota saltando entre planetinhas. Charmoso.',
+    series: 'Série Mighty: Flip Champs → Milky Way → Switch Force (3DS).',
+    search: 'Mighty Milky Way DSiWare cover' },
+  { id: 'mighty-fc', console: 'ds', genre: 'dsiware', priority: 3, tier: 's', baixaDep: true, multiLang: false, jpExc: false, collector: false,
+    jp: 'マイティ・フリップ・チャンプス', en: 'Mighty Flip Champs',
+    why: 'Puzzle de dimensões — gire o mundo pra atravessar obstáculos.',
+    search: 'Mighty Flip Champs DSiWare cover' },
+];
+
+const genreOrder = [
+  { id: 'jrpg', anchor: 'g-jrpg', jp: 'JRPG・多言語', en: 'JRPG Multi-language' },
+  { id: 'platform', anchor: 'g-platform', jp: 'プラットフォーマー', en: 'Platformer 2D' },
+  { id: 'action', anchor: 'g-action', jp: 'アクション・探索', en: 'Action / Metroidvania' },
+  { id: 'racing', anchor: 'g-racing', jp: 'レース', en: 'Racing' },
+  { id: 'fighting', anchor: 'g-fighting', jp: '格闘', en: 'Fighting' },
+  { id: 'rhythm', anchor: 'g-rhythm', jp: 'リズム・音ゲー', en: 'Rhythm' },
+  { id: 'puzzle', anchor: 'g-puzzle', jp: 'パズル', en: 'Puzzle' },
+  { id: 'party', anchor: 'g-party', jp: 'パーティー・ワリオ', en: 'Party / WarioWare' },
+  { id: 'music', anchor: 'g-music', jp: '音楽制作', en: 'Music Maker' },
+  { id: 'dsiware', anchor: 'g-dsiware', jp: 'DSiWare', en: 'DSiWare' },
+];
+
+const essentialOrder = [
+  'ct-ds',         // 1. Chrono Trigger DS (multi)
+  'twewy',         // 2. TWEWY (multi)
+  'sma4-smb3',     // 3. SMA4: SMB3 (GBA gameplay)
+  'mmzc',          // 4. Mega Man Zero Collection (DS gameplay)
+  'mkds',          // 5. Mario Kart DS (DS gameplay)
+  'nsmb',          // 6. NSMB (DS gameplay)
+  'wwinc',         // 7. WarioWare Inc (GBA)
+  'wl4',           // 8. Wario Land 4 (GBA)
+  'metroid-fusion',// 9. Metroid Fusion (GBA)
+  'ff4-ds',        // 10. FF IV DS (multi)
+  'kirby-cc',      // 11. Kirby Canvas Curse (DS)
+  'mph',           // 12. Metroid Prime Hunters (DS)
+  'tetris-ds',     // 13. Tetris DS (DS)
+  'nin-ds',        // 14. Ninja Gaiden Dragon Sword (DS)
+  'rt-gba'         // 15. Rhythm Tengoku (GBA JP-only)
+];
+
+function getBadges(game) {
+  let html = '';
+  // Console badge first
+  if (game.console === 'ds') html += '<span class="badge badge-console-ds">📀 DS</span>';
+  else html += '<span class="badge badge-console-gba">🎮 GBA</span>';
+  // Tier
+  if (game.tier === 'sp') html += '<span class="badge badge-tier-sp">⭐ S+</span>';
+  else html += '<span class="badge badge-tier-s">S</span>';
+  // Language indicators
+  if (game.multiLang) html += '<span class="badge badge-multi">🌐 multi-lang</span>';
+  if (game.baixaDep) html += '<span class="badge badge-baixa-dep">🆗 baixa dep.</span>';
+  if (game.jpExc) html += '<span class="badge badge-jp-exc">🇯🇵 JP excl.</span>';
+  if (game.collector) html += '<span class="badge badge-collector">💎 collector</span>';
+  return html;
+}
+
+function renderGames() {
+  const container = document.getElementById('games-container');
+  let html = '';
+  for (const g of genreOrder) {
+    const genreGames = games.filter(game => game.genre === g.id).sort((a, b) => a.priority - b.priority);
+    if (genreGames.length === 0) continue;
+    html += `<section class="genre-section" id="${g.anchor}" data-genre="${g.id}">
+      <div class="genre-header">
+        <span class="genre-title-jp">${g.jp}</span>
+        <span class="genre-title-en">${g.en}</span>
+        <span class="genre-count">${genreGames.length}</span>
+      </div>
+      <div class="game-list">`;
+    for (const game of genreGames) {
+      const tierClass = game.tier === 'sp' ? 'tier-sp' : '';
+      const seriesHtml = game.series ? `<div class="series-arc">🔗 ${game.series}</div>` : '';
+      const dataAttrs = [
+        `data-tier="${game.tier}"`,
+        `data-console="${game.console}"`,
+        `data-baixa-dep="${game.baixaDep}"`,
+        `data-multi-lang="${game.multiLang}"`,
+        `data-jp-exc="${game.jpExc}"`,
+        `data-collector="${game.collector}"`
+      ].join(' ');
+      html += `<article class="game-card ${tierClass}" data-id="${game.id}" ${dataAttrs}>
+        <div class="game-card-top">
+          <div class="priority-num">${game.priority}</div>
+          <div class="game-titles">
+            <div class="game-name-jp">${game.jp}</div>
+            <div class="game-name-en">${game.en}</div>
+          </div>
+        </div>
+        <div class="game-badges">${getBadges(game)}</div>
+        <div class="game-why">${game.why}</div>
+        ${seriesHtml}
+        <div class="game-actions">
+          <a class="action-btn primary" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&q=${encodeURIComponent(game.search)}">Ver capa</a>
+          <a class="action-btn" target="_blank" rel="noopener" href="https://jp.mercari.com/search?keyword=${encodeURIComponent(game.jp)}">Mercari preço</a>
+        </div>
+      </article>`;
+    }
+    html += `</div></section>`;
+  }
+  container.innerHTML = html;
+}
+
+function renderEssentialView() {
+  const list = document.getElementById('essential-list');
+  let html = '';
+  essentialOrder.forEach((id, idx) => {
+    const game = games.find(g => g.id === id);
+    if (!game) return;
+    const rank = idx + 1;
+    const top3Class = rank <= 3 ? 'top3' : '';
+    const rank1Class = rank === 1 ? 'rank-1' : '';
+    html += `<article class="essential-card ${top3Class} ${rank1Class}">
+      <div class="essential-rank">${rank}</div>
+      <div class="essential-body">
+        <div class="essential-name-jp">${game.jp}</div>
+        <div class="essential-name-en">${game.en}</div>
+        <div class="essential-badges">${getBadges(game)}</div>
+        <div class="essential-why">${game.why}</div>
+        <div class="essential-actions">
+          <a class="action-btn primary" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&q=${encodeURIComponent(game.search)}">Ver capa</a>
+          <a class="action-btn" target="_blank" rel="noopener" href="https://jp.mercari.com/search?keyword=${encodeURIComponent(game.jp)}">Mercari</a>
+        </div>
+      </div>
+    </article>`;
+  });
+  list.innerHTML = html;
+}
+
+function applyFilter(filter) {
+  const essentialView = document.getElementById('essential-view');
+  const gamesContainer = document.getElementById('games-container');
+  const navIndex = document.querySelector('.nav-index');
+
+  if (filter === 'essential') {
+    essentialView.classList.add('active');
+    gamesContainer.style.display = 'none';
+    if (navIndex) navIndex.style.display = 'none';
+    return;
+  }
+
+  essentialView.classList.remove('active');
+  gamesContainer.style.display = 'block';
+  if (navIndex) navIndex.style.display = 'block';
+
+  const cards = document.querySelectorAll('.game-card');
+  cards.forEach(card => {
+    let show = false;
+    if (filter === 'all') show = true;
+    else if (filter === 'tier-sp') show = card.dataset.tier === 'sp';
+    else if (filter === 'multi-lang') show = card.dataset.multiLang === 'true';
+    else if (filter === 'ds-only') show = card.dataset.console === 'ds';
+    else if (filter === 'gba-only') show = card.dataset.console === 'gba';
+    card.classList.toggle('hidden', !show);
+  });
+
+  document.querySelectorAll('.genre-section').forEach(section => {
+    const visibleCards = section.querySelectorAll('.game-card:not(.hidden)');
+    section.classList.toggle('hidden', visibleCards.length === 0);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderGames();
+  renderEssentialView();
+
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilter(btn.dataset.filter);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').substring(1);
+      const allBtn = document.querySelector('.filter-btn[data-filter="all"]');
+      if (allBtn && !allBtn.classList.contains('active')) {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        allBtn.classList.add('active');
+        applyFilter('all');
+      }
+      requestAnimationFrame(() => {
+        const target = document.getElementById(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  });
+});
+</script>
+</body>
+</html>

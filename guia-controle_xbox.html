@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#FBF9F4">
+  <title>Field Guide — Xbox One 1708</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #FBF9F4;
+      --paper: #FFFFFF;
+      --ink: #1A1A1A;
+      --ink-soft: #555;
+      --accent-pos: #006B5E;
+      --accent-pos-bg: #E8F0EE;
+      --accent-neg: #BC4749;
+      --accent-neg-bg: #F5E6E6;
+      --highlight: #FFD400;
+      --rule: #D8D2C2;
+      --display: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+      --body: 'Inter', system-ui, -apple-system, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    }
+
+    body {
+      font-family: var(--body);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+      font-size: 15px;
+      padding: 20px;
+      max-width: 700px;
+      margin: 0 auto;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .header {
+      border-bottom: 1.5px solid var(--ink);
+      padding-bottom: 18px;
+      margin-bottom: 28px;
+    }
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 8px;
+    }
+    .title {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 34px;
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+    }
+    .title .num {
+      color: var(--accent-pos);
+      font-variant-numeric: tabular-nums;
+    }
+    .deck {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--ink-soft);
+      margin-top: 8px;
+      max-width: 540px;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 14px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .meta span::before {
+      content: '◆';
+      margin-right: 6px;
+      color: var(--accent-pos);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin: 36px 0 16px;
+    }
+    .section-num {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 11px;
+      color: var(--accent-pos);
+      letter-spacing: 0.15em;
+    }
+    .section-title {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 21px;
+      letter-spacing: -0.015em;
+    }
+
+    .specimen {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 14px;
+      margin-bottom: 8px;
+    }
+    .specimen img {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: var(--paper);
+    }
+    .specimen-caption {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .checks {
+      display: grid;
+      gap: 0;
+    }
+    .check {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 16px 0;
+      border-top: 1px solid var(--rule);
+    }
+    .check:first-child { border-top: none; padding-top: 4px; }
+    .check-num {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 30px;
+      line-height: 0.9;
+      color: var(--accent-pos);
+      letter-spacing: -0.04em;
+      font-variant-numeric: tabular-nums;
+    }
+    .check-content h3 {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 16.5px;
+      margin-bottom: 5px;
+      letter-spacing: -0.01em;
+    }
+    .check-content p {
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+    .check-content strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .vs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+    .vs-card {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+    }
+    .vs-card.yes { border-top: 4px solid var(--accent-pos); }
+    .vs-card.no  { border-top: 4px solid var(--accent-neg); }
+    .vs-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      background: white;
+    }
+    .vs-body { padding: 14px 18px 18px; }
+    .vs-tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .vs-card.yes .vs-tag { color: var(--accent-pos); }
+    .vs-card.no  .vs-tag { color: var(--accent-neg); }
+    .vs-title {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 17px;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+    .vs-desc {
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+    }
+
+    .field-list {
+      background: var(--paper);
+      border: 1.5px solid var(--ink);
+      padding: 20px 22px;
+    }
+    .field-list-head {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .field-list-head .tally { color: var(--accent-pos); }
+    .field-list-items { list-style: none; counter-reset: item; }
+    .field-list-items li {
+      counter-increment: item;
+      padding: 12px 0 12px 40px;
+      position: relative;
+      font-size: 14.5px;
+      line-height: 1.5;
+      border-bottom: 1px dotted var(--rule);
+    }
+    .field-list-items li:last-child { border-bottom: none; padding-bottom: 4px; }
+    .field-list-items li::before {
+      content: counter(item);
+      position: absolute;
+      left: 0;
+      top: 11px;
+      width: 24px;
+      height: 24px;
+      border: 1.5px solid var(--ink);
+      border-radius: 50%;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+    }
+    .field-list-items code {
+      font-family: var(--mono);
+      font-size: 13px;
+      background: var(--highlight);
+      padding: 1px 6px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .not-list {
+      background: var(--accent-neg-bg);
+      padding: 18px 20px;
+      border-left: 4px solid var(--accent-neg);
+    }
+    .not-list dt {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--accent-neg);
+      margin-top: 14px;
+    }
+    .not-list dt:first-child { margin-top: 0; }
+    .not-list dd {
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: var(--ink);
+      margin-top: 4px;
+    }
+
+    .footer {
+      margin-top: 44px;
+      padding-top: 18px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 16px; font-size: 14.5px; }
+      .title { font-size: 28px; }
+      .section-title { font-size: 19px; }
+      .check { grid-template-columns: 38px 1fr; gap: 12px; }
+      .check-num { font-size: 26px; }
+    }
+
+    @media print {
+      body { padding: 0; max-width: none; background: white; }
+      .specimen, .vs-card, .field-list, .not-list { break-inside: avoid; }
+      .header { break-after: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="eyebrow">Field Guide · Spotter's Card</div>
+    <h1 class="title">Identificando o Xbox One <span class="num">1708</span></h1>
+    <p class="deck">Manual visual de bolso para garimpar o controle certo em lojas de usados — Hard Off, Book Off, 2nd Street e similares.</p>
+    <div class="meta">
+      <span>Mobile-first</span>
+      <span>Atualizado · Jun 2026</span>
+      <span>Imagens · Wikimedia CC</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Espécime de referência</h2>
+    </div>
+    <div class="specimen">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Xbox_One_Wireless_Controller_Model_1708_%2835327621563%29.jpg" alt="Xbox One Wireless Controller Model 1708 - vista frontal" loading="lazy">
+      <div class="specimen-caption">
+        <span>Modelo 1708 · Lançado em ago 2016</span>
+        <span>Wikimedia · CC BY 2.0</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Marcadores visuais</h2>
+    </div>
+    <div class="checks">
+      <div class="check">
+        <span class="check-num">1</span>
+        <div class="check-content">
+          <h3>Plástico contínuo no botão Xbox</h3>
+          <p>O plástico ao redor do botão central iluminado é a <strong>mesma peça da face frontal</strong> — fosco, sem emenda, mesma cor. Se houver uma linha visível separando essa região de uma "tampa" descendo do topo com plástico mais brilhante, é um 1697 sem Bluetooth.</p>
+        </div>
+      </div>
+      <div class="check">
+        <span class="check-num">2</span>
+        <div class="check-content">
+          <h3>Porta Micro-USB no topo</h3>
+          <p>Conector <strong>trapezoidal e assimétrico</strong>, mais estreito embaixo. Se for USB-C oval e reversível, é um 1914 (geração Xbox Series, também ótimo controle, mas não é "1708").</p>
+        </div>
+      </div>
+      <div class="check">
+        <span class="check-num">3</span>
+        <div class="check-content">
+          <h3>Sem botão Share extra</h3>
+          <p>A área central abaixo do botão Xbox, entre Menu e View, deve estar <strong>lisa</strong>. Se houver um botão retangular pequeno extra entre eles, é 1914.</p>
+        </div>
+      </div>
+      <div class="check">
+        <span class="check-num">4</span>
+        <div class="check-content">
+          <h3>Grips traseiros com textura</h3>
+          <p>As duas alças onde os dedos médio/anular/mínimo descansam têm <strong>padrão pontilhado tipo diamante</strong>. Traseira completamente lisa e brilhante indica 1697 ou 1537 — modelos antigos sem Bluetooth.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Comparação direta</h2>
+    </div>
+    <div class="vs">
+      <div class="vs-card yes">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Xbox_One_Wireless_Controller_Model_1708_%2835327620163%29.jpg" alt="Xbox One Wireless Controller modelo 1708" loading="lazy">
+        <div class="vs-body">
+          <div class="vs-tag">É 1708 · Compre</div>
+          <div class="vs-title">Bluetooth nativo</div>
+          <div class="vs-desc">Plástico ao redor do botão Xbox contínuo com a face frontal, acabamento fosco uniforme. Funciona direto no Mac via Bluetooth sem dongle.</div>
+        </div>
+      </div>
+      <div class="vs-card no">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Xbox_One_Wireless_Controller_%28Model_1697%29_%2850634403513%29.jpg" alt="Xbox One Wireless Controller modelo 1697" loading="lazy">
+        <div class="vs-body">
+          <div class="vs-tag">É 1697 · Evite</div>
+          <div class="vs-title">Sem Bluetooth</div>
+          <div class="vs-desc">Plástico do topo "desce" cobrindo a região do botão Xbox com brilho diferente. Sem Bluetooth — precisaria de dongle Xbox Wireless para usar no Mac.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Checklist em loja</h2>
+    </div>
+    <div class="field-list">
+      <div class="field-list-head">
+        <span>Confira antes de pagar</span>
+        <span class="tally">5 / 5 = compra</span>
+      </div>
+      <ol class="field-list-items">
+        <li>Plástico ao redor do botão Xbox contínuo com a face, fosco, sem emenda?</li>
+        <li>Porta Micro-USB no topo (não USB-C)?</li>
+        <li>Sem botão Share extra entre Menu e View?</li>
+        <li>Grips traseiros com textura pontilhada?</li>
+        <li>Tampa de pilha aberta: a etiqueta interna lê <code>Model: 1708</code>?</li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Modelos que parecem mas não são</h2>
+    </div>
+    <dl class="not-list">
+      <dt>1697 · Xbox One refresh (2015)</dt>
+      <dd>Tem jack 3.5mm igual ao 1708, mas a placa do topo cobre a região do botão Xbox com plástico mais brilhante. Sem Bluetooth — exige dongle proprietário.</dd>
+      <dt>1914 · Xbox Series X|S (2020)</dt>
+      <dd>Também é Bluetooth e funciona no Mac, mas tem USB-C e botão Share. Geração seguinte — controle até superior, mas não é "1708".</dd>
+      <dt>1537 · Xbox One original (2013)</dt>
+      <dd>Sem jack 3.5mm na base, sem Bluetooth, plástico totalmente brilhante na frente, traseira lisa. Pular sem hesitação.</dd>
+    </dl>
+  </section>
+
+  <footer class="footer">
+    <span>Field Guide v1 · Para uso pessoal</span>
+    <span>Wikimedia Commons · CC BY 2.0 / CC BY-SA 4.0</span>
+  </footer>
+</body>
+</html>

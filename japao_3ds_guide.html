@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a14">
+<title>3DS 狩り・Caça Japão</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;700;800&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a14;
+    --bg-card: #131322;
+    --bg-card-hover: #1a1a2e;
+    --border: #2a2a44;
+    --text: #f0f0f5;
+    --text-dim: #9999b3;
+    --text-faint: #5a5a78;
+    --accent: #ff2e63;
+    --accent-cyan: #00d4ff;
+    --accent-gold: #ffb800;
+    --tier-sp: #ff2e63;
+    --tier-s: #00d4ff;
+    --lang-multi: #00ff9c;
+    --lang-gameplay: #ffb800;
+    --lang-postmod: #ff6b4a;
+    --shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse at top right, rgba(255, 46, 99, 0.08), transparent 50%),
+      radial-gradient(ellipse at bottom left, rgba(0, 212, 255, 0.06), transparent 50%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 16px 80px;
+  }
+
+  /* HEADER */
+  header {
+    padding: 32px 0 24px;
+    position: relative;
+  }
+
+  .header-mark {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-faint);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .title-jp {
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 800;
+    font-size: clamp(38px, 9vw, 64px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .title-jp .accent {
+    color: var(--accent);
+  }
+
+  .title-en {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: clamp(14px, 3.5vw, 18px);
+    color: var(--text-dim);
+    letter-spacing: 0.02em;
+  }
+
+  .header-divider {
+    margin: 24px 0;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+  }
+
+  /* LEGEND */
+  .legend {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+    font-size: 13px;
+  }
+
+  .legend-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-faint);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .legend-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    color: var(--text-dim);
+  }
+
+  .legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+  }
+
+  /* FILTERS */
+  .filters {
+    position: sticky;
+    top: 0;
+    background: rgba(10, 10, 20, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 100;
+    padding: 12px 0;
+    margin: 0 -16px 24px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .filter-row {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+
+  .filter-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-btn {
+    flex-shrink: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .filter-btn:active {
+    transform: scale(0.96);
+  }
+
+  .filter-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+
+  .filter-btn.lang-multi.active {
+    background: var(--lang-multi);
+    color: var(--bg);
+    border-color: var(--lang-multi);
+  }
+
+  .filter-btn.lang-gameplay.active {
+    background: var(--lang-gameplay);
+    color: var(--bg);
+    border-color: var(--lang-gameplay);
+  }
+
+  .filter-btn.lang-postmod.active {
+    background: var(--lang-postmod);
+    color: var(--bg);
+    border-color: var(--lang-postmod);
+  }
+
+  .filter-btn.tier-sp.active {
+    background: var(--tier-sp);
+    color: white;
+    border-color: var(--tier-sp);
+  }
+
+  .filter-btn.essential.active {
+    background: linear-gradient(135deg, #ffb800, #ff2e63);
+    color: white;
+    border-color: #ffb800;
+    box-shadow: 0 0 16px rgba(255, 184, 0, 0.3);
+  }
+
+  /* GENRE SECTION */
+  .genre-section {
+    margin-bottom: 40px;
+    scroll-margin-top: 80px;
+  }
+
+  .genre-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .genre-title-jp {
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 800;
+    font-size: 24px;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .genre-title-en {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .genre-count {
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-faint);
+  }
+
+  /* GAME CARDS */
+  .game-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .game-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    position: relative;
+    transition: all 0.2s ease;
+    overflow: hidden;
+  }
+
+  .game-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .game-card.tier-sp::before {
+    opacity: 1;
+    background: var(--tier-sp);
+  }
+
+  .game-card[data-lang="multi"]::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--lang-multi);
+    opacity: 0.7;
+  }
+
+  .game-card-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .priority-num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    background: var(--border);
+    color: var(--text-dim);
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4px;
+  }
+
+  .game-card.tier-sp .priority-num {
+    background: var(--tier-sp);
+    color: white;
+  }
+
+  .game-titles {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .game-name-jp {
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 700;
+    font-size: clamp(20px, 5vw, 24px);
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 4px;
+    word-break: break-word;
+  }
+
+  .game-name-en {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.3;
+  }
+
+  .game-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+
+  .badge-tier-sp {
+    background: var(--tier-sp);
+    color: white;
+  }
+
+  .badge-tier-s {
+    background: rgba(0, 212, 255, 0.15);
+    color: var(--tier-s);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+  }
+
+  .badge-multi {
+    background: rgba(0, 255, 156, 0.15);
+    color: var(--lang-multi);
+    border: 1px solid rgba(0, 255, 156, 0.3);
+  }
+
+  .badge-gameplay {
+    background: rgba(255, 184, 0, 0.15);
+    color: var(--lang-gameplay);
+    border: 1px solid rgba(255, 184, 0, 0.3);
+  }
+
+  .badge-postmod {
+    background: rgba(255, 107, 74, 0.15);
+    color: var(--lang-postmod);
+    border: 1px solid rgba(255, 107, 74, 0.3);
+  }
+
+  .badge-jp-only {
+    background: rgba(255, 46, 99, 0.15);
+    color: var(--accent);
+    border: 1px solid rgba(255, 46, 99, 0.3);
+  }
+
+  .game-why {
+    font-size: 13.5px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .game-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .action-btn:active {
+    transform: scale(0.97);
+  }
+
+  .action-btn.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+
+  .action-btn.secondary:hover {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+  }
+
+  .action-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* TIPS SECTION */
+  .tips-section {
+    margin-top: 56px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+  }
+
+  .tips-title {
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 800;
+    font-size: 24px;
+    margin-bottom: 4px;
+  }
+
+  .tips-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .tip {
+    margin-bottom: 16px;
+    padding-left: 16px;
+    border-left: 2px solid var(--border);
+  }
+
+  .tip-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent-cyan);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .tip-text {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  .tip-text strong {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  /* NAV INDEX */
+  .nav-index {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+  }
+
+  .nav-index-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-faint);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .nav-link {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 4px 10px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+
+  .nav-link:active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+
+  /* HIDDEN CLASS */
+  .game-card.hidden,
+  .genre-section.hidden {
+    display: none;
+  }
+
+  /* ESSENTIAL VIEW */
+  #essential-view {
+    display: none;
+  }
+
+  #essential-view.active {
+    display: block;
+  }
+
+  .essential-header {
+    text-align: center;
+    padding: 24px 16px;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, rgba(255, 46, 99, 0.12), rgba(0, 212, 255, 0.08));
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .essential-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255, 184, 0, 0.15), transparent 70%);
+    pointer-events: none;
+  }
+
+  .essential-title-jp {
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 800;
+    font-size: clamp(28px, 7vw, 44px);
+    line-height: 1;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #ffb800, #ff2e63);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .essential-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .essential-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .essential-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .essential-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--accent);
+  }
+
+  .essential-card.top3::before {
+    background: linear-gradient(180deg, #ffb800, #ff2e63);
+    width: 4px;
+  }
+
+  .essential-rank {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    background: var(--border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 800;
+    font-size: 28px;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .essential-card.top3 .essential-rank {
+    background: linear-gradient(135deg, #ffb800, #ff2e63);
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 46, 99, 0.3);
+  }
+
+  .essential-card.rank-1 .essential-rank {
+    background: linear-gradient(135deg, #ffd700, #ffb800);
+    color: #1a1500;
+  }
+
+  .essential-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .essential-name-jp {
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 700;
+    font-size: clamp(18px, 4.5vw, 22px);
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 4px;
+    word-break: break-word;
+  }
+
+  .essential-name-en {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+
+  .essential-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+
+  .essential-why {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .essential-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  /* FOOTER */
+  footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+  }
+
+  /* DESKTOP REFINEMENTS */
+  @media (min-width: 768px) {
+    .container {
+      padding: 0 32px 80px;
+    }
+
+    .game-list {
+      gap: 14px;
+    }
+
+    .game-name-jp {
+      font-size: 26px;
+    }
+
+    .game-name-en {
+      font-size: 14px;
+    }
+
+    .game-why {
+      font-size: 14.5px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="header-mark">Caça aos 3DS · Japão 2026</div>
+  <h1 class="title-jp">3DS狩り<span class="accent">.</span></h1>
+  <div class="title-en">Guia de campo · Hard Off / Bookoff / Surugaya / Mandarake</div>
+  <div class="header-divider"></div>
+</header>
+
+<div class="legend">
+  <div class="legend-title">Legenda</div>
+  <div class="legend-items">
+    <div class="legend-item"><span class="badge badge-tier-sp">S+</span> joia absoluta</div>
+    <div class="legend-item"><span class="badge badge-tier-s">S</span> tier S</div>
+    <div class="legend-item"><span class="badge badge-multi">🌐 EN</span> inglês confirmado no cart JP</div>
+    <div class="legend-item"><span class="badge badge-gameplay">🎮 JP</span> jogável (baixa dependência de idioma)</div>
+    <div class="legend-item"><span class="badge badge-postmod">🔒 pós-mod</span> japonês-only — inglês só após mod (CFW)</div>
+  </div>
+</div>
+
+<div class="filters">
+  <div class="filter-row">
+    <button class="filter-btn active" data-filter="all">Todos</button>
+    <button class="filter-btn essential" data-filter="essential">🏆 Top 15</button>
+    <button class="filter-btn tier-sp" data-filter="tier-sp">⭐ S+ Apenas</button>
+    <button class="filter-btn lang-multi" data-filter="multi">🌐 EN garantido</button>
+    <button class="filter-btn lang-gameplay" data-filter="gameplay">🎮 Gameplay</button>
+    <button class="filter-btn lang-postmod" data-filter="postmod">🔒 Pós-mod</button>
+  </div>
+</div>
+
+<nav class="nav-index">
+  <div class="nav-index-title">Atalhos por gênero</div>
+  <div class="nav-links">
+    <a href="#g-platform" class="nav-link">Plataforma</a>
+    <a href="#g-action" class="nav-link">Ação/Metroidvania</a>
+    <a href="#g-racing" class="nav-link">Corrida</a>
+    <a href="#g-fighting" class="nav-link">Luta</a>
+    <a href="#g-jrpg" class="nav-link">JRPG/Action RPG</a>
+    <a href="#g-adventure" class="nav-link">Aventura</a>
+    <a href="#g-zelda" class="nav-link">Zelda</a>
+    <a href="#g-rhythm" class="nav-link">Ritmo</a>
+    <a href="#g-rail" class="nav-link">Rail Shooter</a>
+    <a href="#g-puzzle" class="nav-link">Puzzle</a>
+    <a href="#g-beatup" class="nav-link">Beat 'em up</a>
+    <a href="#g-strategy" class="nav-link">Estratégia</a>
+    <a href="#g-sports" class="nav-link">Esportes/Party</a>
+    <a href="#g-indie" class="nav-link">Indie/Retrô</a>
+  </div>
+</nav>
+
+<!-- ==================== ESSENTIAL VIEW (Top 15) ==================== -->
+<section id="essential-view">
+  <div class="essential-header">
+    <h2 class="essential-title-jp">TOP 15 必須</h2>
+    <div class="essential-subtitle">Os 15 essenciais · em ordem de prioridade</div>
+  </div>
+  <div class="essential-list" id="essential-list"></div>
+</section>
+
+<!-- ==================== GAMES (por gênero) ==================== -->
+<main id="games-container">
+</main>
+
+<!-- ==================== TIPS ==================== -->
+<section class="tips-section">
+  <h2 class="tips-title">現場メモ</h2>
+  <div class="tips-subtitle">Notas de campo</div>
+
+  <div class="tip">
+    <div class="tip-label">Onde garimpar</div>
+    <div class="tip-text">
+      <strong>Hard Off junk</strong> (ジャンク): ¥300–1.500 por cartucho. Gameplay-driven barato.
+      <br><strong>Bookoff</strong>: ¥500–3.000. Estado melhor.
+      <br><strong>Surugaya</strong> (Akihabara/Nakano): preços firmes, mas multi-language e raros estão lá.
+      <br><strong>Mandarake</strong> (Nakano Broadway): colecionador, caixas bonitas.
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-label">Checklist de cartucho usado</div>
+    <div class="tip-text">
+      Confira <strong>etiqueta colada</strong> (cartuchos descolados perdem valor), <strong>conectores limpos</strong> (sem oxidação verde), e se tem <strong>caixinha + manual</strong> (vale 50–100% mais). Bateria interna não importa pra 3DS (saves usam flash).
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-label">Multi-language: como ativar inglês</div>
+    <div class="tip-text">
+      <strong>Pokémon</strong>: na primeira tela, escolha a 2ª opção (英語). Se já tem save, Up + B + X pra apagar.
+      <br><strong>RE Revelations</strong>: cria save → Options → 4ª aba (Language) → D-pad.
+      <br><strong>Ace Attorney Trilogy</strong>: seletor logo no boot.
+      <br><strong>Bravely Default</strong>: opção no menu principal.
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-label">Identificar idiomas suportados na caixa</div>
+    <div class="tip-text">
+      Olhe a parte de trás: <strong>多言語対応</strong> = multi-language. <strong>言語: 日本語</strong> = só japonês. Ícones de bandeira ou siglas <strong>EFIGS</strong>/<strong>EFIGSJ</strong> indicam idiomas.
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-label">Region lock — lembrete</div>
+    <div class="tip-text">
+      Cartuchos 3DS US/EU <strong>não rodam</strong> no LL japonês stock. Só JP. Multi-language com seletor é a única forma de jogar em inglês sem modar. Pós-mod (Luma3DS em casa), o region lock cai e tudo abre.
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-label">Orçamento estimado</div>
+    <div class="tip-text">
+      Top 10: <strong>¥15.000–25.000</strong> (R$520–870).
+      Acervo completo de ~30 cartuchos: <strong>¥30.000–50.000</strong> (R$1.050–1.750), garimpando bem em junk.
+    </div>
+  </div>
+</section>
+
+<footer>
+  オリバーとジョナサンへ · CLAUDE EDITION · 2026
+</footer>
+
+</div>
+
+<script>
+const games = [
+  // PLATAFORMA
+  { id: 'mario3d', genre: 'platform', genreJp: 'プラットフォーマー', genreEn: 'Platformer', priority: 1, tier: 'sp', lang: 'gameplay',
+    jp: 'スーパーマリオ 3Dランド', en: 'Super Mario 3D Land',
+    why: 'Killer app. Plataforma 3D em portátil sem rival. Universal — gameplay carrega.', 
+    search: 'Super Mario 3D Land 3DS japan cover' },
+  { id: 'kirby-robobot', genre: 'platform', genreJp: 'プラットフォーマー', genreEn: 'Platformer', priority: 2, tier: 'sp', lang: 'gameplay',
+    jp: '星のカービィ ロボボプラネット', en: 'Kirby: Planet Robobot',
+    why: 'Considerado o melhor Kirby 2D já feito. Robôs + power-ups novos.',
+    search: 'Kirby Planet Robobot Hoshi no Kirby japan cover' },
+  { id: 'dkcr3d', genre: 'platform', genreJp: 'プラットフォーマー', genreEn: 'Platformer', priority: 3, tier: 's', lang: 'gameplay',
+    jp: 'ドンキーコング リターンズ 3D', en: 'Donkey Kong Country Returns 3D',
+    why: 'Retro Studios no auge. Plataforma brutal e linda.',
+    search: 'Donkey Kong Country Returns 3D japan cover' },
+  { id: 'kirby-td', genre: 'platform', genreJp: 'プラットフォーマー', genreEn: 'Platformer', priority: 4, tier: 's', lang: 'gameplay',
+    jp: '星のカービィ トリプルデラックス', en: 'Kirby: Triple Deluxe',
+    why: 'Predecessor de Planet Robobot. Igualmente sólido.',
+    search: 'Kirby Triple Deluxe japan cover' },
+  { id: 'nsmb2', genre: 'platform', genreJp: 'プラットフォーマー', genreEn: 'Platformer', priority: 5, tier: 's', lang: 'gameplay',
+    jp: 'New スーパーマリオブラザーズ 2', en: 'New Super Mario Bros. 2',
+    why: 'Mario 2D clássico. Foco em moedas, multiplayer local.',
+    search: 'New Super Mario Bros 2 3DS japan cover' },
+  { id: 'mml1', genre: 'platform', genreJp: 'プラットフォーマー', genreEn: 'Platformer', priority: 6, tier: 'sp', lang: 'gameplay',
+    jp: 'ロックマン クラシックス コレクション', en: 'Mega Man Legacy Collection',
+    why: '✅ verificado. NÃO é seletor de UI: o toggle é Rockman (JP) / Mega Man (internacional), e os menus da coletânea seguem o idioma do sistema (japonês no console JP). Mas você joga as versões internacionais (inglesas) dos 6 jogos NES — quase sem texto. Jogável tranquilo.',
+    search: 'Rockman Classics Collection 3DS japan cover' },
+  { id: 'asgvp', genre: 'platform', genreJp: 'プラットフォーマー', genreEn: 'Platformer', priority: 7, tier: 's', lang: 'gameplay',
+    jp: 'アジュールストライカー ガンヴォルト ストライカーパック', en: 'Azure Striker Gunvolt: Striker Pack',
+    why: 'Inti Creates (veteranos de Mega Man Zero). Gunvolt 1+2 num cartucho. 2D side-scrolling action elétrico. Cutscenes em JP, gameplay carrega.',
+    search: 'Azure Striker Gunvolt Striker Pack 3DS japan cover' },
+  { id: 'yoshi-ni', genre: 'platform', genreJp: 'プラットフォーマー', genreEn: 'Platformer', priority: 8, tier: 's', lang: 'gameplay',
+    jp: 'ヨッシー New アイランド', en: "Yoshi's New Island",
+    why: 'Plataforma colorida. Não é a obra-prima do SNES, mas competente.',
+    search: "Yoshi's New Island 3DS japan cover" },
+
+  // AÇÃO / METROIDVANIA
+  { id: 'samus-returns', genre: 'action', genreJp: 'アクション・探索', genreEn: 'Action / Metroidvania', priority: 1, tier: 'sp', lang: 'gameplay',
+    jp: 'メトロイド サムスリターンズ', en: 'Metroid: Samus Returns',
+    why: 'Remake de Metroid II pela MercurySteam. Ação exploração no auge.',
+    search: 'Metroid Samus Returns japan cover' },
+  { id: 're-rev', genre: 'action', genreJp: 'アクション・探索', genreEn: 'Action / Metroidvania', priority: 2, tier: 'sp', lang: 'multi',
+    jp: 'バイオハザード リベレーションズ', en: 'Resident Evil: Revelations',
+    why: '✅ verificado. Sobrevivência atmosférica. Primeiro RE com dublagem multi-idioma. Cria save → Options (aba de baixo) → 4ª aba (Language) → alterna EN/JP com o D-pad.',
+    search: 'Biohazard Revelations 3DS japan cover' },
+  { id: 'ex-troopers', genre: 'action', genreJp: 'アクション・探索', genreEn: 'Action / Metroidvania', priority: 3, tier: 's', lang: 'gameplay',
+    jp: 'エクストルーパーズ', en: 'E.X. Troopers',
+    why: 'Capcom JP-exclusive. TPS cel-shaded anime hot-blooded. Famitsu 34/40. Roteiro do Dai Satō (Cowboy Bebop). Fan EN patch existe pós-mod.',
+    search: 'EX Troopers 3DS japan cover' },
+  { id: 're-merc', genre: 'action', genreJp: 'アクション・探索', genreEn: 'Action / Metroidvania', priority: 4, tier: 's', lang: 'gameplay',
+    jp: 'バイオハザード ザ・マーセナリーズ 3D', en: 'Resident Evil: The Mercenaries 3D',
+    why: 'Score attack puro. Gameplay carrega, texto irrelevante.',
+    search: 'Biohazard Mercenaries 3D japan cover' },
+  { id: 'cv-mof', genre: 'action', genreJp: 'アクション・探索', genreEn: 'Action / Metroidvania', priority: 5, tier: 's', lang: 'postmod',
+    jp: '悪魔城ドラキュラ ロード オブ シャドウ ～宿命の魔鏡～', en: 'Castlevania: Lords of Shadow — Mirror of Fate',
+    why: '⚠️ Correção: NÃO confirmei inglês de TEXTO no cart JP. A versão JP não teve dub japonês (áudio é inglês), o que pode significar áudio-EN com texto/menus em japonês. Trate como pós-mod ou confira 多言語対応 na caixa.',
+    search: 'Akumajou Dracula Mirror of Fate 3DS japan cover' },
+
+  // CORRIDA
+  { id: 'mk7', genre: 'racing', genreJp: 'レース', genreEn: 'Racing', priority: 1, tier: 'sp', lang: 'gameplay',
+    jp: 'マリオカート7', en: 'Mario Kart 7',
+    why: 'Underwater, glider, customização. Multiplayer local eterno.',
+    search: 'Mario Kart 7 japan cover' },
+  { id: 'rr3d', genre: 'racing', genreJp: 'レース', genreEn: 'Racing', priority: 2, tier: 's', lang: 'gameplay',
+    jp: 'リッジレーサー 3D', en: 'Ridge Racer 3D',
+    why: 'Drift arcade nostálgico. Gameplay puro.',
+    search: 'Ridge Racer 3D japan cover' },
+
+  // LUTA
+  { id: 'smash3ds', genre: 'fighting', genreJp: '格闘', genreEn: 'Fighting', priority: 1, tier: 'sp', lang: 'gameplay',
+    jp: '大乱闘スマッシュブラザーズ for Nintendo 3DS', en: 'Super Smash Bros. for 3DS',
+    why: 'Smash portátil completo. Universal — ícones e personagens conhecidos.',
+    search: 'Super Smash Bros 3DS japan cover' },
+  { id: 'tekken3d', genre: 'fighting', genreJp: '格闘', genreEn: 'Fighting', priority: 2, tier: 's', lang: 'gameplay',
+    jp: '鉄拳 3D プライム エディション', en: 'Tekken 3D Prime Edition',
+    why: 'Tekken portátil decente. Controles ok pro D-pad.',
+    search: 'Tekken 3D Prime Edition japan cover' },
+  { id: 'doa-d', genre: 'fighting', genreJp: '格闘', genreEn: 'Fighting', priority: 3, tier: 's', lang: 'gameplay',
+    jp: 'デッド オア アライブ ディメンションズ', en: 'Dead or Alive Dimensions',
+    why: 'Port surpreendentemente bom. Gameplay flui.',
+    search: 'Dead or Alive Dimensions 3DS japan cover' },
+
+  // JRPG
+  { id: 'pk-usum', genre: 'jrpg', genreJp: 'JRPG', genreEn: 'JRPG', priority: 1, tier: 'sp', lang: 'multi',
+    jp: 'ポケットモンスター ウルトラサン / ウルトラムーン', en: 'Pokémon Ultra Sun / Ultra Moon',
+    why: '✅ verificado. Versão expandida de Sun/Moon. Seletor de 9 idiomas ao iniciar jogo NOVO (idioma trava no save). Cart usado vem com save japonês — apaga com Cima+B+X no title e escolhe English.',
+    search: 'Pokemon Ultra Sun Ultra Moon japan cover' },
+  { id: 'pk-sm', genre: 'jrpg', genreJp: 'JRPG', genreEn: 'JRPG', priority: 2, tier: 'sp', lang: 'multi',
+    jp: 'ポケットモンスター サン / ムーン', en: 'Pokémon Sun / Moon',
+    why: '✅ verificado. Pokémon em Alola. Seletor de 9 idiomas no jogo novo. Apaga save usado com Cima+B+X e escolhe English.',
+    search: 'Pokemon Sun Moon japan cover' },
+  { id: 'pk-xy', genre: 'jrpg', genreJp: 'JRPG', genreEn: 'JRPG', priority: 3, tier: 's', lang: 'multi',
+    jp: 'ポケットモンスター X / Y', en: 'Pokémon X / Y',
+    why: '✅ verificado. Primeiro Pokémon 3D. Seletor de idioma no jogo novo (英語 = inglês). Apaga save usado com Cima+B+X.',
+    search: 'Pokemon X Y japan cover' },
+  { id: 'pk-oras', genre: 'jrpg', genreJp: 'JRPG', genreEn: 'JRPG', priority: 4, tier: 's', lang: 'multi',
+    jp: 'ポケットモンスター オメガルビー / アルファサファイア', en: 'Pokémon Omega Ruby / Alpha Sapphire',
+    why: '✅ verificado. Remake de Ruby/Sapphire. Mesmo esquema do X/Y — seletor no jogo novo; apaga save usado com Cima+B+X.',
+    search: 'Pokemon Omega Ruby Alpha Sapphire japan cover' },
+  { id: 'bd-fts', genre: 'jrpg', genreJp: 'JRPG', genreEn: 'JRPG', priority: 5, tier: 'sp', lang: 'multi',
+    jp: 'ブレイブリーデフォルト フォー ザ シークウェル', en: 'Bravely Default: For the Sequel',
+    why: '✅ verificado. JRPG de turno excelente. EN/FR/IT/DE/ES nas opções in-game. CRÍTICO: só a フォー ザ シークウェル (For the Sequel) tem inglês — a フライングフェアリー (Flying Fairy) é japonês-only. A intro inicial roda em japonês antes de você trocar.',
+    search: 'Bravely Default For the Sequel japan cover' },
+  { id: 'bs-el', genre: 'jrpg', genreJp: 'JRPG', genreEn: 'JRPG', priority: 6, tier: 's', lang: 'postmod',
+    jp: 'ブレイブリーセカンド エンドレイヤー', en: 'Bravely Second: End Layer',
+    why: '❌ Correção: japonês-only no cart JP (diferente do For the Sequel). Localização ocidental veio separada em 2016. Inglês só pós-mod.',
+    search: 'Bravely Second End Layer japan cover' },
+  { id: 'mh-stories', genre: 'jrpg', genreJp: 'JRPG / アクションRPG', genreEn: 'JRPG / Action RPG', priority: 7, tier: 's', lang: 'postmod',
+    jp: 'モンスターハンター ストーリーズ', en: 'Monster Hunter Stories',
+    why: '❌ Correção: japonês-only no cart JP (existe fan translation justamente por isso). Inglês só pós-mod (cart ocidental ou ROM).',
+    search: 'Monster Hunter Stories 3DS japan cover' },
+  { id: 'ff-explorers', genre: 'jrpg', genreJp: 'JRPG / アクションRPG', genreEn: 'JRPG / Action RPG', priority: 8, tier: 's', lang: 'gameplay',
+    jp: 'ファイナルファンタジー エクスプローラーズ', en: 'Final Fantasy Explorers',
+    why: 'Action RPG Monster Hunter-like com FF. Cart JP é só JP, mas gameplay carrega (menus surmountáveis).',
+    search: 'Final Fantasy Explorers 3DS japan cover' },
+
+  // AVENTURA
+  { id: 'aa-trilogy', genre: 'adventure', genreJp: 'アドベンチャー', genreEn: 'Adventure / VN', priority: 1, tier: 'sp', lang: 'multi',
+    jp: '逆転裁判123 成歩堂セレクション', en: 'Phoenix Wright: Ace Attorney Trilogy (HD)',
+    why: '✅ verificado. Trilogia inteira em 1 cartucho. Começa em japonês — botão embaixo do menu troca pra inglês. Obrigatório.',
+    search: 'Gyakuten Saiban 123 Naruhodo Selection cover' },
+
+  // ZELDA
+  { id: 'tfh', genre: 'zelda', genreJp: 'ゼルダ', genreEn: 'Zelda', priority: 1, tier: 's', lang: 'postmod',
+    jp: 'トライフォース3銃士', en: 'The Legend of Zelda: Tri Force Heroes',
+    why: '❌ Correção: first-party Nintendo usa o idioma do sistema (japonês no console JP) e as versões NA/EU têm traduções separadas → cart JP provável japonês-only. Inglês só pós-mod.',
+    search: 'Triforce Sanjushi Tri Force Heroes japan cover' },
+
+  // RITMO
+  { id: 'theatr-cc', genre: 'rhythm', genreJp: 'リズム', genreEn: 'Rhythm', priority: 1, tier: 'sp', lang: 'multi',
+    jp: 'シアトリズム ファイナルファンタジー カーテンコール', en: 'Theatrhythm Final Fantasy: Curtain Call',
+    why: '✅ verificado. Música FF + rhythm. Versão JP tem inglês por padrão (confirmado pela comunidade). Idioma quase irrelevante no gameplay.',
+    search: 'Theatrhythm Final Fantasy Curtain Call japan cover' },
+  { id: 'rt-best', genre: 'rhythm', genreJp: 'リズム', genreEn: 'Rhythm', priority: 2, tier: 'sp', lang: 'gameplay',
+    jp: 'リズム天国 ザ・ベスト＋', en: 'Rhythm Tengoku The Best+ (Rhythm Heaven Megamix)',
+    why: 'JP exclusive expandido. Música é universal — idioma quase irrelevante.',
+    search: 'Rhythm Tengoku The Best+ japan cover' },
+
+  // RAIL SHOOTER
+  { id: 'sf64-3d', genre: 'rail', genreJp: 'レール・シューター', genreEn: 'Rail Shooter', priority: 1, tier: 'sp', lang: 'gameplay',
+    jp: 'スターフォックス64 3D', en: 'Star Fox 64 3D',
+    why: '⚠️ Correção: first-party → menus/texto seguem o idioma do sistema (japonês no console JP). Voz pode ser inglesa, texto não garantido. Rail shooter de baixíssimo texto, jogável; inglês pleno só pós-mod.',
+    search: 'Star Fox 64 3D japan cover' },
+
+  // PUZZLE
+  { id: 'picross-3d-r2', genre: 'puzzle', genreJp: 'パズル', genreEn: 'Puzzle', priority: 1, tier: 'sp', lang: 'gameplay',
+    jp: 'ピクロス3D 2', en: 'Picross 3D: Round 2',
+    why: '⚠️ first-party (menus em japonês no console JP), mas é nonograma — gameplay 100% independente de idioma. Jogável sem ler nada.',
+    search: 'Picross 3D Round 2 japan cover' },
+
+  // BEAT EM UP
+  { id: 'pxz2', genre: 'beatup', genreJp: 'ベルトスクロール / 格闘', genreEn: "Beat 'em up / Tactical", priority: 1, tier: 's', lang: 'postmod',
+    jp: 'プロジェクト クロスゾーン2', en: 'Project X Zone 2',
+    why: '❌ Correção: multi-idioma é POR REGIÃO (cart NA/EU tem inglês; cart JP é japonês). Inglês só pós-mod.',
+    search: 'Project X Zone 2 japan cover' },
+  { id: 'pxz1', genre: 'beatup', genreJp: 'ベルトスクロール / 格闘', genreEn: "Beat 'em up / Tactical", priority: 2, tier: 's', lang: 'postmod',
+    jp: 'プロジェクト クロスゾーン', en: 'Project X Zone',
+    why: '❌ Correção: cart JP japonês-only (o ocidental nem multi-idioma é — só inglês). Inglês só pós-mod.',
+    search: 'Project X Zone japan cover' },
+  { id: 'rc-tr', genre: 'beatup', genreJp: 'ベルトスクロール / 格闘', genreEn: "Beat 'em up / Tactical", priority: 3, tier: 's', lang: 'postmod',
+    jp: '熱血硬派くにおくん SP 乱闘協奏曲', en: 'River City: Tokyo Rumble',
+    why: '❌ Provável japonês-only: a Natsume localizou o Ocidente separadamente (padrão de release por região). Confirme na caixa; senão, inglês pós-mod.',
+    search: 'Kunio-kun SP Rantou Kyousoukyoku japan cover' },
+  { id: 'cop', genre: 'beatup', genreJp: 'ベルトスクロール / 格闘', genreEn: "Beat 'em up / Tactical", priority: 4, tier: 's', lang: 'gameplay',
+    jp: 'コード・オブ・プリンセス', en: 'Code of Princess',
+    why: 'Sucessor espiritual de Guardian Heroes. Gameplay carrega.',
+    search: 'Code of Princess 3DS japan cover' },
+  { id: 'sk-burst', genre: 'beatup', genreJp: 'ベルトスクロール / 格闘', genreEn: "Beat 'em up / Tactical", priority: 5, tier: 's', lang: 'gameplay',
+    jp: '閃乱カグラ Burst', en: 'Senran Kagura Burst',
+    why: 'Beat \'em up japonês. Texto periférico.',
+    search: 'Senran Kagura Burst japan cover' },
+
+  // ESTRATÉGIA
+  { id: 'hw-leg', genre: 'strategy', genreJp: '戦略', genreEn: 'Strategy', priority: 1, tier: 's', lang: 'postmod',
+    jp: 'ゼルダ無双 ハイラルオールスターズ', en: 'Hyrule Warriors: Legends',
+    why: '⚠️ Não verificado; IP Nintendo + release por região → cart JP provável japonês-only. Confirme 多言語対応 na caixa; senão, pós-mod.',
+    search: 'Zelda Musou Hyrule All-Stars japan cover' },
+
+  // ESPORTES / PARTY
+  { id: 'ww-gold', genre: 'sports', genreJp: 'スポーツ / パーティー', genreEn: 'Sports / Party', priority: 1, tier: 'sp', lang: 'gameplay',
+    jp: 'メイド イン ワリオ ゴージャス', en: 'WarioWare Gold',
+    why: '316 microgames — recordista da série. Último jogo do 3DS desenvolvido pela Nintendo. Microgames são reações visuais de 5 segundos, idioma é irrelevante. Tier S+ absoluto.',
+    search: 'WarioWare Gold Made in Wario Gorgeous japan cover' },
+  { id: 'm-sports-ss', genre: 'sports', genreJp: 'スポーツ / パーティー', genreEn: 'Sports / Party', priority: 2, tier: 's', lang: 'gameplay',
+    jp: 'マリオスポーツ スーパースターズ', en: 'Mario Sports Superstars',
+    why: '5 esportes num cartucho (futebol, baseball, tênis, golfe, hipismo). Gameplay-driven puro.',
+    search: 'Mario Sports Superstars 3DS japan cover' },
+  { id: 'mt-open', genre: 'sports', genreJp: 'スポーツ / パーティー', genreEn: 'Sports / Party', priority: 3, tier: 's', lang: 'gameplay',
+    jp: 'マリオテニス オープン', en: 'Mario Tennis Open',
+    why: 'Tênis portátil pleno. Gameplay carrega.',
+    search: 'Mario Tennis Open japan cover' },
+  { id: 'mg-wt', genre: 'sports', genreJp: 'スポーツ / パーティー', genreEn: 'Sports / Party', priority: 4, tier: 's', lang: 'gameplay',
+    jp: 'マリオゴルフ ワールドツアー', en: 'Mario Golf: World Tour',
+    why: 'Golfe sério, multiplayer local.',
+    search: 'Mario Golf World Tour japan cover' },
+  { id: 'mp-sr', genre: 'sports', genreJp: 'スポーツ / パーティー', genreEn: 'Sports / Party', priority: 5, tier: 's', lang: 'gameplay',
+    jp: 'マリオパーティ スターラッシュ', en: 'Mario Party: Star Rush',
+    why: 'Mario Party portátil. Multiplayer local. Minigames visuais, idioma é periférico.',
+    search: 'Mario Party Star Rush 3DS japan cover' },
+  { id: 'mp-t100', genre: 'sports', genreJp: 'スポーツ / パーティー', genreEn: 'Sports / Party', priority: 6, tier: 's', lang: 'gameplay',
+    jp: 'マリオパーティ100 ミニゲームコレクション', en: 'Mario Party: The Top 100',
+    why: '100 minigames clássicos das versões antigas. Visual, multiplayer.',
+    search: 'Mario Party The Top 100 japan cover' },
+
+  // INDIE / LEGO
+  // INDIE / RETRÔ
+  { id: 'sega3d-1', genre: 'indie', genreJp: 'インディー / レトロ', genreEn: 'Indie / Retrô', priority: 1, tier: 'sp', lang: 'gameplay',
+    jp: 'セガ3D復刻アーカイブス', en: 'Sega 3D Fukkoku Archives',
+    why: 'JP-exclusive. 9 clássicos Sega rebuildados em 3D pela M2 (não emulação — código refeito). Space Harrier, Streets of Rage, Super Hang-On, Fantasy Zone. Tier S+ pra retrô.',
+    search: 'Sega 3D Fukkoku Archives japan cover' },
+  { id: 'sega3d-3', genre: 'indie', genreJp: 'インディー / レトロ', genreEn: 'Indie / Retrô', priority: 2, tier: 'sp', lang: 'gameplay',
+    jp: 'セガ3D復刻アーカイブス3 ファイナルステージ', en: 'Sega 3D Fukkoku Archives 3: Final Stage',
+    why: 'JP-exclusive. 11 clássicos: Turbo OutRun, Thunder Force III, Alien Syndrome, Columns + 7 outros. M2 no auge da preservação.',
+    search: 'Sega 3D Fukkoku Archives 3 Final Stage japan cover' },
+  { id: 'shovel', genre: 'indie', genreJp: 'インディー / レトロ', genreEn: 'Indie / Retrô', priority: 3, tier: 's', lang: 'multi',
+    jp: 'ショベルナイト', en: 'Shovel Knight',
+    why: '✅ provável (alta confiança). Indie ocidental com físico no Japão; comunidade lista como cart JP multi-idioma (Yacht Club + 8-4 botaram JP por cima das línguas ocidentais). Confirme 多言語対応 na caixa.',
+    search: 'Shovel Knight 3DS japan cover' },
+  { id: 'lego-cu', genre: 'indie', genreJp: 'インディー / レトロ', genreEn: 'Indie / Retrô', priority: 4, tier: 's', lang: 'multi',
+    jp: 'レゴ シティ アンダーカバー', en: 'LEGO City Undercover',
+    why: 'Open world LEGO. LEGOs são multi-language padrão.',
+    search: 'LEGO City Undercover 3DS japan cover' },
+];
+
+const genreOrder = [
+  { id: 'platform', anchor: 'g-platform', jp: 'プラットフォーマー', en: 'Platformer' },
+  { id: 'action', anchor: 'g-action', jp: 'アクション・探索', en: 'Action / Metroidvania' },
+  { id: 'racing', anchor: 'g-racing', jp: 'レース', en: 'Racing' },
+  { id: 'fighting', anchor: 'g-fighting', jp: '格闘', en: 'Fighting' },
+  { id: 'jrpg', anchor: 'g-jrpg', jp: 'JRPG / アクションRPG', en: 'JRPG / Action RPG' },
+  { id: 'adventure', anchor: 'g-adventure', jp: 'アドベンチャー', en: 'Adventure / VN' },
+  { id: 'zelda', anchor: 'g-zelda', jp: 'ゼルダ', en: 'Zelda' },
+  { id: 'rhythm', anchor: 'g-rhythm', jp: 'リズム', en: 'Rhythm' },
+  { id: 'rail', anchor: 'g-rail', jp: 'レール・シューター', en: 'Rail Shooter' },
+  { id: 'puzzle', anchor: 'g-puzzle', jp: 'パズル', en: 'Puzzle' },
+  { id: 'beatup', anchor: 'g-beatup', jp: 'ベルトスクロール / 格闘', en: "Beat 'em up / Tactical" },
+  { id: 'strategy', anchor: 'g-strategy', jp: '戦略', en: 'Strategy' },
+  { id: 'sports', anchor: 'g-sports', jp: 'スポーツ / パーティー', en: 'Sports / Party' },
+  { id: 'indie', anchor: 'g-indie', jp: 'インディー / レトロ', en: 'Indie / Retrô' },
+];
+
+const essentialOrder = [
+  'mml1',          // 1. Mega Man Legacy Collection
+  'pk-usum',       // 2. Pokémon Ultra Sun / Ultra Moon
+  'aa-trilogy',    // 3. Phoenix Wright: Ace Attorney Trilogy
+  're-rev',        // 4. Resident Evil: Revelations
+  'sf64-3d',       // 5. Star Fox 64 3D
+  'bd-fts',        // 6. Bravely Default: For the Sequel
+  'mario3d',       // 7. Super Mario 3D Land
+  'mk7',           // 8. Mario Kart 7
+  'kirby-robobot', // 9. Kirby: Planet Robobot
+  'smash3ds',      // 10. Super Smash Bros for 3DS
+  'samus-returns', // 11. Metroid: Samus Returns
+  'picross-3d-r2', // 12. Picross 3D: Round 2
+  'rt-best',       // 13. Rhythm Tengoku The Best+
+  'cv-mof',        // 14. Castlevania: Mirror of Fate
+  'ww-gold'        // 15. WarioWare Gold
+];
+
+function renderGames() {
+  const container = document.getElementById('games-container');
+  let html = '';
+
+  genreOrder.forEach(g => {
+    const genreGames = games.filter(game => game.genre === g.id).sort((a, b) => a.priority - b.priority);
+    if (genreGames.length === 0) return;
+
+    html += `
+<section class="genre-section" id="${g.anchor}" data-genre="${g.id}">
+  <div class="genre-header">
+    <div class="genre-title-jp">${g.jp}</div>
+    <div class="genre-title-en">${g.en}</div>
+    <div class="genre-count">${genreGames.length} ${genreGames.length === 1 ? 'jogo' : 'jogos'}</div>
+  </div>
+  <div class="game-list">`;
+
+    genreGames.forEach(game => {
+      const tierClass = game.tier === 'sp' ? 'tier-sp' : 'tier-s';
+      const tierLabel = game.tier === 'sp' ? 'S+' : 'S';
+      const langBadge = game.lang === 'multi'
+        ? '<span class="badge badge-multi">🌐 EN</span>'
+        : game.lang === 'postmod'
+        ? '<span class="badge badge-postmod">🔒 pós-mod</span>'
+        : '<span class="badge badge-gameplay">🎮 JP</span>';
+      const searchUrl = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(game.search)}`;
+      const mercariUrl = `https://jp.mercari.com/search?keyword=${encodeURIComponent(game.jp)}`;
+
+      html += `
+    <article class="game-card ${tierClass}" data-lang="${game.lang}" data-tier="${game.tier}">
+      <div class="game-card-top">
+        <div class="priority-num">${game.priority}</div>
+        <div class="game-titles">
+          <div class="game-name-jp">${game.jp}</div>
+          <div class="game-name-en">${game.en}</div>
+        </div>
+      </div>
+      <div class="game-badges">
+        <span class="badge badge-tier-${game.tier}">${tierLabel}</span>
+        ${langBadge}
+      </div>
+      <div class="game-why">${game.why}</div>
+      <div class="game-actions">
+        <a href="${searchUrl}" target="_blank" rel="noopener" class="action-btn primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          Ver capa
+        </a>
+        <a href="${mercariUrl}" target="_blank" rel="noopener" class="action-btn secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          Mercari preço
+        </a>
+      </div>
+    </article>`;
+    });
+
+    html += `
+  </div>
+</section>`;
+  });
+
+  container.innerHTML = html;
+}
+
+function renderEssentialView() {
+  const container = document.getElementById('essential-list');
+  let html = '';
+
+  essentialOrder.forEach((id, idx) => {
+    const game = games.find(g => g.id === id);
+    if (!game) return;
+
+    const rank = idx + 1;
+    const top3Class = rank <= 3 ? 'top3' : '';
+    const rank1Class = rank === 1 ? 'rank-1' : '';
+    const tierLabel = game.tier === 'sp' ? 'S+' : 'S';
+    const tierClass = game.tier === 'sp' ? 'badge-tier-sp' : 'badge-tier-s';
+    const langBadge = game.lang === 'multi'
+      ? '<span class="badge badge-multi">🌐 EN</span>'
+      : game.lang === 'postmod'
+      ? '<span class="badge badge-postmod">🔒 pós-mod</span>'
+      : '<span class="badge badge-gameplay">🎮 JP</span>';
+    const searchUrl = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(game.search)}`;
+    const mercariUrl = `https://jp.mercari.com/search?keyword=${encodeURIComponent(game.jp)}`;
+
+    html += `
+<article class="essential-card ${top3Class} ${rank1Class}">
+  <div class="essential-rank">${rank}</div>
+  <div class="essential-body">
+    <div class="essential-name-jp">${game.jp}</div>
+    <div class="essential-name-en">${game.en}</div>
+    <div class="essential-badges">
+      <span class="badge ${tierClass}">${tierLabel}</span>
+      ${langBadge}
+    </div>
+    <div class="essential-why">${game.why}</div>
+    <div class="essential-actions">
+      <a href="${searchUrl}" target="_blank" rel="noopener" class="action-btn primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        Ver capa
+      </a>
+      <a href="${mercariUrl}" target="_blank" rel="noopener" class="action-btn secondary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Mercari
+      </a>
+    </div>
+  </div>
+</article>`;
+  });
+
+  container.innerHTML = html;
+}
+
+function applyFilter(filter) {
+  const allCards = document.querySelectorAll('.game-card');
+  const allSections = document.querySelectorAll('.genre-section');
+  const essentialView = document.getElementById('essential-view');
+  const gamesContainer = document.getElementById('games-container');
+  const navIndex = document.querySelector('.nav-index');
+
+  if (filter === 'essential') {
+    // Mostra Top 15, esconde resto
+    essentialView.classList.add('active');
+    gamesContainer.style.display = 'none';
+    if (navIndex) navIndex.style.display = 'none';
+    return;
+  }
+
+  // Modo normal — esconde essential, mostra container
+  essentialView.classList.remove('active');
+  gamesContainer.style.display = 'block';
+  if (navIndex) navIndex.style.display = 'block';
+
+  allCards.forEach(card => {
+    if (filter === 'all') {
+      card.classList.remove('hidden');
+    } else if (filter === 'tier-sp') {
+      card.classList.toggle('hidden', card.dataset.tier !== 'sp');
+    } else if (filter === 'multi') {
+      card.classList.toggle('hidden', card.dataset.lang !== 'multi');
+    } else if (filter === 'gameplay') {
+      card.classList.toggle('hidden', card.dataset.lang !== 'gameplay');
+    } else if (filter === 'postmod') {
+      card.classList.toggle('hidden', card.dataset.lang !== 'postmod');
+    }
+  });
+
+  // esconde seções vazias
+  allSections.forEach(section => {
+    const visibleCards = section.querySelectorAll('.game-card:not(.hidden)');
+    section.classList.toggle('hidden', visibleCards.length === 0);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderGames();
+  renderEssentialView();
+
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilter(btn.dataset.filter);
+      // Scroll suave pro topo quando muda filtro
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // Handler explícito dos atalhos por gênero
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').substring(1);
+      // Se algum filtro não-"all" está ativo, reseta pra "all" primeiro
+      const allBtn = document.querySelector('.filter-btn[data-filter="all"]');
+      if (allBtn && !allBtn.classList.contains('active')) {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        allBtn.classList.add('active');
+        applyFilter('all');
+      }
+      // Aguarda DOM atualizar e scrolla suavemente pra seção
+      requestAnimationFrame(() => {
+        const target = document.getElementById(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  });
+});
+</script>
+
+</body>
+</html>

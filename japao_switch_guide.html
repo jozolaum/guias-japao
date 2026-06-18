@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a14">
+<title>Switch 狩り・Japão</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;700;800&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d0a0f;
+  --bg-card: #1a1218;
+  --border: #3a2530;
+  --text: #f5ebef;
+  --text-dim: #b8a8b0;
+  --text-faint: #6e5560;
+  --accent: #e60012;
+  --accent-bright: #ff4d5e;
+  --accent-cyan: #00d4ff;
+  --tier-sp: #e60012;
+  --tier-s: #ff4d5e;
+  --multi: #00d4ff;
+  --jogab: #ffd400;
+  --switch1: #00b5e2;
+  --switch2: #ff3030;
+  --coop: #b366ff;
+  --jp-only: #ff8c1a;
+  --decada: #ff6bb5;
+  --decada-bright: #ffaad4;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: 'DM Sans', sans-serif; line-height: 1.5; min-height: 100vh;
+  background-image: radial-gradient(ellipse at top right, rgba(230,0,18,0.08), transparent 50%), radial-gradient(ellipse at bottom left, rgba(255,212,0,0.05), transparent 50%);
+  background-attachment: fixed; overflow-x: hidden;
+}
+.container { max-width: 1000px; margin: 0 auto; padding: 0 16px 80px; }
+header { padding: 32px 0 24px; }
+.header-mark { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-faint); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; }
+.title-jp { font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: clamp(36px, 9vw, 60px); line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 4px; }
+.title-jp .accent { color: var(--accent); }
+.title-en { font-weight: 500; font-size: clamp(14px, 3.5vw, 18px); color: var(--text-dim); }
+.header-divider { margin: 24px 0; height: 1px; background: linear-gradient(90deg, var(--accent), transparent); }
+.legend { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 24px; font-size: 13px; }
+.legend-title { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-faint); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; }
+.legend-items { display: flex; flex-wrap: wrap; gap: 10px 16px; color: var(--text-dim); }
+.legend-item { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; }
+.filters { position: sticky; top: 0; background: rgba(13,10,15,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 100; padding: 12px 0; margin: 0 -16px 24px; padding-left: 16px; padding-right: 16px; border-bottom: 1px solid var(--border); }
+.filter-row { display: flex; gap: 8px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
+.filter-row::-webkit-scrollbar { display: none; }
+.filter-btn { flex-shrink: 0; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-dim); padding: 8px 14px; border-radius: 999px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; white-space: nowrap; }
+.filter-btn:active { transform: scale(0.96); }
+.filter-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+.filter-btn.tier-sp.active { background: var(--tier-sp); color: white; border-color: var(--tier-sp); }
+.filter-btn.essential.active { background: linear-gradient(135deg, var(--accent), #ff4d5e); color: white; border-color: var(--accent); box-shadow: 0 0 16px rgba(230,0,18,0.3); }
+.filter-btn.jogab.active { background: var(--jogab); color: var(--bg); border-color: var(--jogab); }
+.filter-btn.s2.active { background: var(--switch2); color: white; border-color: var(--switch2); }
+.filter-btn.coop.active { background: var(--coop); color: white; border-color: var(--coop); }
+.nav-index { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 24px; }
+.nav-index-title { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-faint); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; }
+.nav-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.nav-link { font-size: 12px; color: var(--text-dim); text-decoration: none; padding: 4px 10px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; transition: all 0.2s ease; }
+.nav-link:active { background: var(--accent); color: white; border-color: var(--accent); }
+.genre-section { margin-bottom: 40px; scroll-margin-top: 80px; }
+.genre-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.genre-title-jp { font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: 24px; }
+.genre-title-en { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; }
+.genre-count { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-faint); }
+.game-list { display: flex; flex-direction: column; gap: 12px; }
+.game-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; position: relative; overflow: hidden; }
+.game-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--accent); opacity: 0; }
+.game-card.tier-sp::before { opacity: 1; background: var(--tier-sp); }
+.game-card[data-jogab="true"]::after { content: ''; position: absolute; top: 0; right: 0; width: 3px; height: 100%; background: var(--jogab); opacity: 0.6; }
+.game-card-top { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+.priority-num { flex-shrink: 0; width: 28px; height: 28px; background: var(--border); color: var(--text-dim); border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 4px; }
+.game-card.tier-sp .priority-num { background: var(--tier-sp); color: white; }
+.game-titles { flex: 1; min-width: 0; }
+.game-name { font-family: 'Shippori Mincho B1', serif; font-weight: 700; font-size: clamp(19px, 4.5vw, 23px); line-height: 1.2; margin-bottom: 4px; word-break: break-word; }
+.game-subtitle { font-size: 12px; color: var(--text-dim); line-height: 1.3; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.02em; }
+.game-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.badge { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; padding: 4px 8px; border-radius: 4px; text-transform: uppercase; }
+.badge-tier-sp { background: var(--tier-sp); color: white; }
+.badge-tier-s { background: rgba(255,77,94,0.15); color: var(--tier-s); border: 1px solid rgba(255,77,94,0.3); }
+.badge-s1 { background: rgba(0,181,226,0.15); color: var(--switch1); border: 1px solid rgba(0,181,226,0.3); }
+.badge-s2 { background: rgba(255,48,48,0.18); color: var(--switch2); border: 1px solid rgba(255,48,48,0.4); }
+.badge-coop { background: rgba(179,102,255,0.15); color: var(--coop); border: 1px solid rgba(179,102,255,0.3); }
+.badge-jp-only { background: rgba(255,140,26,0.15); color: var(--jp-only); border: 1px solid rgba(255,140,26,0.3); }
+.badge-jogab { background: rgba(255,212,0,0.2); color: var(--jogab); border: 1px solid rgba(255,212,0,0.4); font-weight: 700; }
+.badge-decada { background: rgba(255,107,181,0.2); color: var(--decada); border: 1px solid rgba(255,107,181,0.4); font-weight: 700; }
+.filter-btn.decada.active { background: var(--decada); color: white; border-color: var(--decada); }
+.decada-chip { font-size: 11.5px; color: var(--decada); background: rgba(255,107,181,0.08); border-left: 2px solid var(--decada); padding: 6px 10px; margin-bottom: 8px; border-radius: 2px; font-family: 'JetBrains Mono', monospace; line-height: 1.5; }
+
+/* Top 10 Década section */
+.decada-section { margin-bottom: 32px; background: linear-gradient(135deg, rgba(255,107,181,0.10), rgba(255,212,0,0.04)); border: 1px solid var(--border); border-radius: 16px; padding: 24px 20px; }
+.decada-section-header { text-align: center; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.decada-section-title { font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: clamp(22px, 5vw, 32px); line-height: 1; margin-bottom: 8px; background: linear-gradient(135deg, var(--decada-bright), var(--jogab)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.decada-section-subtitle { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--text-dim); letter-spacing: 0.15em; text-transform: uppercase; }
+.decada-list { display: flex; flex-direction: column; gap: 8px; }
+.decada-row { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; display: flex; gap: 12px; align-items: center; }
+.decada-row.unavailable { opacity: 0.5; }
+.decada-row.top3 { border-color: rgba(255,107,181,0.4); }
+.decada-rank { flex-shrink: 0; width: 36px; height: 36px; background: var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: 18px; line-height: 1; }
+.decada-row.top3 .decada-rank { background: linear-gradient(135deg, var(--decada), var(--decada-bright)); color: var(--bg); }
+.decada-row.rank-1 .decada-rank { background: linear-gradient(135deg, var(--jogab), var(--decada)); color: var(--bg); box-shadow: 0 2px 8px rgba(255,212,0,0.3); }
+.decada-body { flex: 1; min-width: 0; }
+.decada-name { font-family: 'Shippori Mincho B1', serif; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 2px; }
+.decada-meta { font-size: 11px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; }
+.decada-meta .yes { color: var(--decada); }
+.decada-meta .no { color: var(--text-faint); }
+.game-why { font-size: 13.5px; color: var(--text-dim); line-height: 1.5; margin-bottom: 10px; }
+.timeline-chip { font-size: 11.5px; color: var(--accent-bright); background: rgba(230,0,18,0.08); border-left: 2px solid var(--accent); padding: 6px 10px; margin-bottom: 8px; border-radius: 2px; font-family: 'JetBrains Mono', monospace; line-height: 1.5; }
+.jogab-chip { font-size: 11.5px; color: var(--jogab); background: rgba(255,212,0,0.08); border-left: 2px solid var(--jogab); padding: 6px 10px; margin-bottom: 12px; border-radius: 2px; font-family: 'JetBrains Mono', monospace; line-height: 1.5; }
+.game-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.action-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; background: transparent; border: 1px solid var(--border); color: var(--text-dim); border-radius: 8px; font-size: 12px; font-weight: 500; text-decoration: none; cursor: pointer; transition: all 0.2s ease; }
+.action-btn:active { transform: scale(0.97); }
+.action-btn.primary { background: var(--accent); border-color: var(--accent); color: white; }
+.action-btn.wishlist { border-color: var(--jogab); color: var(--jogab); font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 6px 10px; }
+.action-btn.wishlist.wanted { background: var(--jogab); color: var(--bg); }
+.action-btn.wishlist.owned { background: var(--coop); color: white; border-color: var(--coop); }
+.tips-section { margin-top: 56px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+.tips-title { font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: 24px; margin-bottom: 4px; }
+.tips-subtitle { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 20px; }
+.tip { margin-bottom: 16px; padding-left: 16px; border-left: 2px solid var(--border); }
+.tip-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent-bright); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+.tip-text { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+.tip-text strong { color: var(--text); font-weight: 700; }
+.game-card.hidden, .genre-section.hidden { display: none; }
+#essential-view { display: none; }
+#essential-view.active { display: block; }
+.essential-header { text-align: center; padding: 24px 16px; margin-bottom: 24px; background: linear-gradient(135deg, rgba(230,0,18,0.12), rgba(255,212,0,0.08)); border: 1px solid var(--border); border-radius: 16px; }
+.essential-title { font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: clamp(28px, 7vw, 44px); line-height: 1; margin-bottom: 8px; background: linear-gradient(135deg, var(--accent), var(--jogab)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.essential-subtitle { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); letter-spacing: 0.2em; text-transform: uppercase; }
+.essential-list { display: flex; flex-direction: column; gap: 12px; }
+.essential-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; display: flex; gap: 16px; align-items: flex-start; position: relative; overflow: hidden; }
+.essential-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--accent); }
+.essential-card.top3::before { background: linear-gradient(180deg, var(--jogab), var(--accent)); width: 4px; }
+.essential-rank { flex-shrink: 0; width: 56px; height: 56px; background: var(--border); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: 28px; line-height: 1; }
+.essential-card.top3 .essential-rank { background: linear-gradient(135deg, var(--jogab), var(--accent)); color: white; box-shadow: 0 4px 12px rgba(230,0,18,0.3); }
+.essential-card.rank-1 .essential-rank { background: linear-gradient(135deg, #ffe88c, var(--jogab)); color: var(--bg); }
+.essential-body { flex: 1; min-width: 0; }
+.essential-name { font-family: 'Shippori Mincho B1', serif; font-weight: 700; font-size: clamp(18px, 4.5vw, 22px); line-height: 1.2; margin-bottom: 4px; word-break: break-word; }
+.essential-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.essential-why { font-size: 13px; color: var(--text-dim); line-height: 1.5; margin-bottom: 10px; }
+.essential-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+footer { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--border); text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-faint); letter-spacing: 0.1em; }
+@media (min-width: 768px) {
+  .container { padding: 0 32px 80px; }
+  .game-name { font-size: 24px; }
+  .game-why { font-size: 14.5px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="header-mark">Switch 1 + 2 · Japão · curado por Jogabilidade 🟡</div>
+  <h1 class="title-jp">スイッチ狩り<span class="accent">.</span></h1>
+  <div class="title-en">JRPG comeback · Experiências únicas · Co-op · Switch 2 launch</div>
+  <div class="header-divider"></div>
+</header>
+
+<div class="legend">
+  <div class="legend-title">Legenda</div>
+  <div class="legend-items">
+    <div class="legend-item"><span class="badge badge-tier-sp">S+</span> joia absoluta</div>
+    <div class="legend-item"><span class="badge badge-tier-s">S</span> tier S sólido</div>
+    <div class="legend-item"><span class="badge badge-jogab">🟡 Jogab</span> TOP 10 anual</div>
+    <div class="legend-item"><span class="badge badge-decada">🎙️ Década</span> TOP 10 da década 2010-2019</div>
+    <div class="legend-item"><span class="badge badge-s1">📀 S1</span></div>
+    <div class="legend-item"><span class="badge badge-s2">🆕 S2</span> Switch 2 exclusive/enhanced</div>
+    <div class="legend-item"><span class="badge badge-coop">👫 co-op</span></div>
+    <div class="legend-item"><span class="badge badge-jp-only">🇯🇵 JP</span> JP-only language</div>
+  </div>
+</div>
+
+<div class="filters">
+  <div class="filter-row">
+    <button class="filter-btn active" data-filter="all">Todos</button>
+    <button class="filter-btn essential" data-filter="essential">🏆 Top 20</button>
+    <button class="filter-btn tier-sp" data-filter="tier-sp">⭐ S+ Apenas</button>
+    <button class="filter-btn jogab" data-filter="jogab">🟡 Jogabilidade</button>
+    <button class="filter-btn decada" data-filter="decada">🎙️ Década</button>
+    <button class="filter-btn s2" data-filter="s2">🆕 Switch 2</button>
+    <button class="filter-btn coop" data-filter="coop">👫 Co-op c/ Isabela</button>
+  </div>
+</div>
+
+<nav class="nav-index">
+  <div class="nav-index-title">Atalhos por gênero</div>
+  <div class="nav-links">
+    <a href="#g-jrpg" class="nav-link">JRPG Mainline</a>
+    <a href="#g-jrpg-indie" class="nav-link">JRPG Indie</a>
+    <a href="#g-trails" class="nav-link">Trails/Falcom</a>
+    <a href="#g-tactical" class="nav-link">Tactical RPG</a>
+    <a href="#g-detective" class="nav-link">Detective</a>
+    <a href="#g-narrative" class="nav-link">Narrativa</a>
+    <a href="#g-unique" class="nav-link">Experiência Única</a>
+    <a href="#g-metroidvania" class="nav-link">Metroidvania</a>
+    <a href="#g-roguelike" class="nav-link">Roguelike</a>
+    <a href="#g-coop" class="nav-link">Co-op</a>
+    <a href="#g-platformer" class="nav-link">Plataforma/Action</a>
+    <a href="#g-s2-exclusive" class="nav-link">Switch 2 Exclusives</a>
+  </div>
+</nav>
+
+<section class="decada-section" id="decada-top10">
+  <div class="decada-section-header">
+    <h2 class="decada-section-title">🎙️ Top 10 da Década 2010-2019</h2>
+    <div class="decada-section-subtitle">Consenso do Jogabilidade · DASH #114 · jan 2020</div>
+  </div>
+  <div class="decada-list" id="decada-list-render"></div>
+</section>
+
+<section id="essential-view">
+  <div class="essential-header">
+    <h2 class="essential-title">TOP 20 必須</h2>
+    <div class="essential-subtitle">Os 20 essenciais pra sua biblioteca</div>
+  </div>
+  <div class="essential-list" id="essential-list"></div>
+</section>
+
+<main id="games-container"></main>
+
+<section class="tips-section">
+  <h2 class="tips-title">現場メモ</h2>
+  <div class="tips-subtitle">Notas de campo</div>
+
+  <div class="tip">
+    <div class="tip-label">Switch é multi-language paradise (com exceções)</div>
+    <div class="tip-text">Switch é <strong>region-free</strong>. A esmagadora maioria dos carts JP é multi-language com inglês incluído. <strong>Como verificar in-store</strong>: olhe a parte traseira do box — procure ícones 日 (JP), 英 (EN), 中 (CN), 韓 (KR), ou texto "Multi-Language" / "対応言語". Múltiplos ícones = multi-lang. <strong>Padrão</strong>: 1st-party Nintendo, AAA third-party (Persona, FF, DQ, Trails, etc.) = sempre multi. Niche VNs JP-pesados = pode ser JP only — marcados com 🇯🇵 na lista.</div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-label">"Asia Version" vs "JP Version"</div>
+    <div class="tip-text">Alguns títulos têm SKU "Asia" (HK/TW/SG) vendido também em Japão. Geralmente <strong>multi-language idêntico ao JP</strong>, mas frequentemente <strong>mais barato</strong>. Olhe se o box é o oficial Japan ou Asia — Asia tem texto inglês na embalagem geralmente.</div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-label">Switch 2 launch (2025) — situação atual</div>
+    <div class="tip-text">Você tem ambos consoles, ótimo. <strong>Carts Switch 1 rodam em Switch 2</strong> (backward compatible) — compra Switch 1 = aproveita ambos. <strong>Switch 2 exclusivos</strong> (Mario Kart World, DK Bananza, etc.) só rodam no Switch 2. Alguns títulos têm <strong>upgrade Switch 2 Edition</strong> que melhora performance em jogos antigos (ex: TotK).</div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-label">Selo 🟡 Jogabilidade</div>
+    <div class="tip-text">Jogos com o chip amarelo aparecem no <strong>TOP 10 anual do podcast Jogabilidade</strong> entre 2016-2025. Posição + ano mostrados no chip. <strong>Esses são picks validados por curadoria seria</strong> — vale priorizar quando estiver em dúvida.</div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-label">Chip 🧭 Posição na série</div>
+    <div class="tip-text">Pra franquias longas (Persona, Trails, FE, DQ, Xenoblade, etc.) cada card tem um <strong>chip vermelho explicando posição na franquia</strong> e por onde começar. Resposta direta pra "esse é continuação direta ou standalone?".</div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-label">Botão "Wishlist" / "Tenho"</div>
+    <div class="tip-text">Em cada card, dois botões: <strong>💛 Quero</strong> (marca pra caçar) e <strong>✅ Tenho</strong> (marca o que já possui). Estado salvo no navegador — não perde se você sair do site. Filtre depois clicando no card pra ver só os que quer.</div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-label">Onde garimpar Switch carts</div>
+    <div class="tip-text"><strong>Bookoff</strong>: melhor estoque Switch, geralmente completinhos ¥1.500-4.500. <strong>Hard Off junk</strong>: Switch carts loose ¥500-2.500. <strong>Surugaya</strong>: importações Asia version às vezes. <strong>Tsutaya / GEO</strong>: redes de locação tem usados também. <strong>Mercari online</strong>: melhor preço pra raros, precisa proxy.</div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-label">Orçamento estimado</div>
+    <div class="tip-text">Top 20 físico em Bookoff: <strong>¥40.000-80.000</strong> (R$1.400-2.800). JRPGs Square Enix em Bookoff são notoriamente baratos (DQ XI S ¥2.000, Octopath II ¥2.500, FF Pixel Remaster ¥2.000). Switch 2 launch titles caros (¥6.000-8.500 cada).</div>
+  </div>
+</section>
+
+<footer>ジョナサンとオリバーへ · スイッチ 1 + 2 · 🟡 Jogabilidade Selo · CLAUDE EDITION · 2026</footer>
+
+</div>
+
+<script>
+const games = [
+  // ========== JRPG MAINLINE ==========
+  { id: 'dq11s', genre: 'jrpg', priority: 1, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Dragon Quest XI S: Definitive Edition', subtitle: 'Square Enix · 100h+ · JRPG turn-based',
+    why: '<strong>OBRIGATÓRIO depois do DQ3 HD-2D.</strong> Versão definitiva do DQ11, considerado um dos melhores DQs já feitos. Switch ganhou modo 2D retrô que homenageia DQ3 + trilha sinfônica + 6 cenários novos. Pós-game enorme.',
+    timeline: 'Cada DQ é universo separado. <strong>Standalone — comece direto.</strong> Você já fez DQ3 HD-2D, vai pegar DQ I+II HD-2D — DQ XI fecha o moderno.',
+    jogab: null, search: 'Dragon Quest XI S Switch japan' },
+  { id: 'dq12', genre: 'jrpg', priority: 2, tier: 'sp', console: 's2', jpOnly: false, coop: false,
+    name: 'Dragon Quest I & II HD-2D Remake', subtitle: 'Square Enix · 2025 · JRPG HD-2D',
+    why: 'Você já planejou — completamente alinhado. Mesma estética HD-2D do DQ3 que você amou. Dois jogos compactos num cart, base da franquia.',
+    timeline: 'Trilogia clássica DQ: I → II → III. Você jogou III HD-2D primeiro porque é cronologicamente o INÍCIO do lore. Agora I+II fecham o ciclo dos heróis de Loto.',
+    jogab: { rank: 6, year: 2025 }, search: 'Dragon Quest I II HD-2D Remake Switch' },
+  { id: 'p5r', genre: 'jrpg', priority: 3, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Persona 5 Royal', subtitle: 'Atlus · 100h+ · JRPG turn-based moderno',
+    why: '<strong>Entrada moderna OBRIGATÓRIA na franquia Persona.</strong> Combate estiloso, narrativa Tóquio underground, social links, dungeon design refinadíssimo. Considerada uma das maiores JRPGs já feitas.',
+    timeline: 'Standalone — não precisa jogar P1-P4 antes. Universo compartilhado mas histórias independentes. <strong>Comece por P5R.</strong> Spinoffs no mesmo universo (opcionais): Persona 5 Strikers (musou), Persona 5 Tactica (tactical).',
+    jogab: { rank: 2, year: 2017 }, decada: { rank: 8 }, search: 'Persona 5 Royal Switch' },
+  { id: 'p3r', genre: 'jrpg', priority: 4, tier: 'sp', console: 's2', jpOnly: false, coop: false,
+    name: 'Persona 3 Reload', subtitle: 'Atlus · Remake · Switch 2 enhanced',
+    why: 'Remake recente do P3 com gráficos modernos. <strong>Versão Switch 2</strong> tem performance otimizada. Story sobre mortalidade e amizade, atmosfera melancólica. Considerado um dos Personas mais emocionalmente impactantes.',
+    timeline: 'Standalone também. Universo Persona compartilhado mas independente. Cronologicamente vem antes do P4 e P5. <strong>Ordem sugerida pra fã novo</strong>: P5R primeiro (mais polido), P3R depois (mais emocional), P4G por último (mais leve).',
+    jogab: { rank: 6, year: 2024 }, search: 'Persona 3 Reload Switch 2' },
+  { id: 'p4g', genre: 'jrpg', priority: 5, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Persona 4 Golden', subtitle: 'Atlus · Port do PSP/Vita · JRPG',
+    why: 'Port do clássico cult Persona 4. Mistério rural moderno, charme dos anos 2000, social links lendários.',
+    timeline: 'Standalone (universo Persona compartilhado).',
+    jogab: null, search: 'Persona 4 Golden Switch' },
+  { id: 'metaphor', genre: 'jrpg', priority: 6, tier: 'sp', console: 's2', jpOnly: false, coop: false,
+    name: 'Metaphor: ReFantazio', subtitle: 'Atlus · 2024 · JRPG fantasia',
+    why: '<strong>Novo IP do time de Persona 5 Royal.</strong> Fantasia política, sistema de classes profundo. Tier S+ recente — Atlus em forma máxima. Switch 2 port em 2025.',
+    timeline: 'Novo IP standalone. Não tem conexão com Persona ou SMT, embora seja do mesmo estúdio (Atlus).',
+    jogab: { rank: 3, year: 2024 }, search: 'Metaphor ReFantazio Switch' },
+  { id: 'octopath2', genre: 'jrpg', priority: 7, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Octopath Traveler II', subtitle: 'Square Enix · HD-2D · 60h+',
+    why: '<strong>Sucessor direto da fórmula HD-2D que iniciou no Octopath I.</strong> 8 protagonistas, narrativas entrelaçadas, sistema de classes refinado. Visualmente lindíssimo, OST de Yasunori Nishiki é cinematic.',
+    timeline: 'Sequência espiritual (não direta) de OT1. Universo diferente, 8 personagens novos. <strong>Pode começar pelo II</strong> — é mais polido. OT1 fica como opcional depois.',
+    jogab: null, search: 'Octopath Traveler II Switch japan' },
+  { id: 'octopath1', genre: 'jrpg', priority: 8, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Octopath Traveler', subtitle: 'Square Enix · 2018 · HD-2D pioneer',
+    why: 'Original que iniciou a era HD-2D moderna. 8 protagonistas com histórias separadas. Inspirou DQ3 HD-2D.',
+    timeline: 'Standalone. Antes do II. <strong>Opcional</strong> — não é pré-requisito pra II.',
+    jogab: null, search: 'Octopath Traveler Switch' },
+  { id: 'liveAlive', genre: 'jrpg', priority: 9, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Live A Live', subtitle: 'Square Enix · HD-2D remake · ~25h',
+    why: '<strong>Remake HD-2D de cult JP do SNES (1994).</strong> 7 personagens de eras diferentes (faroeste, ninja feudal, futuro distante, prehistórico, etc.), histórias separadas que convergem. Curtinho, único, brilhante.',
+    timeline: 'Standalone. Remake de SNES game JP-exclusive que nunca saiu fora do Japão. Switch foi a primeira release ocidental.',
+    jogab: null, search: 'Live A Live Switch' },
+  { id: 'triangle', genre: 'jrpg', priority: 10, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Triangle Strategy', subtitle: 'Square Enix · HD-2D · Tactical RPG',
+    why: 'Tactical RPG HD-2D Square Enix. <strong>Sistema de decisões morais</strong> que afeta narrativa drasticamente. Mais sério/político que outros HD-2D.',
+    timeline: 'Standalone. Universo próprio fantasia política.',
+    jogab: null, search: 'Triangle Strategy Switch japan' },
+  { id: 'bdII', genre: 'jrpg', priority: 11, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Bravely Default II', subtitle: 'Square Enix · Sequel do 3DS · Job system',
+    why: 'Sequência da série Bravely. Same vibe 2.5D, job system FF clássico, combate "brave/default" inovador.',
+    timeline: 'Sequência espiritual do Bravely Default (3DS) e Bravely Second (3DS). Universo NOVO, não conecta diretamente. <strong>Pode começar pelo II.</strong> Você jogou Bravely Default no 3DS? Esse continua a fórmula.',
+    jogab: null, search: 'Bravely Default II Switch' },
+  { id: 'bdfflighting', genre: 'jrpg', priority: 12, tier: 's', console: 's2', jpOnly: false, coop: false,
+    name: 'Bravely Default: Flying Fairy HD Remaster', subtitle: 'Square Enix · Switch 2 · Remaster do 3DS',
+    why: 'Remaster Switch 2 do <strong>original Bravely Default (3DS, 2012)</strong>. Visual modernizado, sistema preservado. Ideal se quiser começar pelo verdadeiro início da franquia Bravely.',
+    timeline: 'PRIMEIRO da saga Bravely. Bravely Default → Bravely Second → Bravely Default II (Switch). Switch 2 traz o original em HD.',
+    jogab: null, search: 'Bravely Default Flying Fairy HD Remaster Switch 2' },
+  { id: 'xc3', genre: 'jrpg', priority: 13, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Xenoblade Chronicles 3', subtitle: 'Monolith Soft · 100h+ · JRPG épico',
+    why: '<strong>Pico do JRPG Switch exclusivo.</strong> 100h+ de campanha, combate em tempo real único, narrativa sobre vida/morte filosófica. DLC Future Redeemed é considerada uma das melhores expansões já feitas.',
+    timeline: '<strong>Tema "finale" da trilogia Xenoblade</strong> (conecta 1, 2 e X). Funciona standalone, mas DLC Future Redeemed faz mais sentido se você jogou os anteriores. <strong>Recomendação prática</strong>: comece pelo 3, se viciar volta pro Definitive Edition e XC2.',
+    jogab: { rank: 7, year: 2022 }, search: 'Xenoblade Chronicles 3 Switch' },
+  { id: 'xc2', genre: 'jrpg', priority: 14, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Xenoblade Chronicles 2', subtitle: 'Monolith Soft · ~80h · JRPG',
+    why: 'JRPG anime sci-fi com sistema de "Blades" únicos. Polariza fans mas é Tier S de qualquer ângulo.',
+    timeline: 'Universo próprio (não conecta diretamente com Xenoblade 1). Conexão temática com XC3. DLC Torna ~The Golden Country é prequel do XC2 (essencialmente jogo separado).',
+    jogab: null, search: 'Xenoblade Chronicles 2 Switch' },
+  { id: 'xcde', genre: 'jrpg', priority: 15, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Xenoblade Chronicles: Definitive Edition', subtitle: 'Monolith Soft · Remake do Wii',
+    why: 'Remake do clássico Wii (2010) com gráficos refeitos. Onde a série começou.',
+    timeline: 'PRIMEIRO da saga Xenoblade. Conecta diretamente com XC3 (Future Redeemed DLC). <strong>Opcional</strong> antes do 3.',
+    jogab: null, search: 'Xenoblade Chronicles Definitive Edition Switch' },
+  { id: 'trialsMana', genre: 'jrpg', priority: 16, tier: 's', console: 's1', jpOnly: false, coop: true,
+    name: 'Trials of Mana', subtitle: 'Square Enix · Remake do SNES · Action RPG',
+    why: 'Remake 3D do SNES clássico (Seiken Densetsu 3, JP-exclusive originalmente). Action RPG colorido, 6 personagens jogáveis. <strong>Co-op local 2P.</strong>',
+    timeline: 'Trilogia Mana clássica SNES: 1 (Secret of Mana) → 2 (não no Switch) → 3 (Trials of Mana). Trials = jogo 3 da série. Switch tem Trials remake e Secret of Mana port — você pode pular o 2 (não está no Switch).',
+    jogab: null, search: 'Trials of Mana Switch' },
+  { id: 'vesperia', genre: 'jrpg', priority: 17, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Tales of Vesperia: Definitive Edition', subtitle: 'Bandai Namco · Action RPG',
+    why: 'Considerado <strong>o melhor Tales of moderno</strong>. Combate em tempo real, party de 6 personagens, narrativa madura. Versão Definitive inclui conteúdo JP nunca antes localizado.',
+    timeline: 'Standalone (cada Tales of é universo separado). Vesperia foi originalmente Xbox 360 (2008). Definitive Edition no Switch.',
+    jogab: null, search: 'Tales of Vesperia Definitive Edition Switch' },
+  { id: 'romsaga2', genre: 'jrpg', priority: 18, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Romancing SaGa 2: Revenge of the Seven', subtitle: 'Square Enix · 2024 · Remake 3D',
+    why: 'Remake recente do clássico SNES Romancing SaGa 2 (JP-exclusive originalmente). Visual lindo, sistema "Glimmer" inovador, narrativa multi-geracional.',
+    timeline: 'Standalone. SaGa series é cult mas cada entrada é independente. Switch tem Romancing SaGa 2 (este remake), Romancing SaGa 3 remaster, SaGa Frontier Remastered, SaGa Emerald Beyond.',
+    jogab: null, search: 'Romancing SaGa 2 Revenge of the Seven Switch' },
+  { id: 'ffpr', genre: 'jrpg', priority: 19, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Final Fantasy Pixel Remaster I-VI', subtitle: 'Square Enix · Compilação · Pixel art refeita',
+    why: '<strong>Os 6 FFs clássicos</strong> (NES + SNES) com pixel art refeita, OST regravada por Nobuo Uematsu. Compilação de cartucho físico no Switch. Pra fã de DQ HD-2D, isso é o paralelo Final Fantasy.',
+    timeline: 'Cada FF mainline é standalone (com exceções: X+X-2, XIII trilogy, VII+Rebirth). Pixel Remaster cobre I, II, III, IV, V, VI. <strong>Comece por VI</strong> (considerado o pico clássico), ou por IV (mais acessível pra newcomers).',
+    jogab: null, search: 'Final Fantasy Pixel Remaster Switch' },
+  { id: 'ddDA', genre: 'jrpg', priority: 20, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: "Dragon's Dogma: Dark Arisen", subtitle: 'Capcom · 2012/2019 Switch · Action RPG',
+    why: '<strong>🎙️ TOP 6 da Década Jogabilidade.</strong> Action RPG cult com sistema de "pawns" único — companheiros IA aprendem comportamentos seus e de outros jogadores. Combate brutal contra criaturas gigantescas (você escala um grifo), magic archer inesquecível, mundo perigoso especialmente à noite. <strong>Sushi #4, Rafa #8, Tengu menção honrosa.</strong>',
+    timeline: 'Versão definitiva do <strong>Dragon\'s Dogma 1</strong> (2012) + expansão Bitterblack Isle (post-game enorme). DD2 (2024) é sequência separada, NÃO está no Switch. <strong>Dark Arisen é o jogo certo.</strong>',
+    jogab: null, decada: { rank: 6, picks: ['sushi','rafa','tengu'] }, search: "Dragon's Dogma Dark Arisen Switch" },
+  { id: 'nierA', genre: 'jrpg', priority: 21, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'NieR:Automata - End of YoRHa Edition', subtitle: 'PlatinumGames + Square Enix · 2017/2022 Switch · Action RPG',
+    why: '<strong>🎙️ TOP 10 da Década Jogabilidade.</strong> Yoko Taro action RPG com gêneros mutáveis — uma hora side-scrolling, outra hora top-down, outra shoot-em-up. Combate Platinum, 5 endings essenciais (A→B→C→D→E), OST de Keiichi Okabe que te quebra. <strong>Rafa #1 pessoal.</strong>',
+    timeline: 'Sequência espiritual de <strong>NieR Replicant</strong> (2010) — mas standalone, pode começar pelo Automata. Replicant remake (ver.1.22) NÃO está no Switch. Drakengard série é o universo expandido (também não no Switch). Automata é a porta de entrada.',
+    jogab: null, decada: { rank: 10, picks: ['rafa'] }, search: 'NieR Automata End of YoRHa Switch' },
+  { id: 'yak0', genre: 'jrpg', priority: 22, tier: 'sp', console: 's2', jpOnly: false, coop: false,
+    name: "Yakuza 0: Director's Cut", subtitle: 'RGG Studio / Sega · 2015/2025 Switch 2 · Action-adventure',
+    why: '<strong>Pick individual Sushi #7.</strong> Considerado <strong>O melhor ponto de entrada</strong> na franquia Yakuza/Like a Dragon. Tóquio 1988 era da bolha, Kazuma Kiryu + Goro Majima dual protagonist, combate brawler com múltiplos estilos, minigames absurdos (karaoke, baseball, real estate). Switch 2 versão tem cutscenes inéditas + co-op online Red Light Raid. <strong>Como o Sushi disse: "É um lugar que eu já vivi".</strong>',
+    timeline: 'Yakuza mainline cronológica: <strong>0 (1988) → Kiwami (1) → Kiwami 2 → 3 → 4 → 5 → 6</strong>. Yakuza 0 é PREQUEL de tudo. Ordem recomendada: <strong>começar por 0</strong> (cronológico, mais acessível) ou por Kiwami (1, ordem de release). Spinoff Like a Dragon: Yakuza 7 começa nova era turn-based.',
+    jogab: null, decada: { picks: ['sushi'] }, search: "Yakuza 0 Director's Cut Switch 2" },
+  { id: 'yakK1', genre: 'jrpg', priority: 23, tier: 's', console: 's2', jpOnly: false, coop: false,
+    name: 'Yakuza Kiwami', subtitle: 'RGG Studio · Remake do Yakuza 1 · Switch 2',
+    why: 'Remake completo do Yakuza 1 (PS2, 2005). Mais curto que Yakuza 0 (~20h), apresenta Kiryu pós-prisão tentando reconstruir vida. Continua cronologicamente após Yakuza 0.',
+    timeline: 'Sequência cronológica de Yakuza 0. Após Kiwami vem Kiwami 2.',
+    jogab: null, decada: { picks: ['sushi'] }, search: 'Yakuza Kiwami Switch 2' },
+  { id: 'yakK2', genre: 'jrpg', priority: 24, tier: 's', console: 's2', jpOnly: false, coop: false,
+    name: 'Yakuza Kiwami 2', subtitle: 'RGG Studio · Remake do Yakuza 2 · Switch 2',
+    why: 'Remake do Yakuza 2 (PS2, 2006). Considerado um dos melhores da franquia — Majima joga setores extensos, vilão Ryuji Goda lendário, Osaka adicionada como segunda cidade.',
+    timeline: 'Sequência direta de Kiwami. Encerra arco "Empty Lot" iniciado em Yakuza 0.',
+    jogab: null, decada: { picks: ['sushi'] }, search: 'Yakuza Kiwami 2 Switch 2' },
+
+  // ========== JRPG INDIE ==========
+  { id: 'seaofstars', genre: 'jrpg-indie', priority: 1, tier: 'sp', console: 's1', jpOnly: false, coop: true,
+    name: 'Sea of Stars', subtitle: 'Sabotage Studio · 2023 · JRPG retrô',
+    why: '<strong>Inspirado em Chrono Trigger + Mario RPG.</strong> Visual lindíssimo, combate em tempo real com timing, OST de Yasunori Mitsuda (Chrono Trigger). Co-op local 2-3P.',
+    timeline: 'Standalone. Tem prequel no The Messenger (mesmo estúdio) — universo compartilhado mas histórias independentes.',
+    jogab: null, search: 'Sea of Stars Switch japan' },
+  { id: 'chainedEchoes', genre: 'jrpg-indie', priority: 2, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Chained Echoes', subtitle: 'Matthias Linda · 2022 · JRPG retrô SNES-style',
+    why: 'Outro indie inspirado em Chrono Trigger + Final Fantasy. <strong>JRPG completo feito por uma pessoa só.</strong> 30h+ de campanha, combate sem random encounters, sistema único de "Overdrive".',
+    timeline: 'Standalone. Universo próprio fantasia.',
+    jogab: { rank: 6, year: 2022 }, search: 'Chained Echoes Switch' },
+  { id: 'unsighted', genre: 'jrpg-indie', priority: 3, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Unsighted', subtitle: 'Studio Pixel Punk · 2021 · BRASILEIRO 🇧🇷',
+    why: '<strong>🇧🇷 INDIE BRASILEIRO. Top game-of-the-year do Jogabilidade 2021!</strong> Top-down action com mecânica de TEMPO FINITO — todos os NPCs têm relógio rodando e viram inimigos se você não os salva. Tier S+, prova que o Brasil faz indie de altíssimo nível.',
+    timeline: 'Standalone.',
+    jogab: { rank: 1, year: 2021 }, search: 'Unsighted Switch' },
+  { id: 'eiyuden', genre: 'jrpg-indie', priority: 4, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Eiyuden Chronicle: Hundred Heroes', subtitle: 'Rabbit & Bear · 2024 · Sucessor Suikoden',
+    why: '<strong>Sucessor espiritual de Suikoden</strong> por ex-staff (Yoshitaka Murayama, RIP). 100+ personagens recrutáveis, party de 6, batalhas táticas em larga escala.',
+    timeline: 'Standalone. Sequência espiritual de Suikoden (PS1/PS2). Existe um prequel: Eiyuden Chronicle: Rising (action RPG menor) — não obrigatório.',
+    jogab: null, search: 'Eiyuden Chronicle Hundred Heroes Switch' },
+  { id: 'unicorn', genre: 'jrpg-indie', priority: 5, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Unicorn Overlord', subtitle: 'Vanillaware · 2024 · Tactical fantasy',
+    why: 'Vanillaware (Dragon\'s Crown, 13 Sentinels) faz tactical RPG. Visual 2D-handpainted característico do estúdio. Sistema de "tropas" táticas.',
+    timeline: 'Standalone. Universo próprio.',
+    jogab: { rank: 18, year: 2024 }, search: 'Unicorn Overlord Switch' },
+  { id: 'stranger', genre: 'jrpg-indie', priority: 6, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Stranger of Paradise: Final Fantasy Origins', subtitle: 'Team Ninja · 2022 · Action RPG',
+    why: 'Team Ninja (Nioh) faz spinoff Final Fantasy. <strong>Action RPG soulslike</strong> ambientado no universo do FF1 original. Cult niche que ganhou amor da crítica.',
+    timeline: 'Spinoff Final Fantasy ambientado no <strong>universo do FF1 original</strong>. Standalone — não precisa jogar FF1 antes.',
+    jogab: { rank: 10, year: 2022 }, search: 'Stranger of Paradise Final Fantasy Origins Switch' },
+  { id: 'crystar', genre: 'jrpg-indie', priority: 7, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Crystar', subtitle: 'FuRyu · Action RPG · Cult',
+    why: 'Action RPG cult com tema de luto/lágrimas. Visual anime sombrio. Niche mas tem fans devotos.',
+    timeline: 'Standalone.',
+    jogab: null, search: 'Crystar Switch' },
+  { id: 'undertale', genre: 'jrpg-indie', priority: 8, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Undertale', subtitle: 'Toby Fox · 2015 · JRPG meta-narrativo',
+    why: '<strong>🎙️ TOP 5 da Década Jogabilidade.</strong> Carta de amor a EarthBound + RPGs clássicos que reinventa convenções do gênero. Você pode poupar TODOS os inimigos. Trilha sonora absurda (Toby Fox), humor e melancolia em medida igual. ~6h, três rotas (Neutral/Pacifist/Genocide). <strong>Pick consensual + André, Rafa.</strong>',
+    timeline: 'Standalone. Sequência espiritual: <strong>Deltarune</strong> (em capítulos lançados, gratuito no Switch). Universo conectado mas histórias separadas.',
+    jogab: null, decada: { rank: 5, picks: ['andre','rafa'] }, search: 'Undertale Switch' },
+
+  // ========== TRAILS / FALCOM ==========
+  { id: 'trailsSky1', genre: 'trails', priority: 1, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Trails in the Sky 1st Chapter', subtitle: 'Falcom · Remaster 2025 · JRPG turn-based',
+    why: '<strong>O ABSOLUTO INÍCIO da meta-saga Trails (100+ horas total).</strong> Lento no começo, recompensa imensa depois. Sistema de combate "Orbment", world-building lendário. Switch ganhou remaster recente.',
+    timeline: '<strong>PRIMEIRO da saga inteira.</strong> Ordem ideal: Sky FC → Sky SC → Sky the 3rd → Trails from Zero → Trails to Azure → Cold Steel I-IV → Reverie → Daybreak I+II. Saga GIGANTESCA mas Sky FC é onde começar absolutamente.',
+    jogab: { rank: 7, year: 2025 }, search: 'Trails in the Sky 1st Chapter Switch' },
+  { id: 'trailsCS1', genre: 'trails', priority: 2, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Trails of Cold Steel I', subtitle: 'Falcom · JRPG turn-based · Entry alternativa',
+    why: 'Arco "escolar" da saga Trails — mais moderno visualmente (3D). Entry-friendly alternativo se Sky FC parecer datado demais.',
+    timeline: 'Cold Steel é o <strong>terceiro arco</strong> da saga Trails (após Sky e Crossbell). Acontece em paralelo a Trails to Azure cronologicamente. <strong>Pode começar por Cold Steel I se preferir 3D moderno</strong>, embora puristas digam que Sky FC é o ideal.',
+    jogab: null, search: 'Trails of Cold Steel I Switch' },
+  { id: 'trailsReverie', genre: 'trails', priority: 3, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'The Legend of Heroes: Trails into Reverie', subtitle: 'Falcom · 2023 · Conclusão arcos antigos',
+    why: 'Conclusão dos arcos Cold Steel e Crossbell. <strong>Não comece por aqui</strong> — é resolução de 6+ jogos anteriores.',
+    timeline: 'Acontece depois de Cold Steel IV e Trails to Azure. Pré-requisitos: Cold Steel IV + Crossbell duology (Zero + Azure). <strong>Endgame da era antiga, antes de Daybreak começar nova era.</strong>',
+    jogab: null, search: 'Trails into Reverie Switch' },
+  { id: 'ys8', genre: 'trails', priority: 4, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Ys VIII: Lacrimosa of Dana', subtitle: 'Falcom · Action RPG · Independente de Trails',
+    why: '<strong>Action RPG da Falcom (não turn-based, diferente de Trails).</strong> Adol Christin náufrago numa ilha misteriosa. Combate em tempo real frenético, OST épica. <strong>Excelente entrada Falcom se Trails parecer pesado demais.</strong>',
+    timeline: 'Série Ys: cada jogo é STANDALONE com Adol em aventura nova. Numeração não importa pra entender — VIII funciona perfeitamente como primeiro Ys.',
+    jogab: null, search: 'Ys VIII Lacrimosa of Dana Switch' },
+  { id: 'ys9', genre: 'trails', priority: 5, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Ys IX: Monstrum Nox', subtitle: 'Falcom · Action RPG',
+    why: 'Sequência de Ys VIII. Cidade-prisão noturna com 6 protagonistas "Monstrum". Combate mais aprimorado.',
+    timeline: 'Standalone (segue a fórmula Ys). Pode jogar sem ter feito VIII, mas VIII é melhor primeiro.',
+    jogab: null, search: 'Ys IX Monstrum Nox Switch' },
+
+  // ========== TACTICAL RPG ==========
+  { id: 'fe3h', genre: 'tactical', priority: 1, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Fire Emblem: Three Houses', subtitle: 'Intelligent Systems · 80h+ · Tactical RPG',
+    why: '<strong>A entrada moderna OBRIGATÓRIA da série Fire Emblem.</strong> Tactical RPG + life sim escolar (Hogwarts-esque). 3 rotas completamente distintas (1 playthrough cada). Considerado um dos melhores FEs já feitos.',
+    timeline: 'Standalone, universo próprio. <strong>Comece por aqui.</strong> Próximos FE (Engage, Echoes etc.) são universos separados.',
+    jogab: null, search: 'Fire Emblem Three Houses Switch' },
+  { id: 'feengage', genre: 'tactical', priority: 2, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Fire Emblem: Engage', subtitle: 'Intelligent Systems · 2023 · Tactical puro',
+    why: 'Mais tactical-focused, menos story que Three Houses. Sistema "Emblem Rings" que invoca heróis de FEs antigos como invocação. Mais "puro" FE clássico.',
+    timeline: 'Standalone (universo separado de Three Houses). Os Emblem Rings invocam personagens de FEs antigos como cameo.',
+    jogab: null, search: 'Fire Emblem Engage Switch' },
+  { id: 'mrabbids', genre: 'tactical', priority: 3, tier: 'sp', console: 's1', jpOnly: false, coop: true,
+    name: 'Mario + Rabbids: Kingdom Battle', subtitle: 'Ubisoft · XCOM-like com Mario',
+    why: '<strong>Tactical XCOM-like com personagens Mario.</strong> Surpresa do ano em 2017, considerado Tier S de qualquer ângulo. Co-op local 2P em campanha cooperativa.',
+    timeline: 'Spinoff Mario + Rabbids (Ubisoft). Sequência: Mario + Rabbids: Sparks of Hope (Switch).',
+    jogab: { rank: 6, year: 2017 }, search: 'Mario Rabbids Kingdom Battle Switch' },
+
+  // ========== DETECTIVE / PUZZLE ==========
+  { id: 'obraDinn', genre: 'detective', priority: 1, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Return of the Obra Dinn', subtitle: 'Lucas Pope · Investigation 1-bit',
+    why: '<strong>Pico do detective game.</strong> Você é investigador de seguros num navio fantasma. Sistema de dedução único — você revive momentos da morte de cada tripulante e identifica vítima + assassino + método. Visual 1-bit estilizado. Curtinho (~8h) mas inesquecível.',
+    timeline: 'Standalone. Lucas Pope (criador de Papers Please) em outra obra-prima.',
+    jogab: { rank: 2, year: 2018 }, search: 'Return of the Obra Dinn Switch' },
+  { id: 'goldenIdol', genre: 'detective', priority: 2, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'The Case of the Golden Idol', subtitle: 'Color Gray Games · 2022 · Investigation',
+    why: '<strong>Estilo Obra Dinn refinado.</strong> Série de mortes pra investigar com mecânica brilhante de "preencher palavras" — você ganha vocabulário a cada caso. Tier S+ puzzle.',
+    timeline: 'Base game + 2 DLCs (The Spider of Lanka & The Lemurian Vampire). Sequência: <strong>The Rise of the Golden Idol</strong> (2024) continua a fórmula.',
+    jogab: { rank: 3, year: 2022 }, search: 'The Case of the Golden Idol Switch' },
+  { id: 'riseGoldenIdol', genre: 'detective', priority: 3, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'The Rise of the Golden Idol', subtitle: 'Color Gray Games · 2024 · Sequência',
+    why: 'Sequência direta do Case of the Golden Idol, na era moderna (1970s). Mais polido, novos puzzles.',
+    timeline: 'Sequência direta de The Case of the Golden Idol. <strong>Jogue o primeiro antes.</strong>',
+    jogab: { rank: 14, year: 2024 }, search: 'The Rise of the Golden Idol Switch' },
+  { id: 'lorelei', genre: 'detective', priority: 4, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Lorelei and the Laser Eyes', subtitle: 'Simogo · 2024 · Puzzle surreal',
+    why: 'Puzzle detective surreal Simogo (criadores de Sayonara Wild Hearts, Year Walk). <strong>Atmosfera tipo Twin Peaks + Resident Evil em mansão labiríntica.</strong> Puzzles que se interconectam de forma genial.',
+    timeline: 'Standalone.',
+    jogab: { rank: 9, year: 2024 }, search: 'Lorelei and the Laser Eyes Switch' },
+  { id: 'bluePrince', genre: 'detective', priority: 5, tier: 'sp', console: 's2', jpOnly: false, coop: false,
+    name: 'Blue Prince', subtitle: 'Dogubomb · 2025 · Puzzle roguelike',
+    why: '<strong>Você já ama.</strong> Mansão que se recria a cada dia. Estilo único — você desenha a casa enquanto explora. Tier S+ recente, validado pelo Jogabilidade (#3 2025).',
+    timeline: 'Standalone. Indie debut do Dogubomb.',
+    jogab: { rank: 3, year: 2025 }, search: 'Blue Prince Switch' },
+  { id: 'aiSomnium', genre: 'detective', priority: 6, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'A.I.: The Somnium Files', subtitle: 'Spike Chunsoft · Detective VN bizarro',
+    why: 'Detective VN do Kotaro Uchikoshi (criador de 999, Zero Escape). <strong>Investigador entra em sonhos das testemunhas pra extrair memórias.</strong> Misterioso, sexy, bizarro, hilário.',
+    timeline: 'Standalone. Sequência: A.I.: The Somnium Files - nirvanA Initiative (Switch).',
+    jogab: { rank: 10, year: 2019 }, search: 'AI The Somnium Files Switch' },
+  { id: 'paradiseKiller', genre: 'detective', priority: 7, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Paradise Killer', subtitle: 'Kaizen Game Works · Detective open-world',
+    why: '<strong>Detective open-world vaporwave</strong> numa ilha mística. Você é "investigation freak" voltando do exílio. Estilo único, OST genial.',
+    timeline: 'Standalone.',
+    jogab: { rank: 4, year: 2020 }, search: 'Paradise Killer Switch' },
+  { id: 'pentiment', genre: 'detective', priority: 8, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Pentiment', subtitle: 'Obsidian · Detective medieval · 2022',
+    why: 'Detective medieval Obsidian (Pillars of Eternity, Fallout New Vegas) num <strong>estilo de manuscrito iluminado da Idade Média</strong>. Você escolhe profissão/origem que afetam diálogos. 3 atos cobrindo décadas.',
+    timeline: 'Standalone.',
+    jogab: { rank: 4, year: 2022 }, search: 'Pentiment Switch' },
+  { id: 'ghosttrick', genre: 'detective', priority: 9, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Ghost Trick: Phantom Detective', subtitle: 'Capcom · Shu Takumi · 2010/2023 remake',
+    why: '<strong>🎙️ Pick individual Rafa #5 da Década.</strong> Do criador de Ace Attorney. Você é um espírito que manipula objetos do cenário pra impedir a morte de uma moça que morre repetidamente. Puzzles brilhantes, cast carismático, história que arranca lágrimas. <strong>Como o Rafa disse: "você senta pra jogar e não para".</strong> Cachorro Missile = melhor cachorro dos videogames.',
+    timeline: 'Original DS (2010). Remake HD (2023) Switch com gráficos refeitos, novos achievements, modo retro. <strong>Joga o remake — é o jogo definitivo.</strong>',
+    jogab: null, decada: { picks: ['rafa'] }, search: 'Ghost Trick Phantom Detective Switch' },
+
+  // ========== NARRATIVA / ATMOSFÉRICA ==========
+  { id: '1000xResist', genre: 'narrative', priority: 1, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: '1000xRESIST', subtitle: 'sunset visitor · 2024 · Drama sci-fi',
+    why: '<strong>Drama narrativo sci-fi indie.</strong> Asian-Canadian dev, mistura LGBTQ+ identity + diáspora + clone sisters apocalíptica. Tier S+ recente, cult crescente. Comparado a Disco Elysium em ambição narrativa.',
+    timeline: 'Standalone.',
+    jogab: { rank: 8, year: 2024 }, search: '1000xResist Switch' },
+  { id: 'citizenSleeper', genre: 'narrative', priority: 2, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Citizen Sleeper', subtitle: 'Jump Over The Age · Cyberpunk text-based',
+    why: 'Cyberpunk text-based, você é uma "Sleeper" (consciência digitalizada) numa estação espacial decadente. <strong>Dice-rolling system</strong> tira inspiração de TTRPGs. Atmosfera Disco Elysium-lite.',
+    timeline: 'Standalone. Sequência: <strong>Citizen Sleeper 2: Starward Vector</strong> (2025, Switch).',
+    jogab: { rank: 5, year: 2022 }, search: 'Citizen Sleeper Switch' },
+  { id: 'venba', genre: 'narrative', priority: 3, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Venba', subtitle: 'Visai Games · 2023 · Cozinha narrativa',
+    why: '<strong>VOCÊ COZINHA receitas indianas reais</strong> enquanto a narrativa de imigração (mãe Tamil em Canadá) se desdobra. Curtinho (~2h), emocional, único. Mecânica de cozinha como gameplay é genial.',
+    timeline: 'Standalone.',
+    jogab: { rank: 8, year: 2023 }, search: 'Venba Switch' },
+  { id: 'immortality', genre: 'narrative', priority: 4, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Immortality', subtitle: 'Sam Barlow · 2022 · FMV mistery',
+    why: '<strong>Sam Barlow (Her Story).</strong> FMV interativo onde você assiste e investiga 3 filmes não-lançados de uma atriz misteriosamente desaparecida. Sistema de "click no objeto = pula pra outro filme com mesmo objeto" é único.',
+    timeline: 'Standalone. Trilogia Sam Barlow não-conectada: Her Story → Telling Lies → Immortality.',
+    jogab: { rank: 1, year: 2022 }, search: 'Immortality Switch' },
+  { id: 'edithFinch', genre: 'narrative', priority: 5, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'What Remains of Edith Finch', subtitle: 'Giant Sparrow · Antologia familiar',
+    why: '<strong>Antologia narrativa familiar.</strong> Cada conto sobre um membro morto da família tem mecânica de gameplay completamente única. Curto, lindo, BAFTA winner.',
+    timeline: 'Standalone.',
+    jogab: { rank: 8, year: 2017 }, search: 'What Remains of Edith Finch Switch' },
+  { id: 'beforeYourEyes', genre: 'narrative', priority: 6, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Before Your Eyes', subtitle: 'GoodbyeWorld · Sistema de blink',
+    why: '<strong>Você joga literalmente piscando os olhos</strong> (webcam ou click). Sua vida passa diante de você enquanto pisca. Curtinho, emocional.',
+    timeline: 'Standalone.',
+    jogab: { rank: 8, year: 2021 }, search: 'Before Your Eyes Switch' },
+  { id: 'sayonara', genre: 'narrative', priority: 7, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Sayonara Wild Hearts', subtitle: 'Simogo · Rhythm action neon',
+    why: 'Rhythm action neon. Curto (~2h), super estiloso, OST cinematográfica. Simogo brilhando antes do Lorelei.',
+    timeline: 'Standalone.',
+    jogab: { rank: 8, year: 2019 }, search: 'Sayonara Wild Hearts Switch' },
+  { id: 'spiritfarer', genre: 'narrative', priority: 8, tier: 's', console: 's1', jpOnly: false, coop: true,
+    name: 'Spiritfarer', subtitle: 'Thunder Lotus · Conduzir almas · co-op',
+    why: 'Sobre <strong>conduzir almas pra próxima vida</strong> num barco. Construção + relacionamentos + emoção. Co-op local 2P (Daffodil acompanha).',
+    timeline: 'Standalone.',
+    jogab: null, search: 'Spiritfarer Switch' },
+  { id: 'umurangi', genre: 'narrative', priority: 9, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Umurangi Generation', subtitle: 'ORIGAME DIGITAL · Photography pós-apocalíptico',
+    why: '<strong>Você só tira fotos.</strong> Pós-apocalíptico atmosférico em NZ. Mecânica de "achar a foto perfeita" como gameplay. OST drum and bass.',
+    timeline: 'Standalone. DLC: Macro.',
+    jogab: { rank: 9, year: 2020 }, search: 'Umurangi Generation Switch' },
+  { id: 'despelote', genre: 'narrative', priority: 10, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Despelote', subtitle: 'Julián Cordero · 2025 · Equador 2002',
+    why: '<strong>Indie Equatoriano sobre infância em Quito durante eliminatórias 2002.</strong> Latinoamericano puro, narrativa charmosa, Tier S validado pelo Jogabilidade.',
+    timeline: 'Standalone.',
+    jogab: { rank: 18, year: 2025 }, search: 'Despelote Switch' },
+  { id: 'kentuckyRZ', genre: 'narrative', priority: 11, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Kentucky Route Zero: TV Edition', subtitle: 'Cardboard Computer · 2012-2020 · Adventure narrativo',
+    why: '<strong>🎙️ Pick individual André #6 da Década.</strong> Adventure narrativo sobre <strong>declínio do Midwest americano pós-recessão 2008</strong>. Realismo mágico no Kentucky rural, motorista perdido tentando entregar antiquário num endereço inexistente via uma estrada mística. <strong>Visual lindo</strong>, jogo sobre decadência, tecnologia obsoleta, capitalismo esquecendo lugares. 5 atos finalizados na TV Edition.',
+    timeline: 'TV Edition = compilação Switch dos 5 atos (originalmente lançados 2012-2020). <strong>Comece pela TV Edition</strong> — é o pacote completo.',
+    jogab: null, decada: { picks: ['andre'] }, search: 'Kentucky Route Zero TV Edition Switch' },
+
+  // ========== EXPERIÊNCIA ÚNICA ==========
+  { id: 'outerWilds', genre: 'unique', priority: 1, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Outer Wilds', subtitle: 'Mobius · Exploração espacial · Loop 22min',
+    why: '<strong>MUST PLAY ABSOLUTO.</strong> Exploração espacial com loop de 22 minutos. Sem combate, sem progressão estática. Só descoberta pura. <strong>Pode ser o melhor jogo da década.</strong> Port Switch é meh — considera jogar no PC/Steam Deck pra experiência ideal.',
+    timeline: 'Base game (2019) + DLC Echoes of the Eye (2021, Jogabilidade #5 esse ano). DLC é considerado um dos melhores DLCs já feitos. Jogue base primeiro.',
+    jogab: { rank: 4, year: 2019 }, search: 'Outer Wilds Switch' },
+  { id: 'tunic', genre: 'unique', priority: 2, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Tunic', subtitle: 'Andrew Shouldice · Zelda-like com cifra',
+    why: '<strong>Zelda-like top-down COM SISTEMA DE CIFRA</strong> — todo o texto do jogo está em linguagem inventada. Você descobre o significado dos símbolos enquanto explora. Genial design layered.',
+    timeline: 'Standalone.',
+    jogab: null, search: 'Tunic Switch' },
+  { id: 'inscryption', genre: 'unique', priority: 3, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Inscryption', subtitle: 'Daniel Mullins · Card game horror',
+    why: '<strong>Card game horror.</strong> Não posso dizer mais sem spoilar (e é tudo sobre evitar spoilers). Tier S+ absoluto. <strong>Vai jogar.</strong>',
+    timeline: 'Standalone. Daniel Mullins fez outros (Pony Island, The Hex) com tema meta-narrativo similar.',
+    jogab: null, search: 'Inscryption Switch' },
+  { id: 'discoElysium', genre: 'unique', priority: 4, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Disco Elysium: The Final Cut', subtitle: 'ZA/UM · RPG narrativo · 300k+ palavras',
+    why: 'RPG narrativo Tier S+. <strong>Detective comunista falido</strong> em cidade pós-guerra. Reading-heavy (300k+ palavras), sem combate clássico (skill checks). Cult absoluto.',
+    timeline: 'Standalone. ZA/UM teve problemas internos pós-lançamento mas o jogo existe.',
+    jogab: { rank: 2, year: 2019 }, search: 'Disco Elysium Switch' },
+  { id: 'cocoon', genre: 'unique', priority: 5, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Cocoon', subtitle: 'Geometric Interactive · 2023 · Puzzle dimensional',
+    why: 'Do criador de Limbo + Inside (Jeppe Carlsen). <strong>Esferas dentro de esferas</strong>, atmosfera surrealista alienígena. Puzzle de mudar entre dimensões.',
+    timeline: 'Standalone.',
+    jogab: null, search: 'Cocoon Switch' },
+  { id: 'animalWell', genre: 'unique', priority: 6, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Animal Well', subtitle: 'Billy Basso · 2024 · Metroidvania puzzle',
+    why: '<strong>Metroidvania puzzle super atmosférico.</strong> Visual pixel art lindíssimo, secrets layers profundos. Cult recente — você termina o jogo e descobre que mal arranhou a superfície.',
+    timeline: 'Standalone.',
+    jogab: { rank: 6, year: 2024 }, search: 'Animal Well Switch' },
+  { id: 'mixtape', genre: 'unique', priority: 7, tier: 's', console: 's2', jpOnly: false, coop: false,
+    name: 'Mixtape', subtitle: 'Beethoven & Dinosaur · 2025 · Narrative music',
+    why: 'Você acabou de jogar e gostou. Coming-of-age narrative com música 80s/90s. Curtinho, atmosférico.',
+    timeline: 'Standalone. Mesmo estúdio do The Artful Escape (excelente).',
+    jogab: null, search: 'Mixtape Switch 2' },
+  { id: 'clairObscur', genre: 'unique', priority: 8, tier: 'sp', console: 's2', jpOnly: false, coop: false,
+    name: 'Clair Obscur: Expedition 33', subtitle: 'Sandfall · 2025 · Turn-based JRPG francês',
+    why: '<strong>🟡 #1 do Jogabilidade 2025!</strong> Turn-based JRPG indie francês com mecânicas de timing (parry/dodge em turnos). Visual gorgeous belle époque, OST orquestral. Surpresa absoluta do ano. Switch 2 release.',
+    timeline: 'Standalone. Sandfall Interactive debut.',
+    jogab: { rank: 1, year: 2025 }, search: 'Clair Obscur Expedition 33 Switch 2' },
+  { id: 'silentHillF', genre: 'unique', priority: 9, tier: 's', console: 's2', jpOnly: false, coop: false,
+    name: 'Silent Hill f', subtitle: 'Konami · 2025 · Horror JP',
+    why: 'Novo Silent Hill ambientado em <strong>Japão rural dos anos 1960</strong>. Horror folk + psychological. Switch 2 launch.',
+    timeline: 'Standalone — universo Silent Hill mas história não-conectada.',
+    jogab: { rank: 4, year: 2025 }, search: 'Silent Hill f Switch 2' },
+  { id: 'silentHill2', genre: 'unique', priority: 10, tier: 'sp', console: 's2', jpOnly: false, coop: false,
+    name: 'Silent Hill 2 (Remake)', subtitle: 'Bloober Team · 2024 · Switch 2',
+    why: 'Remake do clássico PS2 (2001), considerado um dos maiores horror games de todos os tempos. <strong>Switch 2 versão</strong> existe.',
+    timeline: 'Remake. Jogo standalone do Silent Hill 2 original. Não precisa jogar SH1.',
+    jogab: { rank: 5, year: 2024 }, search: 'Silent Hill 2 Remake Switch 2' },
+  { id: 'portalCC', genre: 'unique', priority: 11, tier: 'sp', console: 's1', jpOnly: false, coop: true,
+    name: 'Portal: Companion Collection', subtitle: 'Valve / Nintendo · 2011/2022 Switch · Puzzle FPS',
+    why: '<strong>🎙️ TOP 9 da Década Jogabilidade.</strong> Portal 1 + Portal 2 num cart. Portal 2 é o que entrou no consenso — puzzle FPS impecável + comédia GLaDOS/Wheatley + co-op 2P obrigatório (campanha de co-op separada!). <strong>André #5 pessoal.</strong> Último jogo da Valve antes de virar exclusivamente plataforma Steam.',
+    timeline: 'Portal 1 (2007) → Portal 2 (2011). Esta collection junta os dois. Portal 2 é considerado um dos melhores jogos de puzzle de todos os tempos.',
+    jogab: null, decada: { rank: 9, picks: ['andre','rafa'] }, search: 'Portal Companion Collection Switch' },
+  { id: 'alienIsolation', genre: 'unique', priority: 12, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Alien Isolation', subtitle: 'Creative Assembly · 2014/2019 Switch · Horror sistêmico',
+    why: '<strong>🎙️ Pick individual André #10 da Década.</strong> "Possivelmente o melhor jogo de terror que já joguei na vida" — André. Inteligência artificial do Alien é <strong>sistêmica (não scriptada)</strong> — ele te procura, aprende padrões, escuta sons. Setting Nostromo retrofuturista perfeito. Longo (20+ horas) mas brilhante. Port Switch decentíssimo.',
+    timeline: 'Standalone. Sequência prevista (Alien Isolation 2) anunciada mas sem data.',
+    jogab: null, decada: { picks: ['andre'] }, search: 'Alien Isolation Switch' },
+  { id: 'kunitsuGami', genre: 'unique', priority: 13, tier: 'sp', console: 's2', jpOnly: false, coop: false,
+    name: 'Kunitsu-Gami: Path of the Goddess', subtitle: 'Capcom · 2024 / 2025 Switch 2 · Action + tower defense',
+    why: '<strong>🟡 #2 Jogabilidade 2024.</strong> Híbrido único de action em tempo real + tower defense, com estética deslumbrante inspirada em Ōkami e no folclore xintoísta. De dia você purifica vilarejos e organiza aldeões em papéis (lenhador, arqueiro, etc.); de noite defende a donzela Yoshiro de ondas de yokai (os Seethe) com dança-de-espada kagura. Direção de arte japonesa impecável, da Capcom no RE Engine. Tem <strong>português brasileiro</strong>.',
+    timeline: 'IP nova standalone (2024). Saiu primeiro em PS/Xbox/PC; o port Switch 2 (5 jun 2025, launch title) adiciona controles por mouse/giroscópio e o modo extra gratuito "Otherworldly Venture". <strong>No Switch só existe no Switch 2</strong> — não há versão Switch 1.',
+    jogab: { rank: 2, year: 2024 }, search: 'Kunitsu-Gami Path of the Goddess Switch 2' },
+
+  // ========== METROIDVANIA ==========
+  { id: 'hollow', genre: 'metroidvania', priority: 1, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Hollow Knight', subtitle: 'Team Cherry · 2017 · Metroidvania',
+    why: '<strong>🟡 #1 Jogabilidade 2017.</strong> Possivelmente o melhor metroidvania moderno. 40h+ de exploração, combate satisfatório, OST melancólica de Christopher Larkin. Tier S++++ absoluto.',
+    timeline: 'Base game + 4 DLCs gratuitos (Hidden Dreams, The Grimm Troupe, Lifeblood, Godmaster). <strong>Sequência DIRETA: Hollow Knight: Silksong</strong> com Hornet protagonista.',
+    jogab: { rank: 1, year: 2017 }, decada: { rank: 7 }, search: 'Hollow Knight Switch' },
+  { id: 'silksong', genre: 'metroidvania', priority: 2, tier: 'sp', console: 's2', jpOnly: false, coop: false,
+    name: 'Hollow Knight: Silksong', subtitle: 'Team Cherry · 2025 · Sequência',
+    why: '<strong>🟡 #2 Jogabilidade 2025.</strong> Sequência direta de Hollow Knight com Hornet protagonista. Após anos de espera, Tier S+ confirmado.',
+    timeline: '<strong>Sequência direta de Hollow Knight</strong>. Jogue Hollow Knight primeiro (contexto + base mecânica). Hornet é introduzida lá.',
+    jogab: { rank: 2, year: 2025 }, search: 'Hollow Knight Silksong Switch' },
+  { id: 'nineSols', genre: 'metroidvania', priority: 3, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Nine Sols', subtitle: 'Red Candle Games · 2024 · Sekiro-like 2D',
+    why: '<strong>Metroidvania taiwanês inspirado em Sekiro.</strong> Combate parry-based deflective, lore mitológico chinês, visual hand-drawn. Tier S+. 🟡 #4 Jogabilidade 2024.',
+    timeline: 'Standalone. Red Candle Games (Detention, Devotion).',
+    jogab: { rank: 4, year: 2024 }, search: 'Nine Sols Switch' },
+  { id: 'popLostCrown', genre: 'metroidvania', priority: 4, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Prince of Persia: The Lost Crown', subtitle: 'Ubisoft · 2024 · Metroidvania moderno',
+    why: 'Volta da franquia em metroidvania moderno. Tier S+. <strong>Time brasileiro participou do desenvolvimento</strong>. 🟡 #7 Jogabilidade 2024.',
+    timeline: 'Standalone, universo Prince of Persia novo. Não conecta com Sands of Time trilogy.',
+    jogab: { rank: 7, year: 2024 }, search: 'Prince of Persia Lost Crown Switch' },
+  { id: 'blasphemous', genre: 'metroidvania', priority: 5, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Blasphemous', subtitle: 'The Game Kitchen · 2019 · Souls-like 2D',
+    why: 'Metroidvania souls-like com tema católico-andaluz dark. Pixel art lindíssimo. Tier S.',
+    timeline: 'Base game + DLCs gratuitos (Strife and Ruin, Stir of Dawn, Wounds of Eventide). <strong>Sequência: Blasphemous 2</strong>.',
+    jogab: null, search: 'Blasphemous Switch' },
+  { id: 'blasphemous2', genre: 'metroidvania', priority: 6, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Blasphemous 2', subtitle: 'The Game Kitchen · 2023 · Sequência',
+    why: 'Sequência direta, mais polida e acessível que o original.',
+    timeline: '<strong>Sequência direta de Blasphemous.</strong> Jogue o 1 antes pra contexto.',
+    jogab: null, search: 'Blasphemous 2 Switch' },
+  { id: 'deathsDoor', genre: 'metroidvania', priority: 7, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: "Death's Door", subtitle: 'Acid Nerve · Action top-down + souls-lite',
+    why: '<strong>Action top-down + souls-like leve.</strong> Você é um corvo coletor de almas. Visual charmoso, combate satisfatório, ~10h.',
+    timeline: 'Standalone. Acid Nerve (Titan Souls antes).',
+    jogab: null, search: "Death's Door Switch" },
+  { id: 'bloodstained', genre: 'metroidvania', priority: 8, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Bloodstained: Ritual of the Night', subtitle: 'Koji Igarashi · Sucessor Castlevania',
+    why: '<strong>Sucessor espiritual dos Castlevania DS</strong> por Koji "IGA" Igarashi. Você jogou os Castlevania DS — esse é a continuação espiritual moderna.',
+    timeline: 'Standalone. Spinoff "Curse of the Moon" 1+2 são 2D retrô (8-bit) — séries paralelas.',
+    jogab: null, search: 'Bloodstained Ritual of the Night Switch' },
+  { id: 'bloodstainedCotM', genre: 'metroidvania', priority: 9, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Bloodstained: Curse of the Moon', subtitle: 'IGA · 2018 · 8-bit retro',
+    why: '🟡 #8 Jogabilidade 2018. Metroidvania 8-bit retro de IGA. Estilo Castlevania III: Dracula\'s Curse.',
+    timeline: 'Spinoff retro do Bloodstained. Sequência: Curse of the Moon 2.',
+    jogab: { rank: 8, year: 2018 }, search: 'Bloodstained Curse of the Moon Switch' },
+  { id: 'darkSoulsR', genre: 'metroidvania', priority: 10, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Dark Souls Remastered', subtitle: 'FromSoftware · 2011/2018 Switch · Souls-like',
+    why: '<strong>🎙️ Picks individuais Sushi/Rafa/Tengu da Década (todos colocaram Souls).</strong> O jogo que <strong>definiu o gênero souls-like</strong>. Level design lendário (mundo interconectado), combate baseado em risco-recompensa, lore esotérica via descrições de itens. Bosses inesquecíveis (Artorias, Ornstein & Smough). <strong>Único Souls da FromSoft no Switch.</strong> Bloodborne/Dark Souls 2/3/Sekiro/Elden Ring infelizmente NÃO estão no Switch.',
+    timeline: 'Dark Souls (2011) → Dark Souls II (2014) → Dark Souls III (2016) → spinoffs (Bloodborne 2015, Sekiro 2019, Elden Ring 2022). Switch tem só o <strong>1 remastered</strong>. Standalone — pode começar por aqui sem ter jogado os outros.',
+    jogab: null, decada: { picks: ['sushi','rafa','tengu','andre'] }, search: 'Dark Souls Remastered Switch' },
+
+  // ========== ROGUELIKE / DECKBUILDER ==========
+  { id: 'hades', genre: 'roguelike', priority: 1, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Hades', subtitle: 'Supergiant · 2020 · Roguelike action',
+    why: '<strong>🟡 #2 Jogabilidade 2020.</strong> Tier S+++. Supergiant Games no auge — combate sublime, narrativa mitológica grega progressiva, art design incrível, OST de Darren Korb.',
+    timeline: 'Base game (2020) + Hades II (sequência direta, 2025 release final).',
+    jogab: { rank: 2, year: 2020 }, search: 'Hades Switch' },
+  { id: 'hades2', genre: 'roguelike', priority: 2, tier: 'sp', console: 's2', jpOnly: false, coop: false,
+    name: 'Hades II', subtitle: 'Supergiant · 2025 · Sequência direta',
+    why: 'Sequência direta. Melania protagonista (irmã de Zagreus). Mais sistemas, novos personagens olímpicos.',
+    timeline: '<strong>Sequência direta de Hades.</strong> Jogue Hades primeiro — narrativa continua. Switch 2 version anunciada.',
+    jogab: null, search: 'Hades II Switch 2' },
+  { id: 'slayTheSpire', genre: 'roguelike', priority: 3, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Slay the Spire', subtitle: 'Mega Crit · 2019 · Deckbuilder roguelike',
+    why: '<strong>Pai dos deckbuilder roguelikes modernos.</strong> Vicia. 4 personagens (DLC adicional). Sequência: Slay the Spire 2 (em early access).',
+    timeline: 'Standalone. Slay the Spire 2 anunciado (early access).',
+    jogab: null, search: 'Slay the Spire Switch' },
+  { id: 'intoBreach', genre: 'roguelike', priority: 4, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Into the Breach', subtitle: 'Subset Games · Tactical roguelike',
+    why: '<strong>Tactical roguelike dos criadores de FTL.</strong> Mech vs alien em grid 8x8. Genial puzzle tactical onde você sempre vê próximos movimentos do inimigo.',
+    timeline: 'Standalone. Subset Games (FTL: Faster Than Light antes).',
+    jogab: null, search: 'Into the Breach Switch' },
+  { id: 'vampireSurv', genre: 'roguelike', priority: 5, tier: 's', console: 's1', jpOnly: false, coop: true,
+    name: 'Vampire Survivors', subtitle: 'Poncle · Bullet heaven · co-op',
+    why: '<strong>🟡 #8 Jogabilidade 2022.</strong> Bullet heaven viciante. Você quase não controla nada — só anda — e o resto é caos lindo. Co-op local 2-4P.',
+    timeline: 'Base game + DLCs (Legacy of the Moonspell, Tides of the Foscari, Emergency Meeting, Operation Guns).',
+    jogab: { rank: 8, year: 2022 }, search: 'Vampire Survivors Switch' },
+  { id: 'balatro', genre: 'roguelike', priority: 6, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Balatro', subtitle: 'LocalThunk · 2024 · Poker deckbuilder',
+    why: 'Roguelike deckbuilder baseado em mãos de poker. <strong>Reinventou o gênero em 2024.</strong> Cult absoluto, viciante demais.',
+    timeline: 'Standalone.',
+    jogab: { rank: 5, year: 2024 }, search: 'Balatro Switch' },
+  { id: 'cultLamb', genre: 'roguelike', priority: 7, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Cult of the Lamb', subtitle: 'Massive Monster · Cult management + roguelike',
+    why: 'Cult management sim + roguelike action. Você é o cordeirinho que monta culto. Visual adorável, gameplay loop satisfatório.',
+    timeline: 'Standalone.',
+    jogab: null, search: 'Cult of the Lamb Switch' },
+
+  // ========== CO-OP ==========
+  { id: 'itTakesTwo', genre: 'coop', priority: 1, tier: 'sp', console: 's1', jpOnly: false, coop: true,
+    name: 'It Takes Two', subtitle: 'Hazelight · 2021 · Co-op obrigatório 2P',
+    why: '<strong>🟡 #9 Jogabilidade 2021.</strong> Co-op de 2 jogadores obrigatório — não pode jogar solo. Casal em conflito é transformado em bonecos, jornada de reconciliação. <strong>Perfeito pra jogar com a Isabela.</strong> 15h+ de campanha. Cada nível introduz mecânicas novas.',
+    timeline: 'Hazelight trilogy de co-op obrigatório: A Way Out (2018) → It Takes Two → Split Fiction. Histórias INDEPENDENTES, só estilo cooperativo conecta.',
+    jogab: { rank: 9, year: 2021 }, search: 'It Takes Two Switch' },
+  { id: 'splitFiction', genre: 'coop', priority: 2, tier: 'sp', console: 's2', jpOnly: false, coop: true,
+    name: 'Split Fiction', subtitle: 'Hazelight · 2025 · Co-op obrigatório 2P',
+    why: '<strong>Sucessor direto de It Takes Two.</strong> Duas escritoras (sci-fi + fantasy) presas em mundo virtual. Co-op de 2 jogadores obrigatório, ainda mais polido que predecessor.',
+    timeline: 'Hazelight trilogy (já listada). <strong>Jogue It Takes Two antes</strong> pra entender a evolução do estúdio — mas Split Fiction é standalone.',
+    jogab: { rank: 9, year: 2025 }, search: 'Split Fiction Switch 2' },
+  { id: 'awayOut', genre: 'coop', priority: 3, tier: 's', console: 's1', jpOnly: false, coop: true,
+    name: 'A Way Out', subtitle: 'Hazelight · 2018 · Primeira co-op obrigatória',
+    why: 'Primeiro do Hazelight. Dois prisioneiros fugindo. Mais cinemático e curto que It Takes Two.',
+    timeline: 'Hazelight trilogy first entry.',
+    jogab: null, search: 'A Way Out Switch' },
+  { id: 'overcooked2', genre: 'coop', priority: 4, tier: 's', console: 's1', jpOnly: false, coop: true,
+    name: 'Overcooked! 2', subtitle: 'Ghost Town Games · Caos culinário · 4P',
+    why: 'Co-op caótico de cozinha. <strong>Garantia de briga + risada com Isabela.</strong> Cozinhar em locais absurdos sob pressão.',
+    timeline: 'Segundo da série. Overcooked 1 (Switch) também — 2 é mais polido.',
+    jogab: null, search: 'Overcooked 2 Switch' },
+  { id: 'stardew', genre: 'coop', priority: 5, tier: 'sp', console: 's1', jpOnly: false, coop: true,
+    name: 'Stardew Valley', subtitle: 'ConcernedApe · Farm sim · co-op 4P',
+    why: 'Harvest Moon moderno feito por uma pessoa só. <strong>Co-op 4P perfeito pra jogar com Isabela + Oliver + Lili.</strong> 100h+ tranquilamente.',
+    timeline: 'Standalone. ConcernedApe trabalhando em sequência Haunted Chocolatier.',
+    jogab: null, search: 'Stardew Valley Switch' },
+  { id: 'cuphead', genre: 'coop', priority: 6, tier: 'sp', console: 's1', jpOnly: false, coop: true,
+    name: 'Cuphead + The Delicious Last Course', subtitle: 'Studio MDHR · Run\'n gun 1930s',
+    why: 'Run\'n gun arte 1930s pintado à mão. <strong>Co-op local 2P.</strong> Boss rush brutal. DLC The Delicious Last Course é Tier S+.',
+    timeline: 'Base game (2017) + DLC The Delicious Last Course (2022).',
+    jogab: null, search: 'Cuphead Switch' },
+  { id: 'terraria', genre: 'coop', priority: 7, tier: 'sp', console: 's1', jpOnly: false, coop: true,
+    name: 'Terraria', subtitle: 'Re-Logic · 2011 · Sandbox 2D · co-op 8P',
+    why: '<strong>🎙️ Pick individual Tengu #5 da Década.</strong> "Minecraft 2D" mas é muito mais — <strong>aventura escalando ao infinito</strong>. Começa numa floresta simples, termina enfrentando o universo. Progression MMORPG-esque: vence boss → material → armadura → próximo boss. Co-op local + online até 8 jogadores. <strong>Tengu jogou 800+ horas.</strong>',
+    timeline: 'Standalone. Sequel anunciado (Terraria: Otherworld) foi cancelado. Re-Logic ainda atualiza Terraria após 14+ anos com conteúdo gratuito.',
+    jogab: null, decada: { picks: ['tengu'] }, search: 'Terraria Switch' },
+
+  // ========== PLATAFORMA / ACTION 2D ==========
+  { id: 'messenger', genre: 'platformer', priority: 1, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'The Messenger', subtitle: 'Sabotage · 2018 · Ninja Gaiden + Metroidvania',
+    why: '<strong>🟡 #6 Jogabilidade 2018.</strong> Action 2D que <strong>muda o gimmick mid-game</strong> (não vou spoilar). Tier S+ surpresa absoluta. Mesmos devs de Sea of Stars.',
+    timeline: 'Prequel narrativo de Sea of Stars (universo compartilhado). The Messenger é jogo standalone, Sea of Stars vem depois cronologicamente.',
+    jogab: { rank: 6, year: 2018 }, search: 'The Messenger Switch' },
+  { id: 'celeste', genre: 'platformer', priority: 2, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Celeste', subtitle: 'Maddy Thorson · 2018 · Plataforma indie',
+    why: 'Você já jogou! Plataforma sobre subir uma montanha + saúde mental. Tier S+++ universal.',
+    timeline: 'Standalone + DLC Farewell (gratuito, brutal).',
+    jogab: { rank: 10, year: 2018 }, search: 'Celeste Switch' },
+  { id: 'pizzaTower', genre: 'platformer', priority: 3, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Pizza Tower', subtitle: 'Tour de Pizza · 2023 · Wario Land-esque',
+    why: '<strong>2D platformer Wario Land-esque + Tony Hawk speed</strong>. Cult absoluto recente. Visual MS Paint, gameplay frenético.',
+    timeline: 'Standalone.',
+    jogab: null, search: 'Pizza Tower Switch' },
+  { id: 'neonWhite', genre: 'platformer', priority: 4, tier: 'sp', console: 's1', jpOnly: false, coop: false,
+    name: 'Neon White', subtitle: 'Angel Matrix · 2022 · FPS rhythm cards',
+    why: '<strong>🟡 #9 Jogabilidade 2022.</strong> FPS rítmico card-based — você speedruns puzzles. Mecânica única, soundtrack absurda, visual anime light novel.',
+    timeline: 'Standalone.',
+    jogab: { rank: 9, year: 2022 }, search: 'Neon White Switch' },
+  { id: 'hifirush', genre: 'platformer', priority: 5, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Hi-Fi Rush', subtitle: 'Tango Gameworks · Action rhythm',
+    why: 'Action rhythm — combate sincronizado com OST punk rock. Visual cel-shaded estilo Jet Set Radio. Antes exclusivo Xbox, agora multiplat.',
+    timeline: 'Standalone.',
+    jogab: { rank: 6, year: 2023 }, search: 'Hi-Fi Rush Switch' },
+  { id: 'unsightedAlt', genre: 'platformer', priority: 6, tier: 's', console: 's1', jpOnly: false, coop: false,
+    name: 'Frostpunk', subtitle: '11 bit studios · City builder pós-apocalíptico',
+    why: '<strong>🟡 #9 Jogabilidade 2018.</strong> City builder pós-apocalíptico com gerenciamento moral brutal. Você deve manter cidade aquecida durante apocalipse glacial.',
+    timeline: 'Standalone. Sequência: Frostpunk 2 (PC, sem Switch ainda).',
+    jogab: { rank: 9, year: 2018 }, search: 'Frostpunk Switch' },
+  { id: 'dqBuilders2', genre: 'platformer', priority: 7, tier: 's', console: 's1', jpOnly: false, coop: true,
+    name: 'Dragon Quest Builders 2', subtitle: 'Square Enix · Minecraft + DQ · 2P co-op',
+    why: '<strong>🟡 #6 Jogabilidade 2019.</strong> Minecraft + Dragon Quest, ambientado no <strong>universo de DQ II.</strong> Co-op local 2P. Perfeito pra você que ama DQ.',
+    timeline: 'Sequência de DQ Builders. Ambientado no universo DQ II (continuação narrativa solta). Pode jogar sem ter feito DQ Builders 1.',
+    jogab: { rank: 6, year: 2019 }, search: 'Dragon Quest Builders 2 Switch' },
+  { id: 'monsterHunter', genre: 'platformer', priority: 8, tier: 's', console: 's1', jpOnly: false, coop: true,
+    name: 'Monster Hunter Rise + Sunbreak', subtitle: 'Capcom · Action hunter · 4P co-op',
+    why: '<strong>🟡 #6 Jogabilidade 2021.</strong> Monster Hunter Switch nativo. Mais ágil que World, com sistema "Wirebug". Co-op online 4P. Expansão Sunbreak essencial.',
+    timeline: 'Base Rise (2021) + Expansão Sunbreak (2022). Pra cronologia MH: World → Rise → Wilds (Switch 2 talvez).',
+    jogab: { rank: 6, year: 2021 }, search: 'Monster Hunter Rise Sunbreak Switch' },
+  { id: 'mhGU', genre: 'platformer', priority: 9, tier: 's', console: 's1', jpOnly: false, coop: true,
+    name: 'Monster Hunter Generations Ultimate', subtitle: 'Capcom · 2017/2018 Switch · Action hunter co-op',
+    why: '<strong>🎙️ Pick individual Tengu #3 da Década.</strong> Considerado por muitos <strong>O melhor MH "clássico"</strong> antes da modernização de World/Rise. Style system permite combinar habilidades de várias armas. 14 weapon types, 90+ monstros. Co-op 4P. <strong>Tengu disse: "Monster Hunter foi tudo que eu queria e não sabia".</strong>',
+    timeline: 'Versão definitiva do Monster Hunter Generations (3DS) + DLC G-Rank. Antecede a era moderna (World/Rise) — fórmula clássica preservada. <strong>Comece por Rise se quer fórmula moderna acessível, ou GU se quer o pico da fórmula clássica.</strong>',
+    jogab: null, decada: { picks: ['tengu'] }, search: 'Monster Hunter Generations Ultimate Switch' },
+
+  // ========== SWITCH 2 EXCLUSIVES ==========
+  { id: 'cyberpunkS2', genre: 's2-exclusive', priority: 1, tier: 'sp', console: 's2', jpOnly: false, coop: false,
+    name: 'Cyberpunk 2077 + Phantom Liberty', subtitle: 'CDPR · Switch 2 launch · Open world',
+    why: '<strong>Cyberpunk em portátil pela primeira vez.</strong> Versão Switch 2 inclui DLC Phantom Liberty. RPG open-world Night City, Tier S+ pós-patches.',
+    timeline: 'Base game + DLC Phantom Liberty (essencial, considerado uma das melhores expansões já feitas).',
+    jogab: null, search: 'Cyberpunk 2077 Switch 2' },
+  { id: 'mksWorld', genre: 's2-exclusive', priority: 2, tier: 's', console: 's2', jpOnly: false, coop: true,
+    name: 'Mario Kart World', subtitle: 'Nintendo · 2025 · Switch 2 launch · 24P',
+    why: 'Mario Kart Switch 2 com modo open-world, 24 jogadores simultâneos. Launch title essencial pra Oliver.',
+    timeline: 'Sequência de Mario Kart 8 Deluxe.',
+    jogab: null, search: 'Mario Kart World Switch 2' },
+  { id: 'dkBananza', genre: 's2-exclusive', priority: 3, tier: 's', console: 's2', jpOnly: false, coop: false,
+    name: 'Donkey Kong Bananza', subtitle: 'Nintendo · 2025 · 3D platform',
+    why: 'Primeiro DK 3D em 25 anos. Mecânica de destruição de terreno.',
+    timeline: 'Novo DK 3D.',
+    jogab: null, search: 'Donkey Kong Bananza Switch 2' },
+  { id: 'pokemonZA', genre: 's2-exclusive', priority: 4, tier: 's', console: 's2', jpOnly: false, coop: false,
+    name: 'Pokémon Legends: Z-A', subtitle: 'Game Freak · 2025 · Switch 1+2',
+    why: 'Sucessor de Legends Arceus. Ambientado em Lumiose City (X/Y). Battle real-time. Versão Switch 2 enhanced.',
+    timeline: 'Sequência de Pokémon Legends: Arceus. Linha "Legends" é spinoff mais ousado da mainline.',
+    jogab: { rank: 16, year: 2025 }, search: 'Pokemon Legends Z-A Switch 2' },
+];
+
+const genreOrder = [
+  { id: 'jrpg', anchor: 'g-jrpg', jp: 'JRPGメインライン', en: 'JRPG Mainline' },
+  { id: 'jrpg-indie', anchor: 'g-jrpg-indie', jp: 'JRPGインディー', en: 'JRPG Indie' },
+  { id: 'trails', anchor: 'g-trails', jp: 'トレイルズ・ファルコム', en: 'Trails / Falcom' },
+  { id: 'tactical', anchor: 'g-tactical', jp: 'タクティクスRPG', en: 'Tactical RPG' },
+  { id: 'detective', anchor: 'g-detective', jp: '推理・パズル', en: 'Detective / Puzzle' },
+  { id: 'narrative', anchor: 'g-narrative', jp: '物語・雰囲気', en: 'Narrative / Atmospheric' },
+  { id: 'unique', anchor: 'g-unique', jp: 'ユニーク体験', en: 'Experiência Única' },
+  { id: 'metroidvania', anchor: 'g-metroidvania', jp: 'メトロイドヴァニア', en: 'Metroidvania' },
+  { id: 'roguelike', anchor: 'g-roguelike', jp: 'ローグライク', en: 'Roguelike / Deckbuilder' },
+  { id: 'coop', anchor: 'g-coop', jp: '協力プレイ', en: 'Co-op' },
+  { id: 'platformer', anchor: 'g-platformer', jp: 'プラットフォーマー・アクション', en: 'Plataforma / Action 2D' },
+  { id: 's2-exclusive', anchor: 'g-s2-exclusive', jp: 'スイッチ 2 専用', en: 'Switch 2 Exclusives' },
+];
+
+const essentialOrder = [
+  'dq11s',           // 1. DQ XI S
+  'p5r',             // 2. Persona 5 Royal
+  'outerWilds',      // 3. Outer Wilds
+  'hollow',          // 4. Hollow Knight
+  'unsighted',       // 5. Unsighted (Brasil!)
+  'octopath2',       // 6. Octopath II
+  'trailsSky1',      // 7. Trails in the Sky FC
+  'hades',           // 8. Hades
+  'obraDinn',        // 9. Obra Dinn
+  'fe3h',            // 10. FE: Three Houses
+  'xc3',             // 11. Xenoblade 3
+  'tunic',           // 12. Tunic
+  'discoElysium',    // 13. Disco Elysium
+  'itTakesTwo',      // 14. It Takes Two (co-op)
+  'liveAlive',       // 15. Live A Live
+  'inscryption',     // 16. Inscryption
+  'clairObscur',     // 17. Clair Obscur (Jogab #1 2025)
+  'bluePrince',      // 18. Blue Prince
+  'venba',           // 19. Venba
+  'dq12'             // 20. DQ I+II HD-2D
+];
+
+// ============ WISHLIST STATE (localStorage) ============
+const WISHLIST_KEY = 'switch_wishlist_v1';
+function loadWishlist() {
+  try { return JSON.parse(localStorage.getItem(WISHLIST_KEY)) || {}; } catch (e) { return {}; }
+}
+function saveWishlist(state) {
+  try { localStorage.setItem(WISHLIST_KEY, JSON.stringify(state)); } catch (e) {}
+}
+let wishlist = loadWishlist();
+
+function getBadges(game) {
+  let html = '';
+  if (game.tier === 'sp') html += '<span class="badge badge-tier-sp">⭐ S+</span>';
+  else html += '<span class="badge badge-tier-s">S</span>';
+  if (game.console === 's2') html += '<span class="badge badge-s2">🆕 S2</span>';
+  else html += '<span class="badge badge-s1">📀 S1</span>';
+  if (game.coop) html += '<span class="badge badge-coop">👫 co-op</span>';
+  if (game.jpOnly) html += '<span class="badge badge-jp-only">🇯🇵 JP only</span>';
+  if (game.jogab) html += `<span class="badge badge-jogab">🟡 #${game.jogab.rank}/${game.jogab.year}</span>`;
+  if (game.decada) {
+    if (game.decada.rank) html += `<span class="badge badge-decada">🎙️ #${game.decada.rank} Década</span>`;
+    else html += `<span class="badge badge-decada">🎙️ Pick Década</span>`;
+  }
+  return html;
+}
+
+function renderWishlistButtons(gameId) {
+  const status = wishlist[gameId] || null;
+  const wantedClass = status === 'wanted' ? 'wanted' : '';
+  const ownedClass = status === 'owned' ? 'owned' : '';
+  return `<button class="action-btn wishlist ${wantedClass}" data-action="want" data-id="${gameId}">💛 Quero</button>
+          <button class="action-btn wishlist ${ownedClass}" data-action="own" data-id="${gameId}">✅ Tenho</button>`;
+}
+
+function renderGames() {
+  const container = document.getElementById('games-container');
+  let html = '';
+  for (const g of genreOrder) {
+    const genreGames = games.filter(game => game.genre === g.id).sort((a, b) => a.priority - b.priority);
+    if (genreGames.length === 0) continue;
+    html += `<section class="genre-section" id="${g.anchor}" data-genre="${g.id}">
+      <div class="genre-header">
+        <span class="genre-title-jp">${g.jp}</span>
+        <span class="genre-title-en">${g.en}</span>
+        <span class="genre-count">${genreGames.length}</span>
+      </div>
+      <div class="game-list">`;
+    for (const game of genreGames) {
+      const tierClass = game.tier === 'sp' ? 'tier-sp' : '';
+      const timelineHtml = game.timeline ? `<div class="timeline-chip">🧭 ${game.timeline}</div>` : '';
+      const jogabHtml = game.jogab ? `<div class="jogab-chip">🟡 Jogabilidade #${game.jogab.rank} de ${game.jogab.year}</div>` : '';
+      let decadaHtml = '';
+      if (game.decada) {
+        const parts = [];
+        if (game.decada.rank) parts.push(`<strong>TOP ${game.decada.rank} consensual</strong>`);
+        if (game.decada.picks && game.decada.picks.length) {
+          const names = { sushi: '🍣 Sushi', andre: '🧙 André', rafa: '🐼 Rafa', tengu: '👺 Tengu' };
+          parts.push('Pick individual: ' + game.decada.picks.map(p => names[p] || p).join(', '));
+        }
+        decadaHtml = `<div class="decada-chip">🎙️ Década 2010-2019 · ${parts.join(' · ')}</div>`;
+      }
+      const dataAttrs = [
+        `data-tier="${game.tier}"`,
+        `data-console="${game.console}"`,
+        `data-jogab="${game.jogab ? 'true' : 'false'}"`,
+        `data-decada="${game.decada ? 'true' : 'false'}"`,
+        `data-coop="${game.coop}"`,
+        `data-jp-only="${game.jpOnly}"`
+      ].join(' ');
+      html += `<article class="game-card ${tierClass}" data-id="${game.id}" ${dataAttrs}>
+        <div class="game-card-top">
+          <div class="priority-num">${game.priority}</div>
+          <div class="game-titles">
+            <div class="game-name">${game.name}</div>
+            <div class="game-subtitle">${game.subtitle}</div>
+          </div>
+        </div>
+        <div class="game-badges">${getBadges(game)}</div>
+        <div class="game-why">${game.why}</div>
+        ${timelineHtml}
+        ${jogabHtml}
+        ${decadaHtml}
+        <div class="game-actions">
+          <a class="action-btn primary" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&q=${encodeURIComponent(game.search)}">Ver capa</a>
+          <a class="action-btn" target="_blank" rel="noopener" href="https://jp.mercari.com/search?keyword=${encodeURIComponent(game.name)}">Mercari</a>
+          ${renderWishlistButtons(game.id)}
+        </div>
+      </article>`;
+    }
+    html += `</div></section>`;
+  }
+  container.innerHTML = html;
+}
+
+function renderDecadaSection() {
+  const list = document.getElementById('decada-list-render');
+  if (!list) return;
+  // Top 10 consensual da década 2010-2019 (DASH #114, jan 2020)
+  const decadaTop10 = [
+    { rank: 1, name: 'Bloodborne', meta: 'FromSoftware · 2015 · representando obra Souls', switchId: null, switchNote: 'PS5 exclusive (não no Switch)' },
+    { rank: 2, name: 'The Legend of Zelda: Breath of the Wild', meta: 'Nintendo · 2017', switchId: null, switchNote: 'Switch 1st-party (não destacado neste guia)' },
+    { rank: 3, name: 'The Last of Us', meta: 'Naughty Dog · 2013', switchId: null, switchNote: 'PS/PC only' },
+    { rank: 4, name: 'Journey', meta: 'thatgamecompany · 2012', switchId: null, switchNote: 'PS/PC only' },
+    { rank: 5, name: 'Undertale', meta: 'Toby Fox · 2015', switchId: 'undertale', switchNote: 'Disponível no Switch' },
+    { rank: 6, name: "Dragon's Dogma: Dark Arisen", meta: 'Capcom · 2012/2019 Switch', switchId: 'ddDA', switchNote: 'Disponível no Switch (DD1, não DD2)' },
+    { rank: 7, name: 'Hollow Knight', meta: 'Team Cherry · 2017', switchId: 'hollow', switchNote: 'Disponível no Switch' },
+    { rank: 8, name: 'Persona 5 (Royal)', meta: 'Atlus · 2016/2022 Switch', switchId: 'p5r', switchNote: 'P5 Royal no Switch' },
+    { rank: 9, name: 'Portal 2 (Companion Collection)', meta: 'Valve · 2011/2022 Switch', switchId: 'portalCC', switchNote: 'Portal 1+2 Collection no Switch' },
+    { rank: 10, name: 'NieR / NieR:Automata', meta: 'Yoko Taro · 2010/2017', switchId: 'nierA', switchNote: 'Só Automata no Switch (Replicant não)' }
+  ];
+  let html = '';
+  for (const entry of decadaTop10) {
+    const top3Class = entry.rank <= 3 ? 'top3' : '';
+    const rank1Class = entry.rank === 1 ? 'rank-1' : '';
+    const unavailableClass = entry.switchId === null ? 'unavailable' : '';
+    const statusSpan = entry.switchId === null
+      ? `<span class="no">❌ ${entry.switchNote}</span>`
+      : `<span class="yes">✅ ${entry.switchNote}</span>`;
+    html += `<div class="decada-row ${top3Class} ${rank1Class} ${unavailableClass}">
+      <div class="decada-rank">${entry.rank}</div>
+      <div class="decada-body">
+        <div class="decada-name">${entry.name}</div>
+        <div class="decada-meta">${entry.meta} · ${statusSpan}</div>
+      </div>
+    </div>`;
+  }
+  list.innerHTML = html;
+}
+
+
+function renderEssentialView() {
+  const list = document.getElementById('essential-list');
+  let html = '';
+  essentialOrder.forEach((id, idx) => {
+    const game = games.find(g => g.id === id);
+    if (!game) return;
+    const rank = idx + 1;
+    const top3Class = rank <= 3 ? 'top3' : '';
+    const rank1Class = rank === 1 ? 'rank-1' : '';
+    html += `<article class="essential-card ${top3Class} ${rank1Class}">
+      <div class="essential-rank">${rank}</div>
+      <div class="essential-body">
+        <div class="essential-name">${game.name}</div>
+        <div class="game-subtitle">${game.subtitle}</div>
+        <div class="essential-badges">${getBadges(game)}</div>
+        <div class="essential-why">${game.why}</div>
+        <div class="essential-actions">
+          <a class="action-btn primary" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&q=${encodeURIComponent(game.search)}">Ver capa</a>
+          <a class="action-btn" target="_blank" rel="noopener" href="https://jp.mercari.com/search?keyword=${encodeURIComponent(game.name)}">Mercari</a>
+          ${renderWishlistButtons(game.id)}
+        </div>
+      </div>
+    </article>`;
+  });
+  list.innerHTML = html;
+}
+
+function applyFilter(filter) {
+  const essentialView = document.getElementById('essential-view');
+  const gamesContainer = document.getElementById('games-container');
+  const navIndex = document.querySelector('.nav-index');
+
+  if (filter === 'essential') {
+    essentialView.classList.add('active');
+    gamesContainer.style.display = 'none';
+    if (navIndex) navIndex.style.display = 'none';
+    const decadaSection = document.getElementById('decada-top10');
+    if (decadaSection) decadaSection.style.display = 'none';
+    return;
+  }
+
+  essentialView.classList.remove('active');
+  gamesContainer.style.display = 'block';
+  if (navIndex) navIndex.style.display = 'block';
+  const decadaSection = document.getElementById('decada-top10');
+  if (decadaSection) decadaSection.style.display = (filter === 'all' || filter === 'decada') ? 'block' : 'none';
+
+  const cards = document.querySelectorAll('.game-card');
+  cards.forEach(card => {
+    let show = false;
+    if (filter === 'all') show = true;
+    else if (filter === 'tier-sp') show = card.dataset.tier === 'sp';
+    else if (filter === 'jogab') show = card.dataset.jogab === 'true';
+    else if (filter === 'decada') show = card.dataset.decada === 'true';
+    else if (filter === 's2') show = card.dataset.console === 's2';
+    else if (filter === 'coop') show = card.dataset.coop === 'true';
+    card.classList.toggle('hidden', !show);
+  });
+
+  document.querySelectorAll('.genre-section').forEach(section => {
+    const visibleCards = section.querySelectorAll('.game-card:not(.hidden)');
+    section.classList.toggle('hidden', visibleCards.length === 0);
+  });
+}
+
+function handleWishlistClick(e) {
+  const btn = e.target.closest('.action-btn.wishlist');
+  if (!btn) return;
+  e.preventDefault();
+  const gameId = btn.dataset.id;
+  const action = btn.dataset.action;
+  if (wishlist[gameId] === action) {
+    delete wishlist[gameId];
+  } else {
+    wishlist[gameId] = action;
+  }
+  saveWishlist(wishlist);
+  // Re-render buttons for this game (both in catalog and essential view)
+  document.querySelectorAll(`[data-id="${gameId}"]`).forEach(card => {
+    const actionsDiv = card.querySelector('.game-actions, .essential-actions');
+    if (!actionsDiv) return;
+    const wishlistBtns = actionsDiv.querySelectorAll('.action-btn.wishlist');
+    wishlistBtns.forEach(b => {
+      b.classList.remove('wanted', 'owned');
+      if (wishlist[gameId] === 'want' && b.dataset.action === 'want') b.classList.add('wanted');
+      if (wishlist[gameId] === 'own' && b.dataset.action === 'own') b.classList.add('owned');
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderGames();
+  renderEssentialView();
+  renderDecadaSection();
+
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilter(btn.dataset.filter);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').substring(1);
+      const allBtn = document.querySelector('.filter-btn[data-filter="all"]');
+      if (allBtn && !allBtn.classList.contains('active')) {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        allBtn.classList.add('active');
+        applyFilter('all');
+      }
+      requestAnimationFrame(() => {
+        const target = document.getElementById(targetId);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  });
+
+  // Wishlist click handler (delegated)
+  document.addEventListener('click', handleWishlistClick);
+});
+</script>
+</body>
+</html>

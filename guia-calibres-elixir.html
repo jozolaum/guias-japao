@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#15180F">
+<title>Guia de Calibres · Cordas Elixir · Japão</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ground:#15180F;
+    --ground-2:#1A1E13;
+    --surface:#1F241A;
+    --surface-2:#262C1D;
+    --line:#333A28;
+    --line-2:#454D36;
+    --ink:#ECEAE0;
+    --muted:#A2A88C;
+    --faint:#737A5E;
+    --brass:#CBA152;
+    --brass-2:#E0BE76;
+    --brass-soft:rgba(203,161,82,.13);
+    --brass-line:rgba(203,161,82,.32);
+    --olive:#8A985E;
+    --steel:#CDCFC1;
+    --steel-dim:#9FA293;
+    --rust:#C96E45;
+    --rust-soft:rgba(201,110,69,.12);
+    --rust-line:rgba(201,110,69,.34);
+    --r-card:15px;
+    --r-sm:9px;
+    --maxw:680px;
+    --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    --disp:"Chakra Petch","IBM Plex Sans",system-ui,sans-serif;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:var(--sans);
+    background:var(--ground);
+    color:var(--ink);
+    line-height:1.5;
+    font-size:15px;
+    -webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(120% 60% at 50% -10%, rgba(138,152,94,.10), transparent 60%);
+    background-attachment:fixed;
+  }
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px 64px}
+
+  /* ---------- type ---------- */
+  .eyebrow{
+    font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--brass);
+  }
+  h1{font-family:var(--disp);font-weight:700;font-size:clamp(2.1rem,9vw,3rem);line-height:.98;letter-spacing:-.01em;margin:.5rem 0 .65rem}
+  h2{font-family:var(--disp);font-weight:600;font-size:1.02rem;letter-spacing:.02em}
+  .mono{font-family:var(--mono)}
+  .num{font-family:var(--mono);font-feature-settings:"tnum" 1}
+
+  /* ---------- hero ---------- */
+  .hero{padding:48px 0 30px;border-bottom:1px solid var(--line)}
+  .hero p.lede{color:var(--muted);font-size:15px;max-width:44ch;margin-bottom:24px}
+  .hero p.lede b{color:var(--ink);font-weight:600}
+
+  .legend{
+    background:var(--ground-2);border:1px solid var(--line);border-radius:var(--r-sm);
+    padding:13px 15px;
+  }
+  .legend-cap{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin-bottom:9px}
+
+  /* ---------- section headers ---------- */
+  .sec{padding-top:38px}
+  .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:18px}
+  .sec-head .tick{font-family:var(--mono);font-size:11px;color:var(--brass);letter-spacing:.1em;white-space:nowrap}
+  .sec-head .rule{flex:1;height:1px;background:var(--line)}
+
+  /* ---------- string ruler ---------- */
+  .str{display:grid;grid-template-columns:46px 1fr 38px;align-items:center;gap:11px;min-height:17px}
+  .str + .str{margin-top:5px}
+  .str-g{font-family:var(--mono);font-size:12px;color:var(--steel-dim);text-align:right;font-feature-settings:"tnum" 1}
+  .str-line{
+    display:block;width:100%;border-radius:3px;
+    background:linear-gradient(90deg,var(--steel-dim),var(--steel));
+    transform-origin:left center;
+  }
+  .str-n{font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.02em}
+  .str.low .str-g{color:var(--brass-2);font-weight:600}
+  .str.low .str-line{background:linear-gradient(90deg,var(--brass),var(--brass-2))}
+  .str.low .str-n{color:var(--brass)}
+
+  /* ---------- cards ---------- */
+  .grid{display:flex;flex-direction:column;gap:16px}
+  .card{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);
+    padding:18px 17px;position:relative;overflow:hidden;
+  }
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
+  .kind{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);display:block;margin-bottom:3px}
+  .model{font-family:var(--disp);font-weight:600;font-size:1.18rem;line-height:1.05;letter-spacing:.01em}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;max-width:48%}
+  .chip{font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;border:1px solid var(--line-2);color:var(--muted);white-space:nowrap}
+  .chip.scale{color:var(--olive);border-color:rgba(138,152,94,.4)}
+
+  .ruler{background:var(--ground-2);border:1px solid var(--line);border-radius:var(--r-sm);padding:13px 14px;margin-bottom:14px}
+
+  .pick{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-bottom:7px}
+  .pick-set{font-size:14px;font-weight:500}
+  .pick-set b{color:var(--brass-2);font-weight:600}
+  .code{
+    font-family:var(--mono);font-size:12px;font-weight:600;color:var(--brass-2);
+    background:var(--brass-soft);border:1px solid var(--brass-line);border-radius:6px;padding:2px 8px;
+    white-space:nowrap;
+  }
+  .coat{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.04em}
+  .coat::before{content:"◆";color:var(--olive);margin-right:5px;font-size:8px;vertical-align:1px}
+
+  .tension-line{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:9px;padding-top:11px;border-top:1px dashed var(--line-2);line-height:1.7}
+  .tension-line b{color:var(--ink);font-weight:500}
+
+  details.more{margin-top:12px}
+  details.more > summary{
+    list-style:none;cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+    color:var(--brass);display:flex;align-items:center;gap:7px;padding:4px 0;
+    -webkit-tap-highlight-color:transparent;
+  }
+  details.more > summary::-webkit-details-marker{display:none}
+  details.more > summary .arw{transition:transform .25s ease;display:inline-block;font-size:9px}
+  details.more[open] > summary .arw{transform:rotate(90deg)}
+  .more-body{padding-top:11px;font-size:13.5px;color:var(--muted);line-height:1.62}
+  .more-body p{margin-bottom:9px}
+  .more-body p:last-child{margin-bottom:0}
+  .more-body b{color:var(--ink);font-weight:600}
+  .more-body .mono{color:var(--brass-2);font-size:12px}
+
+  .avoid{
+    background:var(--rust-soft);border:1px solid var(--rust-line);border-radius:8px;
+    padding:11px 12px;margin:11px 0;
+  }
+  .avoid-tag{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--rust);display:block;margin-bottom:6px}
+  .avoid ul{margin:0;padding-left:17px}
+  .avoid li{font-size:13px;color:var(--muted);margin-bottom:5px}
+  .avoid li:last-child{margin-bottom:0}
+  .avoid li b{color:var(--ink)}
+
+  /* ---------- callout ---------- */
+  .callout{
+    border:1px solid var(--brass-line);background:var(--brass-soft);border-radius:var(--r-card);
+    padding:16px 16px;margin-top:24px;
+  }
+  .callout .co-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);display:block;margin-bottom:7px}
+  .callout p{font-size:13.5px;color:var(--muted);line-height:1.6}
+  .callout p b{color:var(--ink);font-weight:600}
+  .callout .mono{color:var(--brass-2)}
+
+  /* ---------- tension table ---------- */
+  .ttable{width:100%;border-collapse:collapse;font-size:12px}
+  .ttable th{
+    font-family:var(--mono);font-weight:500;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--faint);text-align:left;padding:0 10px 9px;border-bottom:1px solid var(--line);
+  }
+  .ttable th.r,.ttable td.r{text-align:right}
+  .ttable td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  .ttable tr:last-child td{border-bottom:0}
+  .ttable .t-name{font-family:var(--mono);font-size:11.5px;color:var(--ink)}
+  .ttable .t-name .sub{color:var(--faint)}
+  .ttable .t-lb{font-family:var(--mono);font-weight:600;color:var(--brass-2);white-space:nowrap}
+  .ttable .t-note{color:var(--muted);font-size:11.5px}
+  .ttable tr.good{background:var(--brass-soft)}
+  .ttable tr.good .t-note{color:var(--brass-2)}
+  .ttable tr.bad .t-lb{color:var(--rust)}
+  .ttable tr.bad .t-note{color:var(--rust)}
+  .anchor-note{font-family:var(--mono);font-size:10.5px;color:var(--faint);margin-top:12px;line-height:1.6}
+
+  /* ---------- coatings ---------- */
+  .coatbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);padding:16px 16px}
+  .coatbox + .coatbox{margin-top:12px}
+  .coatbox h3{font-family:var(--disp);font-weight:600;font-size:.95rem;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+  .coatbox h3 .dot{width:8px;height:8px;border-radius:2px;flex:none}
+  .coatbox p{font-size:13px;color:var(--muted);line-height:1.6}
+  .coatbox p b{color:var(--ink);font-weight:600}
+  .coatbox .warn{color:var(--rust);font-weight:600}
+
+  /* ---------- shopping ---------- */
+  .tips{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:24px}
+  .tips li{font-size:13.5px;color:var(--muted);line-height:1.6;padding-left:20px;position:relative}
+  .tips li::before{content:"›";position:absolute;left:2px;top:-1px;color:var(--olive);font-family:var(--mono);font-size:15px}
+  .tips li b{color:var(--ink);font-weight:600}
+  .tips li .mono{font-family:var(--mono);font-size:12px;color:var(--brass-2)}
+
+  .checkwrap{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);padding:8px 16px 16px}
+  .checkhead{display:flex;justify-content:space-between;align-items:center;padding:13px 0 11px;border-bottom:1px solid var(--line);margin-bottom:6px}
+  .checkhead .ch-title{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .progress{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--brass-2)}
+
+  .check{display:grid;grid-template-columns:24px 1fr;gap:13px;align-items:start;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .check:last-child{border-bottom:0}
+  .check input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+  .check-box{width:24px;height:24px;border:1.5px solid var(--line-2);border-radius:7px;background:var(--ground-2);display:grid;place-items:center;transition:background .15s,border-color .15s;margin-top:1px}
+  .check-box::after{content:"✓";font-size:14px;font-weight:700;color:var(--ground);opacity:0;transform:scale(.5);transition:opacity .15s,transform .15s}
+  .check input:checked + .check-box{background:var(--brass);border-color:var(--brass)}
+  .check input:checked + .check-box::after{opacity:1;transform:scale(1)}
+  .check input:focus-visible + .check-box{outline:2px solid var(--brass-2);outline-offset:2px}
+  .check-text{font-size:13.5px;color:var(--ink);line-height:1.5;transition:opacity .15s}
+  .check-text .ct-h{font-weight:600}
+  .check-text .mono{font-family:var(--mono);font-size:12px;color:var(--brass-2)}
+  .check-text small{display:block;color:var(--muted);font-size:12px;margin-top:3px;line-height:1.5}
+  .check input:checked ~ .check-text{opacity:.4}
+  .check input:checked ~ .check-text .ct-h{text-decoration:line-through}
+
+  /* ---------- footer ---------- */
+  footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);text-align:center}
+  footer p{font-family:var(--mono);font-size:11px;color:var(--faint);line-height:1.7}
+
+  /* ---------- motion ---------- */
+  @media (prefers-reduced-motion: no-preference){
+    .reveal{opacity:0;transform:translateY(14px);animation:rise .6s cubic-bezier(.2,.7,.3,1) forwards}
+    .hero .reveal{animation-delay:.05s}
+    .card.reveal:nth-child(1){animation-delay:.05s}
+    .card.reveal:nth-child(2){animation-delay:.13s}
+    .card.reveal:nth-child(3){animation-delay:.21s}
+    .card.reveal:nth-child(4){animation-delay:.29s}
+    .str-line{animation:draw .7s cubic-bezier(.2,.7,.3,1) both;animation-delay:.25s}
+    @keyframes rise{to{opacity:1;transform:none}}
+    @keyframes draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  }
+
+  @media (min-width:560px){
+    .wrap{padding:0 24px 72px}
+    .card{padding:22px 22px}
+    .str{grid-template-columns:52px 1fr 44px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="reveal">
+      <span class="eyebrow">Cordas Elixir · Setup Japão 2026</span>
+      <h1>Guia de<br>Calibres</h1>
+      <p class="lede">Calibres mais leves pelo brilho, tensão mais pro firme. Os dois só brigam <b>na mesma corda, no mesmo tom</b> — então se resolve ao longo do set: agudas finas, grave engrossada. <b>Light top, heavy bottom.</b></p>
+      <div class="legend">
+        <div class="legend-cap">Espessura da linha = calibre real</div>
+        <div class="str"><span class="str-g">.010</span><span class="str-line" style="height:3.6px"></span><span class="str-n">fina</span></div>
+        <div class="str"><span class="str-g">.052</span><span class="str-line" style="height:8.3px"></span><span class="str-n">média</span></div>
+        <div class="str"><span class="str-g">.135</span><span class="str-line" style="height:13.4px"></span><span class="str-n">grossa</span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- CARDS -->
+  <section class="sec">
+    <div class="sec-head">
+      <h2>Por instrumento</h2>
+      <span class="rule"></span>
+      <span class="tick">4 setups</span>
+    </div>
+
+    <div class="grid">
+
+      <!-- PRECISION -->
+      <article class="card reveal">
+        <div class="card-top">
+          <div>
+            <span class="kind">Baixo</span>
+            <span class="model">Fender Precision</span>
+          </div>
+          <div class="chips">
+            <span class="chip scale">34″</span>
+            <span class="chip">Standard</span>
+            <span class="chip">Drop D</span>
+          </div>
+        </div>
+        <div class="ruler">
+          <div class="str"><span class="str-g">.045</span><span class="str-line" style="height:7.7px"></span><span class="str-n">Sol</span></div>
+          <div class="str"><span class="str-g">.065</span><span class="str-line" style="height:9.3px"></span><span class="str-n">Ré</span></div>
+          <div class="str"><span class="str-g">.085</span><span class="str-line" style="height:10.6px"></span><span class="str-n">Lá</span></div>
+          <div class="str low"><span class="str-g">.105</span><span class="str-line" style="height:11.8px"></span><span class="str-n">Mi</span></div>
+        </div>
+        <div class="pick">
+          <span class="pick-set">Light/Medium <b>.045–.105</b> stainless</span>
+          <span class="code">14677</span>
+        </div>
+        <span class="coat">Stainless NANOWEB</span>
+        <p class="tension-line">Grave: <b>~40 lb</b> em Standard · <b>~32 lb</b> em Drop D</p>
+        <details class="more">
+          <summary><span class="arw">▶</span> Detalhes</summary>
+          <div class="more-body">
+            <p>Um set cobre as duas afinações. As agudas (.045/.065/.085) ficam leves e brilhantes; a .105 já entrega bastante tensão em Standard e segura bem o Drop D.</p>
+            <p>Não vale subir pra Medium <span class="mono">.050–.105</span> só pelo Drop D ocasional — engrossaria as agudas (que você quer leves) sem ganho onde importa.</p>
+          </div>
+        </details>
+      </article>
+
+      <!-- JAZZ -->
+      <article class="card reveal">
+        <div class="card-top">
+          <div>
+            <span class="kind">Baixo</span>
+            <span class="model">Jazz Bass Deluxe</span>
+          </div>
+          <div class="chips">
+            <span class="chip scale">34″</span>
+            <span class="chip">Drop C</span>
+          </div>
+        </div>
+        <div class="ruler">
+          <div class="str"><span class="str-g">.050</span><span class="str-line" style="height:8.1px"></span><span class="str-n">Fá</span></div>
+          <div class="str"><span class="str-g">.070</span><span class="str-line" style="height:9.6px"></span><span class="str-n">Dó</span></div>
+          <div class="str"><span class="str-g">.085</span><span class="str-line" style="height:10.6px"></span><span class="str-n">Sol</span></div>
+          <div class="str low"><span class="str-g">.125</span><span class="str-line" style="height:12.9px"></span><span class="str-n">Dó</span></div>
+        </div>
+        <div class="pick">
+          <span class="pick-set">Medium <b>.050–.105</b> · troca grave por <b>.125</b></span>
+        </div>
+        <span class="coat">Nickel NANOWEB · joga a .105 fora</span>
+        <p class="tension-line">Tudo em <b>~40–45 lb</b> · braço tranquilo (~170 lb, ≈ Medium padrão)</p>
+        <div class="avoid">
+          <span class="avoid-tag">⚠ O que não fazer</span>
+          <ul>
+            <li>Bordão <b>.135 Heavy não-taper</b>: escuro e sem definição (calibre máximo + nickel + sem núcleo exposto).</li>
+            <li>Subir tudo um calibre (<b>.065/.085/.105</b>): agudas viram cabo de aço (~57 lb) e o bordão fica o mais frouxo.</li>
+          </ul>
+        </div>
+        <details class="more">
+          <summary><span class="arw">▶</span> Detalhes</summary>
+          <div class="more-body">
+            <p><b>Por que Medium e não Light:</b> em Drop C as agudas descem um tom. As do Light (.045/.065) ficam frouxas (a Fá cai pra ~34 lb); as do Medium seguram. Não são "grossas" — é o empurrão mínimo pra corda destensionada não virar elástico.</p>
+            <p><b>Upgrade de definição (opcional):</b> trocar a .125 pela <span class="mono">.130 taper-wound</span> nickel <span class="mono">(15432)</span> — núcleo exposto dá mais foco sem mais massa. Só se a .125 ainda faltar definição.</p>
+            <p><b>Setup:</b> intonação do bordão + altura do captador embaixo dele.</p>
+          </div>
+        </details>
+      </article>
+
+      <!-- STRAT -->
+      <article class="card reveal">
+        <div class="card-top">
+          <div>
+            <span class="kind">Guitarra</span>
+            <span class="model">Stratocaster</span>
+          </div>
+          <div class="chips">
+            <span class="chip scale">25,5″</span>
+            <span class="chip">Standard</span>
+            <span class="chip">Drop D</span>
+          </div>
+        </div>
+        <div class="ruler">
+          <div class="str"><span class="str-g">.010</span><span class="str-line" style="height:3.6px"></span><span class="str-n">Mi</span></div>
+          <div class="str"><span class="str-g">.013</span><span class="str-line" style="height:4.1px"></span><span class="str-n">Si</span></div>
+          <div class="str"><span class="str-g">.017</span><span class="str-line" style="height:4.7px"></span><span class="str-n">Sol</span></div>
+          <div class="str"><span class="str-g">.032</span><span class="str-line" style="height:6.5px"></span><span class="str-n">Ré</span></div>
+          <div class="str"><span class="str-g">.042</span><span class="str-line" style="height:7.5px"></span><span class="str-n">Lá</span></div>
+          <div class="str low"><span class="str-g">.052</span><span class="str-line" style="height:8.3px"></span><span class="str-n">Mi</span></div>
+        </div>
+        <div class="pick">
+          <span class="pick-set">OPTIWEB <b>Light/Heavy 10–52</b></span>
+          <span class="code">19077</span>
+        </div>
+        <span class="coat">OPTIWEB (ou NANOWEB)</span>
+        <p class="tension-line">Grave: <b>~22 lb</b> em Standard (firme) · <b>~17 lb</b> em Drop D</p>
+        <details class="more">
+          <summary><span class="arw">▶</span> Detalhes</summary>
+          <div class="more-body">
+            <p>Topo leve (.010–.013) pra bends fáceis, fundo encorpado (.052) que segura o Drop D. Em Standard a .052 deixa o grave mais firme que um 10–46 comum — graves tensos, agudas leves.</p>
+            <p>Se achar a .052 firme demais em Standard, caia pro <span class="mono">Light 10–46 (19052)</span> e aceite o Drop D mais solto. Pra tensão mais pro firme, fica no 10–52.</p>
+          </div>
+        </details>
+      </article>
+
+      <!-- FUJIGEN -->
+      <article class="card reveal">
+        <div class="card-top">
+          <div>
+            <span class="kind">Guitarra</span>
+            <span class="model">FujiGen JIL · DE664</span>
+          </div>
+          <div class="chips">
+            <span class="chip scale">26,14″</span>
+            <span class="chip">Drop C</span>
+          </div>
+        </div>
+        <div class="ruler">
+          <div class="str"><span class="str-g">.010</span><span class="str-line" style="height:3.6px"></span><span class="str-n">Ré</span></div>
+          <div class="str"><span class="str-g">.013</span><span class="str-line" style="height:4.1px"></span><span class="str-n">Lá</span></div>
+          <div class="str"><span class="str-g">.017</span><span class="str-line" style="height:4.7px"></span><span class="str-n">Fá</span></div>
+          <div class="str"><span class="str-g">.032</span><span class="str-line" style="height:6.5px"></span><span class="str-n">Dó</span></div>
+          <div class="str"><span class="str-g">.042</span><span class="str-line" style="height:7.5px"></span><span class="str-n">Sol</span></div>
+          <div class="str low"><span class="str-g">.052</span><span class="str-line" style="height:8.3px"></span><span class="str-n">Dó</span></div>
+        </div>
+        <div class="pick">
+          <span class="pick-set">OPTIWEB <b>Light/Heavy 10–52</b> · só o set</span>
+          <span class="code">19077</span>
+        </div>
+        <span class="coat">OPTIWEB (ou NANOWEB)</span>
+        <p class="tension-line">Grave em Dó: <b>~14 lb</b> — a escala de 664 mm segura (spec de fábrica)</p>
+        <details class="more">
+          <summary><span class="arw">▶</span> Detalhes</summary>
+          <div class="more-body">
+            <p>Escala <b>664 mm (26,14″)</b> — estendida, feita pra afinação grave. A escala longa adiciona tensão, então você fica leve <b>e</b> firme. A .052 é o que a FGN coloca de fábrica (<span class="mono">EXL116</span>) em drop.</p>
+            <p><b>Dispensa a single .056.</b> Ela só entra se, no palm mute pesado, o Dó grave soar frouxo/flubby (levaria pra ~17 lb). Com 664 mm, provavelmente não precisa.</p>
+            <p>Captadores <b>Fishman Fluence</b> ativos: já articulados, sobra folga contra o "sem graça". Sets de tamanho normal servem — só confira o enrolamento da grave passando da pestana.</p>
+          </div>
+        </details>
+      </article>
+
+    </div>
+
+    <!-- callout escala -->
+    <div class="callout">
+      <span class="co-tag">✓ Escala confirmada</span>
+      <p>O <span class="mono">"664"</span> no nome é a própria escala em mm. A <b>JIL3-ASH-DE664 tem 664 mm</b> (baritone-lite), maior que a Strat (648 mm) — mesma faixa do que o Deftones usa. É o que faz a .052 bastar no Drop C.</p>
+    </div>
+  </section>
+
+  <!-- TENSÃO -->
+  <section class="sec">
+    <div class="sec-head">
+      <h2>Tensão · leitura rápida</h2>
+      <span class="rule"></span>
+      <span class="tick">≈ lb</span>
+    </div>
+    <table class="ttable">
+      <thead>
+        <tr><th>Corda</th><th class="r">~lb</th><th>Sensação</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="t-name">P-Bass · .105 <span class="sub">Mi</span></td><td class="r t-lb">~40</td><td class="t-note">firme / padrão</td></tr>
+        <tr><td class="t-name">P-Bass · .105 <span class="sub">Ré · Drop D</span></td><td class="r t-lb">~32</td><td class="t-note">levemente solta</td></tr>
+        <tr class="good"><td class="t-name">Jazz · .125 <span class="sub">Dó</span></td><td class="r t-lb">~40</td><td class="t-note">leve + equilibrado ✓</td></tr>
+        <tr><td class="t-name">Jazz agudas · .050/.070/.085</td><td class="r t-lb">~40–45</td><td class="t-note">mantém tensão</td></tr>
+        <tr class="bad"><td class="t-name">Jazz · .135 <span class="sub">Dó · Heavy</span></td><td class="r t-lb">~46</td><td class="t-note">escuro — evitar</td></tr>
+        <tr><td class="t-name">Jazz · .130 taper <span class="sub">Dó</span></td><td class="r t-lb">~45</td><td class="t-note">upgrade definição</td></tr>
+        <tr><td class="t-name">Strat · .052 <span class="sub">Mi</span></td><td class="r t-lb">~22</td><td class="t-note">firme p/ um .046</td></tr>
+        <tr><td class="t-name">Strat · .052 <span class="sub">Ré · Drop D</span></td><td class="r t-lb">~17</td><td class="t-note">grave padrão</td></tr>
+        <tr class="good"><td class="t-name">FujiGen · .052 <span class="sub">Dó</span></td><td class="r t-lb">~14</td><td class="t-note">spec de fábrica ✓</td></tr>
+        <tr><td class="t-name">FujiGen · .056 <span class="sub">Dó</span></td><td class="r t-lb">~17</td><td class="t-note">≈ grave padrão</td></tr>
+        <tr><td class="t-name">FujiGen · .059 <span class="sub">Dó</span></td><td class="r t-lb">~19</td><td class="t-note">firme+</td></tr>
+      </tbody>
+    </table>
+    <p class="anchor-note">Âncoras: grave padrão de guitarra (.046 Mi) ≈ 17 lb · de baixo (.105 Mi) ≈ 40 lb. Aproximações via T ∝ f², calibre² e escala². Pra cravar, use um calculador (D'Addario / Stringjoy).</p>
+  </section>
+
+  <!-- COATINGS -->
+  <section class="sec">
+    <div class="sec-head">
+      <h2>Coatings</h2>
+      <span class="rule"></span>
+      <span class="tick">qual usar</span>
+    </div>
+    <div class="coatbox">
+      <h3><span class="dot" style="background:var(--brass)"></span>Guitarra → OPTIWEB ou NANOWEB</h3>
+      <p><b>Mesma durabilidade</b> (posição oficial da Elixir + relatos reais) — a diferença é só timbre/pegada. OPTIWEB é mais cristalina, com pegada de corda sem coating; NANOWEB (a que você já usa) é um tico mais quente e <b>bem mais fácil de achar no Brasil</b>. <span class="warn">Evite POLYWEB</span> (a mais quente). Dica: teste 1 set de OPTIWEB no Japão; se não te ganhar, NANOWEB sem culpa.</p>
+    </div>
+    <div class="coatbox">
+      <h3><span class="dot" style="background:var(--olive)"></span>Baixo → Stainless NANOWEB</h3>
+      <p>Mais brilhante e agressivo que o nickel-plated (mais quente/redondo, a opção mais "sem graça" pro seu ouvido). O stainless mantém os graves profundos e adiciona definição no agudo. Custo: textura um tico mais áspera e desgaste de traste marginal — mas brilho é o que você quer. <b>Baixo não tem OPTIWEB</b>; é nickel ou stainless.</p>
+    </div>
+  </section>
+
+  <!-- JAPÃO -->
+  <section class="sec">
+    <div class="sec-head">
+      <h2>Comprando no Japão</h2>
+      <span class="rule"></span>
+      <span class="tick">field</span>
+    </div>
+    <ul class="tips">
+      <li>Elixir é bem distribuído: <b>Ishibashi, Ikebe, Shimamura, Soundhouse</b> têm a linha completa. Os sets fechados você acha fácil.</li>
+      <li><b>Singles avulsas</b> (.125/.130 de baixo, .056/.059 de guitarra) são menos garantidas — lojas grandes de Tóquio/Osaka costumam ter, mas confirme.</li>
+      <li><b>Plano B:</b> misturar uma single de outra marca na grave é normal e inaudível. <span class="mono">D'Addario</span> avulsa está em qualquer loja.</li>
+      <li>Termos úteis no balcão: <span class="mono">"single string, .056, nickel wound, electric"</span> · <span class="mono">"bass single, .125, stainless"</span>.</li>
+    </ul>
+
+    <div class="checkwrap">
+      <div class="checkhead">
+        <span class="ch-title">Lista de compras</span>
+        <span class="progress" id="prog">0 / 4</span>
+      </div>
+
+      <label class="check">
+        <input type="checkbox">
+        <span class="check-box"></span>
+        <span class="check-text"><span class="ct-h">Precision</span> — baixo stainless Light/Medium <span class="mono">.045–.105 (14677)</span></span>
+      </label>
+
+      <label class="check">
+        <input type="checkbox">
+        <span class="check-box"></span>
+        <span class="check-text"><span class="ct-h">Jazz · Drop C</span> — Medium <span class="mono">.050–.105</span> nickel + bordão <span class="mono">.125</span><small>Joga a .105 fora. Não use o .135 Heavy. Opcional: .130 taper (15432).</small></span>
+      </label>
+
+      <label class="check">
+        <input type="checkbox">
+        <span class="check-box"></span>
+        <span class="check-text"><span class="ct-h">Strat</span> — OPTIWEB Light/Heavy <span class="mono">10–52 (19077)</span></span>
+      </label>
+
+      <label class="check">
+        <input type="checkbox">
+        <span class="check-box"></span>
+        <span class="check-text"><span class="ct-h">FujiGen · Drop C</span> — OPTIWEB Light/Heavy <span class="mono">10–52 (19077)</span>, só o set<small>.056 só se o palm mute soar frouxo.</small></span>
+      </label>
+    </div>
+  </section>
+
+  <footer>
+    <p>Assumi 4 cordas nos dois baixos.<br>Calibres em milésimos de polegada · tensões aproximadas.</p>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var boxes = Array.prototype.slice.call(document.querySelectorAll('.check input[type=checkbox]'));
+    var prog = document.getElementById('prog');
+    function update(){
+      var n = boxes.filter(function(b){return b.checked;}).length;
+      prog.textContent = n + ' / ' + boxes.length;
+    }
+    boxes.forEach(function(b){ b.addEventListener('change', update); });
+    update();
+  })();
+</script>
+</body>
+</html>
