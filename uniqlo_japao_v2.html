@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plano UNIQLO Japão — Jonathan • V2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-deep: #0d0c0a;
+  --bg-soft: #161412;
+  --bg-card: #1a1815;
+  --fg-bone: #ebe3d4;
+  --fg-soft: #b5ad9e;
+  --fg-muted: #7a7367;
+  --fg-dim: #3d3a33;
+  --line: #28241e;
+  --line-soft: #1f1c17;
+  --burgundy: #6a1f2a;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-deep);
+  color: var(--fg-bone);
+  font-family: 'Geist', -apple-system, sans-serif;
+  font-weight: 400;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative;
+  z-index: 2;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.hero {
+  min-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 48px 0 60px;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--fg-muted);
+  text-transform: uppercase;
+}
+
+.hero-top-right { text-align: right; }
+.hero-top-right span { display: block; }
+
+.hero-version {
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--burgundy);
+  margin-top: 8px;
+  text-transform: uppercase;
+}
+
+.hero-center { display: flex; align-items: center; flex: 1; padding: 60px 0; }
+
+.hero h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(56px, 11vw, 152px);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+}
+
+.hero h1 .italic { font-style: italic; color: var(--fg-soft); }
+
+.hero h1 .small {
+  font-size: 0.45em;
+  display: block;
+  font-style: italic;
+  color: var(--fg-muted);
+  margin-top: 0.4em;
+}
+
+.hero-bottom {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+
+.hero-stat { font-family: 'Geist Mono', monospace; }
+.hero-stat-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 8px; }
+.hero-stat-value { font-size: 14px; color: var(--fg-bone); font-weight: 500; }
+.hero-stat-value.big { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 32px; line-height: 1; }
+
+section { padding: 100px 0 60px; border-bottom: 1px solid var(--line-soft); }
+
+.section-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(48px, 7vw, 88px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.section-title .italic { font-style: italic; color: var(--fg-soft); }
+
+.section-intro {
+  font-size: 17px;
+  color: var(--fg-soft);
+  max-width: 680px;
+  margin-bottom: 48px;
+  line-height: 1.6;
+}
+
+.section-intro em { font-style: italic; color: var(--fg-bone); }
+
+.url-pattern {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  padding: 24px 28px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.url-pattern-label {
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  flex-shrink: 0;
+}
+
+.url-pattern-code {
+  font-family: 'Geist Mono', monospace;
+  font-size: 13px;
+  color: var(--fg-bone);
+  word-break: break-all;
+}
+
+.url-pattern-code .var {
+  background: var(--burgundy);
+  color: var(--fg-bone);
+  padding: 2px 6px;
+  font-weight: 500;
+}
+
+.principles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); margin-top: 48px; }
+.principle { background: var(--bg-deep); padding: 32px; }
+.principle-num { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--fg-muted); margin-bottom: 12px; }
+.principle-title { font-family: 'Instrument Serif', serif; font-size: 24px; font-style: italic; margin-bottom: 8px; }
+.principle-body { font-size: 14px; color: var(--fg-soft); line-height: 1.55; }
+
+.palette { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1px; background: var(--line); margin-top: 32px; }
+.swatch { background: var(--bg-deep); }
+.swatch-color { aspect-ratio: 1; width: 100%; position: relative; }
+.swatch-color::after { content: ''; position: absolute; inset: 0; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04); }
+.swatch-info { padding: 14px 12px; font-family: 'Geist Mono', monospace; font-size: 11px; }
+.swatch-name { color: var(--fg-bone); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; font-weight: 500; }
+.swatch-code { color: var(--fg-muted); font-size: 10px; }
+.swatch-role { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); color: var(--fg-soft); font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; }
+
+.tier-header { display: flex; align-items: baseline; gap: 24px; margin-bottom: 8px; flex-wrap: wrap; }
+.tier-badge { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-bone); background: var(--bg-card); padding: 6px 12px; border: 1px solid var(--line); }
+.tier-badge.tier-1 { background: var(--fg-bone); color: var(--bg-deep); border-color: var(--fg-bone); }
+.tier-badge.tier-2 { background: var(--bg-soft); }
+.tier-badge.tier-3 { background: transparent; color: var(--fg-soft); }
+.tier-count { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 18px; color: var(--fg-muted); }
+
+.items { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1px; background: var(--line); margin-top: 32px; }
+.item { background: var(--bg-soft); padding: 28px 24px; display: flex; flex-direction: column; gap: 16px; transition: background 0.3s; }
+.item:hover { background: var(--bg-card); }
+.item-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.item-num { font-family: 'Geist Mono', monospace; font-size: 10px; color: var(--fg-muted); letter-spacing: 0.1em; }
+.item-qty { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 28px; line-height: 1; }
+.item-qty .x { font-family: 'Geist Mono', monospace; font-style: normal; font-size: 11px; color: var(--fg-muted); margin-right: 2px; vertical-align: 0.3em; }
+.item-name { font-family: 'Instrument Serif', serif; font-size: 22px; line-height: 1.15; letter-spacing: -0.01em; }
+.item-name-jp { font-size: 11px; color: var(--fg-muted); font-family: 'Geist Mono', monospace; margin-top: 4px; line-height: 1.3; }
+.item-cat { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 4px; }
+
+.item-code { display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: var(--bg-deep); border: 1px solid var(--line); }
+.item-code-label { font-family: 'Geist Mono', monospace; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--fg-muted); }
+.item-code-value { font-family: 'Geist Mono', monospace; font-size: 14px; color: var(--fg-bone); font-weight: 500; letter-spacing: 0.05em; flex: 1; }
+.item-code-link { font-family: 'Geist Mono', monospace; font-size: 10px; color: var(--burgundy); text-transform: uppercase; letter-spacing: 0.1em; border: 1px solid var(--burgundy); padding: 4px 8px; transition: all 0.2s; }
+.item-code-link:hover { background: var(--burgundy); color: var(--fg-bone); }
+
+.item-colors { display: flex; gap: 10px; align-items: center; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.color-dot { width: 28px; height: 28px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.08); flex-shrink: 0; }
+.color-info { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--fg-soft); }
+.color-info-name { color: var(--fg-bone); font-weight: 500; }
+.color-info-code { color: var(--fg-muted); font-size: 10px; }
+
+.item-meta { display: flex; gap: 16px; font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.05em; flex-wrap: wrap; }
+.item-meta strong { color: var(--fg-bone); font-weight: 500; }
+
+.item-why { font-size: 14px; color: var(--fg-soft); line-height: 1.55; font-style: italic; font-family: 'Instrument Serif', serif; }
+
+.looks { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 1px; background: var(--line); margin-top: 32px; }
+.look { background: var(--bg-soft); padding: 32px 28px; display: flex; flex-direction: column; gap: 20px; }
+.look-num { font-family: 'Geist Mono', monospace; font-size: 10px; color: var(--fg-muted); letter-spacing: 0.15em; }
+.look-name { font-family: 'Instrument Serif', serif; font-size: 36px; line-height: 0.95; letter-spacing: -0.01em; margin: -8px 0 4px; }
+.look-name .italic { font-style: italic; color: var(--fg-soft); }
+.look-occasion { font-family: 'Geist Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--fg-muted); }
+.look-pieces { display: flex; flex-direction: column; gap: 10px; padding: 16px 0; border-top: 1px solid var(--line); }
+.look-piece { display: flex; gap: 12px; align-items: center; font-size: 13px; color: var(--fg-soft); }
+.look-piece-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.08); }
+.look-piece-text strong { color: var(--fg-bone); font-weight: 500; }
+.look-vibe { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 14px; color: var(--fg-muted); line-height: 1.5; border-top: 1px solid var(--line); padding-top: 14px; }
+
+.bonus-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: var(--line); margin-top: 32px; }
+.bonus-item { background: var(--bg-soft); padding: 24px; }
+.bonus-item-title { font-family: 'Instrument Serif', serif; font-size: 20px; margin-bottom: 8px; }
+.bonus-item-title .italic { font-style: italic; color: var(--fg-soft); }
+.bonus-item-code { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--burgundy); margin-bottom: 12px; letter-spacing: 0.05em; }
+.bonus-item-body { font-size: 13px; color: var(--fg-soft); line-height: 1.55; }
+
+.tactical { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: var(--line); margin-top: 40px; }
+.tactical-card { background: var(--bg-soft); padding: 28px 24px; }
+.tactical-num { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 48px; line-height: 1; color: var(--fg-muted); margin-bottom: 16px; }
+.tactical-title { font-family: 'Instrument Serif', serif; font-size: 22px; margin-bottom: 12px; }
+.tactical-body { font-size: 13px; color: var(--fg-soft); line-height: 1.55; }
+.tactical-body strong { color: var(--fg-bone); font-weight: 500; }
+.tactical-body code { font-family: 'Geist Mono', monospace; background: var(--bg-deep); padding: 2px 6px; font-size: 11px; color: var(--fg-bone); border: 1px solid var(--line); }
+
+.decisions { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1px; background: var(--line); margin-top: 32px; }
+.decision { background: var(--bg-soft); padding: 28px 24px; border-left: 3px solid var(--burgundy); }
+.decision-icon { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 40px; line-height: 1; color: var(--burgundy); margin-bottom: 16px; }
+.decision-title { font-family: 'Instrument Serif', serif; font-size: 22px; margin-bottom: 12px; }
+.decision-body { font-size: 13px; color: var(--fg-soft); line-height: 1.55; }
+.decision-body strong { color: var(--fg-bone); font-weight: 500; }
+
+.footer { padding: 80px 0 60px; text-align: center; }
+.footer-mark { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 32px; color: var(--fg-muted); margin-bottom: 16px; }
+.footer-meta { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-dim); }
+
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+  .hero { padding: 32px 0 40px; min-height: auto; }
+  .hero h1 { font-size: 56px; }
+  .hero-bottom { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .hero-stat-value.big { font-size: 24px; }
+  section { padding: 60px 0 40px; }
+  .principles, .items, .looks, .bonus-list, .tactical, .decisions { grid-template-columns: 1fr; }
+  .section-title { font-size: 44px; }
+  .url-pattern { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.hero h1, .hero-bottom, section > .container > * { animation: fadeUp 0.8s ease-out backwards; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div>
+        <span>Personal Wardrobe Plan / Spring–Summer 26</span>
+        <div class="hero-version">v2.0 — códigos UNIQLO confirmados</div>
+      </div>
+      <div class="hero-top-right">
+        <span>Para Jonathan B.</span>
+        <span>Tokyo • Kyoto • Osaka</span>
+      </div>
+    </div>
+
+    <div class="hero-center">
+      <h1>
+        Plano <span class="italic">UNIQLO</span><br>
+        Japão
+        <span class="small">um capsule sóbrio para um punk de meia-idade<br>com algum senso de moda.</span>
+      </h1>
+    </div>
+
+    <div class="hero-bottom">
+      <div class="hero-stat">
+        <div class="hero-stat-label">Filosofia</div>
+        <div class="hero-stat-value">Capsule onde tudo combina com tudo. Paleta sóbria. Tatuagens fazem o trabalho gráfico.</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Tier 1</div>
+        <div class="hero-stat-value big">14</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Tier 2</div>
+        <div class="hero-stat-value big">06</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Bonus</div>
+        <div class="hero-stat-value big">03</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <div class="section-meta">
+      <span>§ 01 — Filosofia</span>
+      <span>Como pensar este guarda-roupa</span>
+    </div>
+    <h2 class="section-title">Quatro <span class="italic">regras</span><br>antes da lista.</h2>
+    <p class="section-intro">
+      A premissa: nenhuma peça órfã. Cada item conversa com pelo menos cinco outros do guarda-roupa, novo ou antigo. O documento abaixo é organizado por <em>tiers</em> de prioridade — Tier 1 é obrigatório, Tier 2 completa o plano, e o Bonus entra se sobrar dinheiro, tempo ou espaço na mala.
+    </p>
+
+    <div class="principles">
+      <div class="principle">
+        <div class="principle-num">01</div>
+        <div class="principle-title">Base sóbria, acentos discretos</div>
+        <div class="principle-body">Preto, navy e dark gray formam ~70% do volume. Olive, wine e light blue são acentos pontuais.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">02</div>
+        <div class="principle-title">Fits intencionais</div>
+        <div class="principle-body">SUPIMA em L (M apertou). AIRism Cotton Oversized em M (já bom). Ultra Stretch Pants e shorts em M. Tudo provado antes de comprar volume.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">03</div>
+        <div class="principle-title">Função antes do glamour</div>
+        <div class="principle-body">SUPIMA respira e não marca suor — uniforme. AIRism Cotton Oversized pra sair. Em shorts, algodão (chino) é prioridade sobre AIRism em Araraquara.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">04</div>
+        <div class="principle-title">Códigos UNIQLO na mão</div>
+        <div class="principle-body">Cada peça tem product ID confirmado no site JP. Cola URL no celular, mostra pro atendente, evita confusão. Tempo poupado no provador.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-meta">
+      <span>§ 02 — Como usar</span>
+      <span>Acesso direto aos produtos</span>
+    </div>
+    <h2 class="section-title">Padrão de <span class="italic">URL</span>.</h2>
+    <p class="section-intro">
+      Cada peça tem código UNIQLO (formato E + 6 dígitos). Cole no padrão abaixo no navegador do celular pra abrir direto a página oficial JP. Funciona offline se você abrir antes — só salvar a página.
+    </p>
+
+    <div class="url-pattern">
+      <span class="url-pattern-label">Padrão URL</span>
+      <span class="url-pattern-code">uniqlo.com/jp/ja/products/<span class="var">E[CÓDIGO]</span>-000/00</span>
+    </div>
+
+    <p style="font-size: 14px; color: var(--fg-soft); font-family: 'Geist Mono', monospace; letter-spacing: 0.05em;">
+      Exemplo: <strong style="color: var(--fg-bone);">E475598</strong> → uniqlo.com/jp/ja/products/E475598-000/00
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-meta">
+      <span>§ 03 — Paleta</span>
+      <span>Códigos UNIQLO de referência</span>
+    </div>
+    <h2 class="section-title">A <span class="italic">paleta</span>.</h2>
+    <p class="section-intro">
+      Oito cores que compõem todo o sistema. As três primeiras são <em>base</em>. As cinco seguintes são <em>acentos</em>.
+    </p>
+
+    <div class="palette">
+      <div class="swatch"><div class="swatch-color" style="background: #1a1a1a;"></div><div class="swatch-info"><div class="swatch-name">Black</div><div class="swatch-code">09</div><div class="swatch-role">Base</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #1c2945;"></div><div class="swatch-info"><div class="swatch-name">Navy</div><div class="swatch-code">69</div><div class="swatch-role">Base</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #404040;"></div><div class="swatch-info"><div class="swatch-name">Dark Gray</div><div class="swatch-code">08</div><div class="swatch-role">Base</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #54573a;"></div><div class="swatch-info"><div class="swatch-name">Olive</div><div class="swatch-code">57</div><div class="swatch-role">Acento</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #6a1f2a;"></div><div class="swatch-info"><div class="swatch-name">Wine</div><div class="swatch-code">17</div><div class="swatch-role">Acento</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #7ea1b8;"></div><div class="swatch-info"><div class="swatch-name">Light Blue</div><div class="swatch-code">62</div><div class="swatch-role">Acento</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #d8c8a8;"></div><div class="swatch-info"><div class="swatch-name">Natural / Bone</div><div class="swatch-code">30</div><div class="swatch-role">Acento</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #c4b89e;"></div><div class="swatch-info"><div class="swatch-name">Beige</div><div class="swatch-code">32</div><div class="swatch-role">Acento</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-meta">
+      <span>§ 04 — Tier 1</span>
+      <span>Imprescindíveis</span>
+    </div>
+    <div class="tier-header">
+      <span class="tier-badge tier-1">Tier 01 / Essencial</span>
+      <span class="tier-count"><em>quatorze peças</em> que voltam na mala sem discussão</span>
+    </div>
+    <h2 class="section-title">O <span class="italic">core</span>.</h2>
+    <p class="section-intro">
+      Se você cortar metade da lista, é este Tier que sobrevive. Substituem peças usadas todo dia ou preenchem o gap mais óbvio.
+    </p>
+
+    <div class="items">
+
+      <div class="item">
+        <div class="item-header"><div><div class="item-cat">Camiseta — Tier 1</div><div class="item-num">N° 01</div></div><div class="item-qty"><span class="x">×</span>3</div></div>
+        <div><div class="item-name">SUPIMA Cotton Crew Neck T-Shirt</div><div class="item-name-jp">スーピマコットンクルーネックTシャツ</div></div>
+        <div class="item-code"><span class="item-code-label">Código</span><span class="item-code-value">E455365</span><a class="item-code-link" href="https://www.uniqlo.com/jp/ja/products/E455365-000/00" target="_blank">Abrir</a></div>
+        <div class="item-colors"><div class="color-dot" style="background: #1a1a1a;"></div><div class="color-info"><div class="color-info-name">BLACK</div><div class="color-info-code">09</div></div></div>
+        <div class="item-meta"><span>Tamanho <strong>L</strong></span><span>Substitui <strong>4 antigas</strong></span></div>
+        <div class="item-why">O uniforme. Sobe pra L porque a M te aperta. Se a loja não tiver SUPIMA, parte pra Crew Neck T-Shirt regular short sleeve.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header"><div><div class="item-cat">Camiseta — Tier 1</div><div class="item-num">N° 02</div></div><div class="item-qty"><span class="x">×</span>1</div></div>
+        <div><div class="item-name">SUPIMA Cotton Crew Neck T-Shirt</div><div class="item-name-jp">スーピマコットンクルーネックTシャツ</div></div>
+        <div class="item-code"><span class="item-code-label">Código</span><span class="item-code-value">E455365</span><a class="item-code-link" href="https://www.uniqlo.com/jp/ja/products/E455365-000/00" target="_blank">Abrir</a></div>
+        <div class="item-colors"><div class="color-dot" style="background: #1c2945;"></div><div class="color-info"><div class="color-info-name">BLUE / NAVY</div><div class="color-info-code">67/68</div></div></div>
+        <div class="item-meta"><span>Tamanho <strong>L</strong></span><span>Substitui <strong>a antiga</strong></span></div>
+        <div class="item-why">A azul amada do seu inventário ganha versão nova. Combina com Ultra Stretch dark gray e bomber navy.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header"><div><div class="item-cat">Camiseta Oversized — Tier 1</div><div class="item-num">N° 03</div></div><div class="item-qty"><span class="x">×</span>1</div></div>
+        <div><div class="item-name">AIRism Cotton Oversized T-Shirt — Half Sleeve</div><div class="item-name-jp">エアリズムコットンオーバーサイズT・5分袖</div></div>
+        <div class="item-code"><span class="item-code-label">Código</span><span class="item-code-value">E465185</span><a class="item-code-link" href="https://www.uniqlo.com/jp/ja/products/E465185-000/00" target="_blank">Abrir</a></div>
+        <div class="item-colors"><div class="color-dot" style="background: #1a1a1a;"></div><div class="color-info"><div class="color-info-name">BLACK</div><div class="color-info-code">09</div></div></div>
+        <div class="item-meta"><span>Tamanho <strong>M</strong></span><span>O <strong>arrependimento</strong></span></div>
+        <div class="item-why">Você se arrependeu de não ter pego. M serve bem em você (confirmado). Camiseta de sair à noite com shorts e meia preta longa.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header"><div><div class="item-cat">Camiseta Oversized — Tier 1</div><div class="item-num">N° 04</div></div><div class="item-qty"><span class="x">×</span>1</div></div>
+        <div><div class="item-name">AIRism Cotton Oversized T-Shirt — Half Sleeve</div><div class="item-name-jp">エアリズムコットンオーバーサイズT・5分袖</div></div>
+        <div class="item-code"><span class="item-code-label">Código</span><span class="item-code-value">E465185</span><a class="item-code-link" href="https://www.uniqlo.com/jp/ja/products/E465185-000/00" target="_blank">Abrir</a></div>
+        <div class="item-colors"><div class="color-dot" style="background: #1c2945;"></div><div class="color-info"><div class="color-info-name">NAVY</div><div class="color-info-code">69</div></div></div>
+        <div class="item-meta"><span>Tamanho <strong>M</strong></span><span>Amplia <strong>paleta</strong></span></div>
+        <div class="item-why">Você adora oversized e tem cinza, light gray e brown — falta navy. Pausa do preto sem fugir do escuro.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header"><div><div class="item-cat">Calça — Tier 1</div><div class="item-num">N° 05</div></div><div class="item-qty"><span class="x">×</span>1</div></div>
+        <div><div class="item-name">Men's Ultra Stretch Pants</div><div class="item-name-jp">ウルトラストレッチパンツ</div></div>
+        <div class="item-code"><span class="item-code-label">Código</span><span class="item-code-value">E475598</span><a class="item-code-link" href="https://www.uniqlo.com/jp/ja/products/E475598-000/00" target="_blank">Abrir</a></div>
+        <div class="item-colors"><div class="color-dot" style="background: #404040;"></div><div class="color-info"><div class="color-info-name">DARK GRAY</div><div class="color-info-code">08</div></div></div>
+        <div class="item-meta"><span>Tamanho <strong>M</strong></span><span>Substitui <strong>a desgastada</strong></span></div>
+        <div class="item-why">Sucessora da Smart Ankle Ultra Stretch descontinuada. Mesmo tecido, fit slim tapered nas fotos. Atenção: tecido não permite ajuste de barra — confirma comprimento antes.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header"><div><div class="item-cat">Calça — Tier 1</div><div class="item-num">N° 06</div></div><div class="item-qty"><span class="x">×</span>1</div></div>
+        <div><div class="item-name">Men's Ultra Stretch Pants</div><div class="item-name-jp">ウルトラストレッチパンツ</div></div>
+        <div class="item-code"><span class="item-code-label">Código</span><span class="item-code-value">E475598</span><a class="item-code-link" href="https://www.uniqlo.com/jp/ja/products/E475598-000/00" target="_blank">Abrir</a></div>
+        <div class="item-colors"><div class="color-dot" style="background: #1c2945;"></div><div class="color-info"><div class="color-info-name">NAVY</div><div class="color-info-code">69</div></div></div>
+        <div class="item-meta"><span>Tamanho <strong>M</strong></span><span>Cor <strong>nova</strong></span></div>
+        <div class="item-why">Coringa absoluto: combina com tudo. Permite o look navy total com bomber e Merino.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header"><div><div class="item-cat">Camisa — Tier 1</div><div class="item-num">N° 07</div></div><div class="item-qty"><span class="x">×</span>1</div></div>
+        <div><div class="item-name">Premium Linen Shirt</div><div class="item-name-jp">プレミアムリネンシャツ</div></div>
+        <div class="item-code"><span class="item-code-label">Código</span><span class="item-code-value">E455957</span><a class="item-code-link" href="https://www.uniqlo.com/jp/ja/products/E455957-000/00" target="_blank">Abrir</a></div>
+        <div class="item-colors"><div class="color-dot" style="background: #7ea1b8;"></div><div class="color-info"><div class="color-info-name">LIGHT BLUE</div><div class="color-info-code">62</div></div></div>
+        <div class="item-meta"><span>Tamanho <strong>L</strong></span><span>Provar <strong>antes</strong></span></div>
+        <div class="item-why">Substituto da azul clarinha amada. Gola regular, manga curta, linho 100%. Amassa muito — parte do charme. Se incomodar, parte pra Cotton Linen Shirt.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header"><div><div class="item-cat">Shorts — Tier 1</div><div class="item-num">N° 08</div></div><div class="item-qty"><span class="x">×</span>1</div></div>
+        <div><div class="item-name">Chino Shorts</div><div class="item-name-jp">チノショーツ</div></div>
+        <div class="item-code"><span class="item-code-label">Código</span><span class="item-code-value">E455503</span><a class="item-code-link" href="https://www.uniqlo.com/jp/ja/products/E455503-000/00" target="_blank">Abrir</a></div>
+        <div class="item-colors"><div class="color-dot" style="background: #1a1a1a;"></div><div class="color-info"><div class="color-info-name">BLACK</div><div class="color-info-code">09</div></div></div>
+        <div class="item-meta"><span>Tamanho <strong>M</strong></span><span>Comprimento <strong>7"</strong></span></div>
+        <div class="item-why">O retorno do chino que você adorava — em cor estável. Twill 100% algodão, botão + zíper, casual com intenção.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header"><div><div class="item-cat">Shorts — Tier 1</div><div class="item-num">N° 09</div></div><div class="item-qty"><span class="x">×</span>1</div></div>
+        <div><div class="item-name">Chino Shorts</div><div class="item-name-jp">チノショーツ</div></div>
+        <div class="item-code"><span class="item-code-label">Código</span><span class="item-code-value">E455503</span><a class="item-code-link" href="https://www.uniqlo.com/jp/ja/products/E455503-000/00" target="_blank">Abrir</a></div>
+        <div class="item-colors"><div class="color-dot" style="background: #1c2945;"></div><div class="color-info"><div class="color-info-name">NAVY</div><div class="color-info-code">69</div></div></div>
+        <div class="item-meta"><span>Tamanho <strong>M</strong></span><span>Comprimento <strong>7"</strong></span></div>
+        <div class="item-why">Mesma peça em segundo coringa. Navy combina com tudo. Cor estável, sem risco de desbotamento.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header"><div><div class="item-cat">Sweater — Tier 1</div><div class="item-num">N° 10</div></div><div class="item-qty"><span class="x">×</span>1</div></div>
+        <div><div class="item-name">Washable 3D Crew Neck Sweater</div><div class="item-name-jp">ウォッシャブル3Dクルーネックセーター</div></div>
+        <div class="item-code"><span class="item-code-label">Código</span><span class="item-code-value">E482321</span><a class="item-code-link" href="https://www.uniqlo.com/jp/ja/products/E482321-000/00" target="_blank">Abrir</a></div>
+        <div class="item-colors"><div class="color-dot" style="background: #54573a;"></div><div class="color-info"><div class="color-info-name">OLIVE</div><div class="color-info-code">57</div></div></div>
+        <div class="item-meta"><span>Tamanho <strong>M</strong></span><span>Estoque <strong>sazonal</strong></span></div>
+        <div class="item-why">Fecha tríade navy/preto/oliva. Combina com Ultra Stretch gray, navy e Levi's 511 preta. Meia-estação — estoque pode ser reduzido no verão.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header"><div><div class="item-cat">Outerwear — Tier 1</div><div class="item-num">N° 11</div></div><div class="item-qty"><span class="x">×</span>1</div></div>
+        <div><div class="item-name">Harrington Jacket</div><div class="item-name-jp">ハリントンジャケット</div></div>
+        <div class="item-code"><span class="item-code-label">Código</span><span class="item-code-value">E484610</span><a class="item-code-link" href="https://www.uniqlo.com/jp/ja/products/E484610-000/00" target="_blank">Abrir</a></div>
+        <div class="item-colors"><div class="color-dot" style="background: #54573a;"></div><div class="color-info"><div class="color-info-name">OLIVE</div><div class="color-info-code">57</div></div></div>
+        <div class="item-meta"><span>Tamanho <strong>M</strong></span><span>Par do <strong>bomber</strong></span></div>
+        <div class="item-why">Outro lado da moeda do bomber navy. Bomber = moderno. Harrington = clássico/mod. Oliva integra com 3D Knit.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header"><div><div class="item-cat">Outerwear — Tier 1</div><div class="item-num">N° 12</div></div><div class="item-qty"><span class="x">×</span>1</div></div>
+        <div><div class="item-name">Pocketable UV Protection Parka — 3D Cut</div><div class="item-name-jp">ポケッタブルUVカットパーカ／3Dカット</div></div>
+        <div class="item-code"><span class="item-code-label">Código</span><span class="item-code-value">E462529</span><a class="item-code-link" href="https://www.uniqlo.com/jp/ja/products/E462529-000/00" target="_blank">Abrir</a></div>
+        <div class="item-colors"><div class="color-dot" style="background: #1c2945;"></div><div class="color-info"><div class="color-info-name">NAVY</div><div class="color-info-code">69</div></div></div>
+        <div class="item-meta"><span>Tamanho <strong>M</strong></span><span>Dobra <strong>na mochila</strong></span></div>
+        <div class="item-why">Junho é rainy season no Japão — vai usar lá mesmo. UPF40, repele chuva leve, dobra em saco. Navy pra não competir com o North Face preto.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-meta">
+      <span>§ 05 — Tier 2</span>
+      <span>Completam o plano</span>
+    </div>
+    <div class="tier-header">
+      <span class="tier-badge tier-2">Tier 02 / Importante</span>
+      <span class="tier-count"><em>seis peças</em> que amplificam o conjunto</span>
+    </div>
+    <h2 class="section-title">O <span class="italic">completam</span>.</h2>
+    <p class="section-intro">
+      Sem o Tier 2, o guarda-roupa funciona — mas no básico. Com ele, fica <em>robusto</em>: mais opções de cor, mais coringas, mais textura.
+    </p>
+
+    <div class="items">
+
+      <div class="item">
+        <div class="item-header"><div><div class="item-cat">Camiseta — Tier 2</div><div class="item-num">N° 13</div></div><div class="item-qty"><span class="x">×</span>1</div></div>
+        <div><div class="item-name">UNIQLO U Crew Neck T-Shirt</div><div class="item-name-jp">UniqloU クルーネックTシャツ</div></div>
+        <div class="item-code"><span class="item-code-label">Código</span><span class="item-code-value">E485563</span><a class="item-code-link" href="https://www.uniqlo.com/jp/ja/products/E485563-000/00" target="_blank">Abrir</a></div>
+        <div class="item-colors"><div class="color-dot" style="background: #d8c8a8;"></div><div class="color-info"><div class="color-info-name">NATURAL / BONE</div><div class="color-info-code">30</div></div></div>
+        <div class="item-meta"><span>Tamanho <strong>L (provar M)</strong></span><span>Boxy fit</span></div>
+        <div class="item-why">A camiseta boxy considerada a melhor básica da UNIQLO. Bone resolve o "branco que não me serve". Provar L e M — boxy em M pode te servir perfeitamente.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header"><div><div class="item-cat">Camiseta Oversized — Tier 2</div><div class="item-num">N° 14</div></div><div class="item-qty"><span class="x">×</span>1</div></div>
+        <div><div class="item-name">AIRism Cotton Oversized T-Shirt — Half Sleeve</div><div class="item-name-jp">エアリズムコットンオーバーサイズT・5分袖</div></div>
+        <div class="item-code"><span class="item-code-label">Código</span><span class="item-code-value">E465185</span><a class="item-code-link" href="https://www.uniqlo.com/jp/ja/products/E465185-000/00" target="_blank">Abrir</a></div>
+        <div class="item-colors"><div class="color-dot" style="background: #54573a;"></div><div class="color-info"><div class="color-info-name">OLIVE</div><div class="color-info-code">57</div></div></div>
+        <div class="item-meta"><span>Tamanho <strong>M</strong></span><span>Família <strong>olive</strong></span></div>
+        <div class="item-why">Fecha o circuito olive: combina com 3D Knit, Harrington e Chino Shorts olive. Abre os looks tom-sobre-tom da família terra.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header"><div><div class="item-cat">Shorts — Tier 2</div><div class="item-num">N° 15</div></div><div class="item-qty"><span class="x">×</span>1</div></div>
+        <div><div class="item-name">Chino Shorts</div><div class="item-name-jp">チノショーツ</div></div>
+        <div class="item-code"><span class="item-code-label">Código</span><span class="item-code-value">E455503</span><a class="item-code-link" href="https://www.uniqlo.com/jp/ja/products/E455503-000/00" target="_blank">Abrir</a></div>
+        <div class="item-colors"><div class="color-dot" style="background: #54573a;"></div><div class="color-info"><div class="color-info-name">OLIVE ou BEIGE</div><div class="color-info-code">57 / 32</div></div></div>
+        <div class="item-meta"><span>Tamanho <strong>M</strong></span><span>Cor <strong>terra</strong></span></div>
+        <div class="item-why">Terceira cor de chino. Olive pra tom-sobre-tom; beige mais leve visualmente. Cuidado com lavagens — cores garment-dyed podem perder pigmento.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header"><div><div class="item-cat">Shorts — Tier 2</div><div class="item-num">N° 16</div></div><div class="item-qty"><span class="x">×</span>1</div></div>
+        <div><div class="item-name">Ultra Stretch Sweat Shorts</div><div class="item-name-jp">ウルトラストレッチスウェットショーツ</div></div>
+        <div class="item-code"><span class="item-code-label">Código</span><span class="item-code-value">E475827</span><a class="item-code-link" href="https://www.uniqlo.com/jp/ja/products/E475827-000/00" target="_blank">Abrir</a></div>
+        <div class="item-colors"><div class="color-dot" style="background: #1a1a1a;"></div><div class="color-info"><div class="color-info-name">BLACK</div><div class="color-info-code">09</div></div></div>
+        <div class="item-meta"><span>Tamanho <strong>M</strong></span><span>Conforto <strong>moletinho</strong></span></div>
+        <div class="item-why">Substituto direto da Vans bermuda. Levemente menos boxy que o Sweat Shorts comum. Pra dia em casa, pra relaxar, pra correr atrás dos filhos.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header"><div><div class="item-cat">Shorts — Tier 2</div><div class="item-num">N° 17</div></div><div class="item-qty"><span class="x">×</span>1</div></div>
+        <div><div class="item-name">AIRism Cotton Easy Shorts</div><div class="item-name-jp">エアリズムコットンイージーショートパンツ</div></div>
+        <div class="item-code"><span class="item-code-label">Código</span><span class="item-code-value">E481209</span><a class="item-code-link" href="https://www.uniqlo.com/jp/ja/products/E481209-000/00" target="_blank">Abrir</a></div>
+        <div class="item-colors"><div class="color-dot" style="background: #1a1a1a;"></div><div class="color-info"><div class="color-info-name">BLACK</div><div class="color-info-code">09</div></div></div>
+        <div class="item-meta"><span>Tamanho <strong>M</strong></span><span>Diversifica</span></div>
+        <div class="item-why">Único "easy shorts" masculino da linha JP. Tem AIRism — pode marcar suor. Pra dias menos quentes ou situações sem suor intenso.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header"><div><div class="item-cat">Sweater — Tier 2</div><div class="item-num">N° 18</div></div><div class="item-qty"><span class="x">×</span>1</div></div>
+        <div><div class="item-name">Lambswool Crew Neck Sweater</div><div class="item-name-jp">ラムクルーネックセーター</div></div>
+        <div class="item-code"><span class="item-code-label">Código</span><span class="item-code-value">E460940</span><a class="item-code-link" href="https://www.uniqlo.com/jp/ja/products/E460940-000/00" target="_blank">Abrir</a></div>
+        <div class="item-colors"><div class="color-dot" style="background: #6a1f2a;"></div><div class="color-info"><div class="color-info-name">WINE ou GRAY</div><div class="color-info-code">17 / 06</div></div></div>
+        <div class="item-meta"><span>Tamanho <strong>M</strong></span><span>Amplia <strong>time</strong></span></div>
+        <div class="item-why">Junto com Merino navy (já tem) e 3D Knit olive, vira terceira opção. Wine dialoga com Levi's Worker burgundy; gray pra segurança. Estoque sazonal.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-meta">
+      <span>§ 06 — Bonus</span>
+      <span>Se sobrar tempo, dinheiro ou espaço</span>
+    </div>
+    <div class="tier-header">
+      <span class="tier-badge tier-3">Tier 03 / Bonus</span>
+      <span class="tier-count"><em>extras</em> que elevam, mas não fazem falta</span>
+    </div>
+    <h2 class="section-title">As <span class="italic">extras</span>.</h2>
+    <p class="section-intro">
+      Sem prioridade fixa — se aparecerem na loja e te chamarem, leva. Se não, sem culpa.
+    </p>
+
+    <div class="bonus-list">
+      <div class="bonus-item">
+        <div class="bonus-item-title">AIRism UV Cut <span class="italic">Mesh Cap</span></div>
+        <div class="bonus-item-code">categoria メッシュキャップ</div>
+        <div class="bonus-item-body">Boné preto, UV protection, vibe minimal. Combina com tatuagens + óculos redondo. Pragmático pro sol japonês.</div>
+      </div>
+      <div class="bonus-item">
+        <div class="bonus-item-title">UT <span class="italic">Graphic Tee</span></div>
+        <div class="bonus-item-code">escolha na loja — máx 2 peças</div>
+        <div class="bonus-item-body">Não planeje, deixa acontecer. Procure tipografia japonesa minimal ou colabs de artistas que você curte. Limite: 2.</div>
+      </div>
+      <div class="bonus-item">
+        <div class="bonus-item-title">AIRism Cotton Oversized <span class="italic">Wine</span></div>
+        <div class="bonus-item-code">E465185 — cor 17 WINE</div>
+        <div class="bonus-item-body">Acento discreto pop-punk. Conversa com Levi's Worker burgundy. Só leva se a cor estiver ao vivo melhor que parece em foto.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-meta">
+      <span>§ 07 — Decisões na loja</span>
+      <span>Provar antes de decidir</span>
+    </div>
+    <h2 class="section-title">Três <span class="italic">decisões</span><br>no provador.</h2>
+    <p class="section-intro">
+      Três peças do plano exigem decisão final na loja. Cada uma com plano A e plano B claros — você só executa.
+    </p>
+
+    <div class="decisions">
+      <div class="decision">
+        <div class="decision-icon">A</div>
+        <div class="decision-title">Camisetas pretas (×3)</div>
+        <div class="decision-body">
+          <strong>Plano A:</strong> SUPIMA Cotton Crew Neck T-Shirt (E455365) tamanho L, se a loja tiver. É seu uniforme histórico.<br><br>
+          <strong>Plano B:</strong> se não tiver SUPIMA, parte pra <strong>Crew Neck T-Shirt regular short sleeve</strong> da linha base masculina (existe nas lojas, sem código fixo). Mesmo tamanho L.
+        </div>
+      </div>
+      <div class="decision">
+        <div class="decision-icon">B</div>
+        <div class="decision-title">Camisa Light Blue</div>
+        <div class="decision-body">
+          <strong>Plano A:</strong> Premium Linen Shirt (E455957). Linho 100%, amassa muito — parte do charme.<br><br>
+          <strong>Plano B:</strong> se o amassado te irritar, parte pra <strong>Cotton Linen Shirt</strong> (¥2.990, mistura algodão+linho, amassa menos).
+        </div>
+      </div>
+      <div class="decision">
+        <div class="decision-icon">C</div>
+        <div class="decision-title">UNIQLO U Crew Neck (Bone)</div>
+        <div class="decision-body">
+          <strong>Plano A:</strong> tamanho L, mesmo critério da SUPIMA.<br><br>
+          <strong>Plano B:</strong> se a boxy em L te deixar com cara de moleque grandão, troca pra M. O fit oversized natural da U pode te servir melhor em M.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-meta">
+      <span>§ 08 — Lookbook</span>
+      <span>Como tudo se combina</span>
+    </div>
+    <h2 class="section-title">Oito <span class="italic">combinações</span>.</h2>
+    <p class="section-intro">
+      Cada look usa peças do plano novo + do guarda-roupa que você já tem. A ideia é mostrar que <em>tudo combina com tudo</em>.
+    </p>
+
+    <div class="looks">
+
+      <div class="look">
+        <div class="look-num">Look 01</div>
+        <h3 class="look-name">Oficina<br><span class="italic">do dia.</span></h3>
+        <div class="look-occasion">Trabalho — padrão diário</div>
+        <div class="look-pieces">
+          <div class="look-piece"><div class="look-piece-dot" style="background: #1a1a1a;"></div><div class="look-piece-text"><strong>SUPIMA T-Shirt L</strong> — Black</div></div>
+          <div class="look-piece"><div class="look-piece-dot" style="background: #404040;"></div><div class="look-piece-text"><strong>Ultra Stretch Pants</strong> — Dark Gray</div></div>
+          <div class="look-piece"><div class="look-piece-dot" style="background: #1a1a1a;"></div><div class="look-piece-text"><strong>NB 1080v14</strong> — Black (já tem)</div></div>
+        </div>
+        <div class="look-vibe">Minimal monocromático. Eficiente, sem esforço.</div>
+      </div>
+
+      <div class="look">
+        <div class="look-num">Look 02</div>
+        <h3 class="look-name">Tom sobre<br><span class="italic">tom navy.</span></h3>
+        <div class="look-occasion">Trabalho — reunião</div>
+        <div class="look-pieces">
+          <div class="look-piece"><div class="look-piece-dot" style="background: #1c2945;"></div><div class="look-piece-text"><strong>SUPIMA T-Shirt L</strong> — Blue</div></div>
+          <div class="look-piece"><div class="look-piece-dot" style="background: #1c2945;"></div><div class="look-piece-text"><strong>Ultra Stretch Pants</strong> — Navy</div></div>
+          <div class="look-piece"><div class="look-piece-dot" style="background: #5a4632;"></div><div class="look-piece-text"><strong>Britton Road</strong> (já tem)</div></div>
+        </div>
+        <div class="look-vibe">Navy total + couro marrom. Intencional, adulto.</div>
+      </div>
+
+      <div class="look">
+        <div class="look-num">Look 03</div>
+        <h3 class="look-name">Volta da<br><span class="italic">camisa azul.</span></h3>
+        <div class="look-occasion">Sair de dia — casual chic</div>
+        <div class="look-pieces">
+          <div class="look-piece"><div class="look-piece-dot" style="background: #7ea1b8;"></div><div class="look-piece-text"><strong>Premium Linen Shirt</strong> — Light Blue</div></div>
+          <div class="look-piece"><div class="look-piece-dot" style="background: #404040;"></div><div class="look-piece-text"><strong>Ultra Stretch Pants</strong> — Dark Gray</div></div>
+          <div class="look-piece"><div class="look-piece-dot" style="background: #5a4632;"></div><div class="look-piece-text"><strong>Britton Road</strong> (já tem)</div></div>
+        </div>
+        <div class="look-vibe">A peça-mãe da lista em ação. "Papai estiloso" sem virar caricato.</div>
+      </div>
+
+      <div class="look">
+        <div class="look-num">Look 04</div>
+        <h3 class="look-name">Night<br><span class="italic">out.</span></h3>
+        <div class="look-occasion">Sair à noite — casual</div>
+        <div class="look-pieces">
+          <div class="look-piece"><div class="look-piece-dot" style="background: #1a1a1a;"></div><div class="look-piece-text"><strong>AIRism Cotton Oversized M</strong> — Black</div></div>
+          <div class="look-piece"><div class="look-piece-dot" style="background: #1a1a1a;"></div><div class="look-piece-text"><strong>Chino Shorts</strong> — Black</div></div>
+          <div class="look-piece"><div class="look-piece-dot" style="background: #1a1a1a;"></div><div class="look-piece-text"><strong>Meia preta longa</strong> + NB 1080v14</div></div>
+        </div>
+        <div class="look-vibe">All black com volume controlado. Tatuagens fazem o trabalho gráfico.</div>
+      </div>
+
+      <div class="look">
+        <div class="look-num">Look 05</div>
+        <h3 class="look-name">Capsule<br><span class="italic">olive.</span></h3>
+        <div class="look-occasion">Sair de dia — calor</div>
+        <div class="look-pieces">
+          <div class="look-piece"><div class="look-piece-dot" style="background: #54573a;"></div><div class="look-piece-text"><strong>AIRism Cotton Oversized M</strong> — Olive</div></div>
+          <div class="look-piece"><div class="look-piece-dot" style="background: #1a1a1a;"></div><div class="look-piece-text"><strong>Chino Shorts</strong> — Black</div></div>
+          <div class="look-piece"><div class="look-piece-dot" style="background: #1a1a1a;"></div><div class="look-piece-text"><strong>NB 1080v14</strong> — Black</div></div>
+        </div>
+        <div class="look-vibe">Verde-mato + preto + tatoo. Combinação subestimada.</div>
+      </div>
+
+      <div class="look">
+        <div class="look-num">Look 06</div>
+        <h3 class="look-name">Merino<br><span class="italic">moment.</span></h3>
+        <div class="look-occasion">Friozinho — elegante</div>
+        <div class="look-pieces">
+          <div class="look-piece"><div class="look-piece-dot" style="background: #7ea1b8;"></div><div class="look-piece-text"><strong>Premium Linen</strong> — Light Blue (por baixo)</div></div>
+          <div class="look-piece"><div class="look-piece-dot" style="background: #1c2945;"></div><div class="look-piece-text"><strong>Merino Sweater</strong> — Navy (já tem, gola por fora)</div></div>
+          <div class="look-piece"><div class="look-piece-dot" style="background: #404040;"></div><div class="look-piece-text"><strong>Ultra Stretch Pants</strong> — Dark Gray</div></div>
+          <div class="look-piece"><div class="look-piece-dot" style="background: #5a4632;"></div><div class="look-piece-text"><strong>Britton Road</strong> (já tem)</div></div>
+        </div>
+        <div class="look-vibe">Gentleman casual. Vou pra um restaurante bom mas não exagerei.</div>
+      </div>
+
+      <div class="look">
+        <div class="look-num">Look 07</div>
+        <h3 class="look-name">Onda<br><span class="italic">3D olive.</span></h3>
+        <div class="look-occasion">Friozinho — casual</div>
+        <div class="look-pieces">
+          <div class="look-piece"><div class="look-piece-dot" style="background: #54573a;"></div><div class="look-piece-text"><strong>3D Knit Sweater</strong> — Olive</div></div>
+          <div class="look-piece"><div class="look-piece-dot" style="background: #1c2945;"></div><div class="look-piece-text"><strong>Ultra Stretch Pants</strong> — Navy</div></div>
+          <div class="look-piece"><div class="look-piece-dot" style="background: #1a1a1a;"></div><div class="look-piece-text"><strong>NB 1080v14</strong> — Black</div></div>
+        </div>
+        <div class="look-vibe">Minimal japonês. Oliva + navy — sóbria e única.</div>
+      </div>
+
+      <div class="look">
+        <div class="look-num">Look 08</div>
+        <h3 class="look-name">Harrington<br><span class="italic">street.</span></h3>
+        <div class="look-occasion">Meia estação — versátil</div>
+        <div class="look-pieces">
+          <div class="look-piece"><div class="look-piece-dot" style="background: #1a1a1a;"></div><div class="look-piece-text"><strong>SUPIMA T-Shirt L</strong> — Black</div></div>
+          <div class="look-piece"><div class="look-piece-dot" style="background: #54573a;"></div><div class="look-piece-text"><strong>Harrington Jacket</strong> — Olive</div></div>
+          <div class="look-piece"><div class="look-piece-dot" style="background: #404040;"></div><div class="look-piece-text"><strong>Ultra Stretch Pants</strong> — Dark Gray</div></div>
+          <div class="look-piece"><div class="look-piece-dot" style="background: #1a1a1a;"></div><div class="look-piece-text"><strong>NB 1080v14</strong> — Black</div></div>
+        </div>
+        <div class="look-vibe">Mod-revival com twist contemporâneo. Casual com personalidade.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-meta">
+      <span>§ 09 — Roteiro Tático</span>
+      <span>Quando, onde, como</span>
+    </div>
+    <h2 class="section-title">Como <span class="italic">comprar</span>.</h2>
+    <p class="section-intro">
+      Junho/julho é coleção pesada de verão — abundância de SUPIMA, AIRism, linho, parka UV e shorts. Peças meia-estação (3D Knit, Harrington, Lambswool) podem ter estoque reduzido; plano B é o site JP online.
+    </p>
+
+    <div class="tactical">
+      <div class="tactical-card">
+        <div class="tactical-num">01</div>
+        <h3 class="tactical-title">Onde ir</h3>
+        <div class="tactical-body">Flagships com linha completa, incluindo UNIQLO U: <strong>Ginza</strong> (12 andares) e <strong>Shinjuku</strong> (várias unidades). Emende <strong>Apple Omotesando + UNIQLO Harajuku</strong> no mesmo dia. Ginza é destino próprio.</div>
+      </div>
+      <div class="tactical-card">
+        <div class="tactical-num">02</div>
+        <h3 class="tactical-title">Códigos na mão</h3>
+        <div class="tactical-body">Salva esse documento offline no celular. Cada peça tem código E+6 dígitos e link direto. Mostra pro atendente caso não ache pela vitrine. <code>uniqlo.com/jp/ja/products/E[CÓDIGO]-000/00</code></div>
+      </div>
+      <div class="tactical-card">
+        <div class="tactical-num">03</div>
+        <h3 class="tactical-title">Provar é obrigatório</h3>
+        <div class="tactical-body">Especialmente: <strong>SUPIMA L</strong> (tamanho novo), <strong>Premium Linen L</strong> (fit torso/braços), <strong>UNIQLO U L</strong> (sizing boxy), <strong>Ultra Stretch Pants M</strong> (comprimento — tecido não permite ajuste de barra).</div>
+      </div>
+      <div class="tactical-card">
+        <div class="tactical-num">04</div>
+        <h3 class="tactical-title">Tax-free</h3>
+        <div class="tactical-body">UNIQLO oferece tax-free acima de ¥5.500 no mesmo dia, mesma loja. Apresente passaporte no caixa. Não pode usar até sair do país — vêm em saco lacrado.</div>
+      </div>
+      <div class="tactical-card">
+        <div class="tactical-num">05</div>
+        <h3 class="tactical-title">Ordem de compra</h3>
+        <div class="tactical-body">Tier 1 nas primeiras lojas — garante o essencial. Tier 2 nas flagships. Bonus por último. UT que te pegar de jeito na primeira loja: leva.</div>
+      </div>
+      <div class="tactical-card">
+        <div class="tactical-num">06</div>
+        <h3 class="tactical-title">Plano B sazonal</h3>
+        <div class="tactical-body">Se 3D Knit (E482321), Harrington (E484610) ou Lambswool (E460940) não estiverem em loja, pega <strong>online JP UNIQLO</strong> com entrega no hotel via Takkyubin.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-mark">— fim do plano —</div>
+    <div class="footer-meta">v2.0 / Junho 2026 / Códigos UNIQLO Japan confirmados</div>
+  </div>
+</footer>
+
+</body>
+</html>
